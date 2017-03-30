@@ -1,0 +1,122 @@
+\documentclass[NET,a4,12pt,ngerman]{netforms}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tumlang}
+\usepackage{tumcontact}
+\usepackage{scrpage2}
+
+\geometry{%
+	top=10mm,
+	bottom=10mm,
+	left=25mm,
+	right=25mm,
+	headsep=1.5cm,
+	includehead,
+}
+\input{studentdefs}
+
+\pagestyle{scrheadings}
+\chead{\TUMheader{1cm}}
+
+\renewcommand{\maketitle}{%
+	\begin{center}
+		\textbf{\introductoryheadline}%
+
+		\Large%
+		\textbf{\thetitle}%
+	\end{center}
+
+	\footnotesize%
+	\hrule
+	\vskip1ex
+	\begin{tabular}{ll}
+		\thenamelabel: & \thevorname{} \textbf{\thenachname}\\
+		\theadvisorlabel: & \hspace*{-.5ex}\thebetreuer\\
+		\thesupervisorlabel: & \chairhead\\
+		\thebeginlabel: & \thebeginnmonat/\thebeginnjahr\\
+		\theendlabel: & \theendmonat/\theendjahr\\
+	\end{tabular}
+	\vskip1ex
+	\hrule
+	\vskip4ex
+}
+
+\linespread{1.2}
+\setlength{\parskip}{.5\baselineskip}
+
+\begin{document}
+\maketitle
+
+\subsection*{Topic}
+In this Bachelor's Thesis we test different Implementations of Middleboxes. 
+We will set up different middleboxes in our testbed and then measure the performance of packet-processing in our testbed. 
+Our advanced goal is to identify different bottlenecks in modern middlebox implementations. As a common middlebox we will quantify NAT-boxes. 
+
+The intended field of application is, for instance, in big ISP networks. ISP's often use middleboxes in there setups to cache or even modify user data.
+Performance improvements of even milliseconds can be very important in such huge networks. We will try to identify 
+
+The thesis is thematically similar to the Master's Thesis \emph{Automatic Line
+Code Detection of RF Signals on Software Defined Radios} \cite{riedl2015} by
+Martin Riedel, which also implemented a spectrum analyzer.
+However, it was never planned to record or replay signals.
+In addition, this thesis lacks some scientific rigor with respect to the
+validity of recorded samples.
+
+
+\subsection*{Approach}
+The thesis is split in two parts.
+In the first part we will make measurements and statistic evaluations to
+ensure, that the acquired data, which comes from the SDR, is valid.  Therefore
+we will test, if the samples are valid right after the internal tuning phase of
+the SDR.
+We will also investigate whether or not external influences such as the USB
+interface interfere with the process.
+Other influence such as the quantization error will also be analyzed.
+The latter are of particular interest when it comes to replay of previously
+recorded signals.
+
+The second part is about the scanning application itself.
+The program can use the wide range of the present USRP hardware, which covers a
+frequency range from 75\,MHz to 6\,GHz.
+The tool would scan the whole band for online investigation or store the
+samples for later use.
+Further more, you will be able to rescan narrow bands of the spectrum to have a
+closer look whats happening there.
+The UI will consist of a zoomable heatmap (waterfall diagram) interface with
+mouse support.
+
+To get proper values to display, we have to consider different parameters like
+integration time and gain settings etc.
+These parameters will also be part of the research.
+
+The software will be based on the GNUradio \cite{gnuradio} software defined radio
+framework.  The additional work is planed to be done with python3.
+The used hardware consists of 2 URSP b210, where for the main part only one is
+needed.
+
+
+\subsection*{Previous work}
+I did some previous work with SDR hardware, the RTL-SDR \cite{rtlsdr} and the
+hackrf \cite{hackrf}.  I am quite familiar with the software (GNUradio) and
+hardware environment.
+After talking to Stephan Günther about a possible thesis, I set up a demo
+\cite{gnuradiodemo}\cite{gnuradiodemo2} for modulation schemes in 802.11 a/g/p,
+which could be used in the lecture.
+The demo shows a scope plot / constellation form for a simulated 802.11
+transmission.
+When playing with the mutable parameters like signal-to-noise-ration, PDU
+ratio, PDU size and the actual modulation schemes (BPSK, QPSK, 16-QAM, 64-QAM)
+you can see how they influence the frame error rate.
+This can be observed by taking a look at the constellation diagram or the
+detected frame error rate itself.
+
+\subsection*{Additional hardware requirements}
+\begin{itemize}
+	\item 2 chassis for the USRPs \cite{chassiusrp}
+\end{itemize}
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,lit}
+
+
+\end{document}
