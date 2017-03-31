@@ -49,18 +49,16 @@
 
 \subsection*{Topic}
 In this Bachelor's Thesis we test different Implementations of Middleboxes. 
-We will set up different middleboxes in our testbed and then measure the performance of packet-processing in our testbed. 
-Our advanced goal is to identify different bottlenecks in modern middlebox implementations. As a common middlebox we will quantify NAT-boxes. 
+We will set up different Middleboxes in our testbed and then measure the performance of packet-processing in our testbed. 
+Our advanced goal is to identify different bottlenecks in modern Middlebox implementations. As a common Middlebox we will quantify NAT-boxes. 
 
 The intended field of application is, for instance, in big ISP networks. ISP's often use middleboxes in there setups to cache or even modify user data.
-Performance improvements of even milliseconds can be very important in such huge networks. We will try to identify 
+NAT-boxes play a huge role in cellular networks, where ISP's use them to give private IP's to mobile devices. Performance improvements of even milliseconds in these Middleboxes can be very impactful in such huge networks. 
 
-The thesis is thematically similar to the Master's Thesis \emph{Automatic Line
-Code Detection of RF Signals on Software Defined Radios} \cite{riedl2015} by
-Martin Riedel, which also implemented a spectrum analyzer.
-However, it was never planned to record or replay signals.
-In addition, this thesis lacks some scientific rigor with respect to the
-validity of recorded samples.
+The thesis is thematically similar to the Bachelor's Thesis \emph{A Model for Performance Prediction
+in PC-based Packet Processing Systems} \cite{riedl2015} by
+Dominik Scholz, where he tested the general performance of the Linux Network Stack and generated a performance prediction model for some use cases. 
+He did not directly test Middlebox implementations and especially no NAT implementations. We can build on his thesis and will use similar methods to test Middleboxes in our testbed. 
 
 
 \subsection*{Approach}
@@ -96,24 +94,8 @@ needed.
 
 
 \subsection*{Previous work}
-I did some previous work with SDR hardware, the RTL-SDR \cite{rtlsdr} and the
-hackrf \cite{hackrf}.  I am quite familiar with the software (GNUradio) and
-hardware environment.
-After talking to Stephan Günther about a possible thesis, I set up a demo
-\cite{gnuradiodemo}\cite{gnuradiodemo2} for modulation schemes in 802.11 a/g/p,
-which could be used in the lecture.
-The demo shows a scope plot / constellation form for a simulated 802.11
-transmission.
-When playing with the mutable parameters like signal-to-noise-ration, PDU
-ratio, PDU size and the actual modulation schemes (BPSK, QPSK, 16-QAM, 64-QAM)
-you can see how they influence the frame error rate.
-This can be observed by taking a look at the constellation diagram or the
-detected frame error rate itself.
+I participated in and passed the iLab1 Bachelor course. There I leaned a lot about networking in general and also worked a lot with the tools necessary to operate the testbed. I also picked up shell scripting and python during the Network Security lecture.  
 
-\subsection*{Additional hardware requirements}
-\begin{itemize}
-	\item 2 chassis for the USRPs \cite{chassiusrp}
-\end{itemize}
 
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,lit}
