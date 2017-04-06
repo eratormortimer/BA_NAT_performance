@@ -48,57 +48,48 @@
 \maketitle
 
 \subsection*{Topic}
-In this Bachelor's Thesis we test different Implementations of Middleboxes. 
-We will set up different Middleboxes in our testbed and then measure the performance of packet-processing in our testbed. 
-Our advanced goal is to identify different bottlenecks in modern Middlebox implementations. As a common Middlebox we will quantify NAT-boxes. 
+In this Bachelor's Thesis we test different implementations of middleboxes. 
+We will set up different middleboxes in our testbed and then measure the performance of packet-processing.
+Our advanced goal is to identify different bottlenecks in modern middlebox implementations. As a common middlebox we will quantify NAT-boxes. 
 
-The intended field of application is, for instance, in big ISP networks. ISP's often use middleboxes in there setups to cache or even modify user data.
-NAT-boxes play a huge role in cellular networks, where ISP's use them to give private IP's to mobile devices. Performance improvements of even milliseconds in these Middleboxes can be very impactful in such huge networks. 
+The intended field of application is very broad. NAT-Boxes are used in big ISP networks as well as in common routers. ISPs often use middleboxes in their setups to cache or even modify user data. End-user routers mostly use NAT to give all devices in their network an private IP address as IPv4 addresses are expensive and most End-users only get one from their provider. NAT-boxes also play an important role in cellular networks, where ISPs use them to give private IP addresses to mobile devices. 
 
-The thesis is thematically similar to the Bachelor's Thesis \emph{A Model for Performance Prediction
-in PC-based Packet Processing Systems} \cite{riedl2015} by
-Dominik Scholz, where he tested the general performance of the Linux Network Stack and generated a performance prediction model for some use cases. 
-He did not directly test Middlebox implementations and especially no NAT implementations. We can build on his thesis and will use similar methods to test Middleboxes in our testbed. 
+We want to understand what really influences performance of middleboxes. We will try to look at different common implementations of middleboxes to identify software or hardware parts that affect the performance. Our goal to make general applicable statements on middleboxes.
 
 
 \subsection*{Approach}
-The thesis is split in two parts.
-In the first part we will make measurements and statistic evaluations to
-ensure, that the acquired data, which comes from the SDR, is valid.  Therefore
-we will test, if the samples are valid right after the internal tuning phase of
-the SDR.
-We will also investigate whether or not external influences such as the USB
-interface interfere with the process.
-Other influence such as the quantization error will also be analyzed.
-The latter are of particular interest when it comes to replay of previously
-recorded signals.
+At first we want to research about the different kinds of middleboxes. We will implement up to two of these middleboxes in our testbed. 
 
-The second part is about the scanning application itself.
-The program can use the wide range of the present USRP hardware, which covers a
-frequency range from 75\,MHz to 6\,GHz.
-The tool would scan the whole band for online investigation or store the
-samples for later use.
-Further more, you will be able to rescan narrow bands of the spectrum to have a
-closer look whats happening there.
-The UI will consist of a zoomable heatmap (waterfall diagram) interface with
-mouse support.
+Then we will use Moongen, a high-speed packet generator, on a second server to produce and send traffic to our middlebox. Afterwards we will measure and quantify the traffic that comes back from our test subject. Here we will experiment with different packet sizes, Ipv4 vs IPv6, different ports and Ip addresses and more. Simultaneously we will measure benchmark data from the middlebox. Interesting data can be the packet rate at which the middlebox can process the packets or the power consumption of the server under maximum load or the RAM usage. Latency can also be interesting. 
 
-To get proper values to display, we have to consider different parameters like
-integration time and gain settings etc.
-These parameters will also be part of the research.
+To make these tests replicable we will automate the procedure completely with different shell and python scripts. The goal here would be to have a script with different input parameters that everybody could run and get the same results we will get. An example for the parameters could be the packet length of the packets Moongen will send out. 
 
-The software will be based on the GNUradio \cite{gnuradio} software defined radio
-framework.  The additional work is planed to be done with python3.
-The used hardware consists of 2 URSP b210, where for the main part only one is
-needed.
+We will then evaluate the data. Our goal here is to find an correlation between different benchmark data and the performance of our middlebox. A secondary goal would be the visualization of the data.We can then attempt to identify hardware parts and software problems that could cause performance issues. 
 
 
 \subsection*{Previous work}
-I participated in and passed the iLab1 Bachelor course. There I leaned a lot about networking in general and also worked a lot with the tools necessary to operate the testbed. I also picked up shell scripting and python during the Network Security lecture.  
+
+The thesis is thematically similar to the Bachelor's Thesis \emph{A Model for Performance Prediction
+in PC-based Packet Processing Systems} \cite{WORK:1} by
+Dominik Scholz. He tested the general performance of the Linux Network Stack and generated a performance prediction model for some use cases. 
+He did not directly test middlebox implementations and especially no NAT implementations. So we can follow up his thesis and use similar methods to test middleboxes in our testbed. 
 
 
+\subsection*{Time Management}
+ \begin{tabular}{| l | c | r |}
+ 	\hline 
+ 	\textbf{Tasks} & \textbf{Start Date} & \textbf{End Date}  \\ \hline
+	Research about middlebox implementations, induction in the testbed & 15-April & 15-May \\ \hline
+	Testing of middlebox implementations, data collection & 15-May & 1-June \\ \hline
+	Evaluate the data, identify performance issues & 1-June & 1-July \\ \hline
+	Write the thesis and print it & 1-July & 15-August \\ 
+	\hline
+ \end{tabular}
+
+
+\bibliography{lit}
 \bibliographystyle{IEEEtran}
-\bibliography{IEEEabrv,lit}
+
 
 
 \end{document}
