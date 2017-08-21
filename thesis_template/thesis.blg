@@ -12,47 +12,48 @@ Warning--I didn't find a database entry for "IEEEexample:BSTcontrol"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty journal in Click
 
 Done.
-You've used 3 entries,
+You've used 6 entries,
             4087 wiz_defined-function locations,
-            871 strings with 8745 characters,
-and the built_in function-call counts, 1042 in all, are:
-= -- 69
-> -- 3
+            886 strings with 9042 characters,
+and the built_in function-call counts, 1995 in all, are:
+= -- 136
+> -- 12
 < -- 0
-+ -- 3
-- -- 0
-* -- 46
-:= -- 176
-add.period$ -- 6
-call.type$ -- 3
-change.case$ -- 6
++ -- 8
+- -- 2
+* -- 75
+:= -- 343
+add.period$ -- 12
+call.type$ -- 6
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 93
-empty$ -- 106
-format.name$ -- 0
-if$ -- 219
+cite$ -- 7
+duplicate$ -- 181
+empty$ -- 218
+format.name$ -- 2
+if$ -- 437
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 21
-newline$ -- 32
-num.names$ -- 0
-pop$ -- 66
+int.to.str$ -- 6
+missing$ -- 38
+newline$ -- 41
+num.names$ -- 2
+pop$ -- 119
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 75
+skip$ -- 154
 stack$ -- 0
-substring$ -- 9
-swap$ -- 45
+substring$ -- 13
+swap$ -- 86
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 3
-warning$ -- 0
-while$ -- 0
-width$ -- 4
-write$ -- 43
-(There was 1 warning)
+type$ -- 6
+warning$ -- 1
+while$ -- 2
+width$ -- 7
+write$ -- 64
+(There were 2 warnings)
