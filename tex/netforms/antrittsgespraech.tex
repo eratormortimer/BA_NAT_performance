@@ -52,19 +52,19 @@ In this Bachelor's Thesis we test different implementations of middleboxes.
 We will set up different middleboxes in our testbed and then measure the performance of packet-processing.
 Our advanced goal is to identify different bottlenecks in modern middlebox implementations. As a common middlebox we will quantify NAT-boxes. 
 
-The intended field of application is very broad. NAT-Boxes are used in big ISP networks as well as in common routers. ISPs often use middleboxes in their setups to cache or even modify user data. End-user routers mostly use NAT to give all devices in their network an private IP address as IPv4 addresses are expensive and most End-users only get one from their provider. NAT-boxes also play an important role in cellular networks, where ISPs use them to give private IP addresses to mobile devices. 
+The intended field of application is very broad. NAT-Boxes are used in big ISP networks as well as in home-routers. ISPs often use middleboxes in their setups to cache or even modify user data. End-user routers mostly use NAT to give all devices in their network an private IP address as IPv4 addresses are expensive and most End-users only get one from their provider. NAT-boxes also play an important role in cellular networks, where ISPs use them to give private IP addresses to mobile devices. 
 
 We want to understand what really influences performance of middleboxes. We will try to look at different common implementations of middleboxes to identify software or hardware parts that affect the performance. Our goal is to make general applicable statements about performance of middleboxes.
 
 
 \subsection*{Approach}
-At first we want to research about the different kinds of middleboxes. We will implement up to two of these variants in our testbed. 
+First we will research good implementations of middleboxes, for example iptables. We will implement up to two middlebox variants in our testbed. 
 
-Then we will use Moongen, a high-speed packet generator, on a second server to produce and send traffic to our middlebox. Afterwards we will measure and quantify the traffic that comes back from our test subject. Here we will experiment with different packet sizes, Ipv4 vs IPv6, different ports, Ip addresses and more. Simultaneously we will measure benchmark data from the middlebox. Interesting data can be the packet rate at which the middlebox can process the packets or the power consumption of the server under maximum load as well as the RAM usage. Latency can also be interesting. 
+Then we will use Moongen, a high-speed packet generator, on a second server to produce and send traffic to our middlebox. Afterwards we will measure and quantify the traffic that comes back from our test subject. Here we will experiment with different packet sizes, Ipv4 vs IPv6, different ports, IP addresses and more. Simultaneously, we will measure benchmark data from the middlebox.We aim to measure the packet rate at which the middlebox can process the packets, the power consumption of the server under maximum load, the RAM usage or the Latency.
 
-To make these tests replicable we will automate the procedure completely with different shell and python scripts. The goal here would be to have a script with different input parameters that everybody could run. This way we can get reproducible results. An example for the parameters could be the packet length of the packets Moongen will send out. 
+To make these tests replicable we will automate the procedure completely with different shell and python scripts. The goal here would be to have a script with different input parameters. This way we can get reproducible results. 
 
-We will then evaluate the data. Our goal here is to find an correlation between different benchmark data and the performance of our middlebox. A secondary goal would be the visualization of the data. We can then attempt to identify hard- and software parts that could cause performance issues. 
+We will then evaluate the data. Our goal here is to find a correlation between different benchmark data and the performance of our middlebox. A secondary goal would be to find the right models to explain our results.
 
 
 \subsection*{Previous work}
@@ -74,14 +74,19 @@ in PC-based Packet Processing Systems} \cite{WORK:1} by
 Dominik Scholz. He tested the general performance of the Linux Network Stack and generated a performance prediction model for some use cases. 
 He did not directly test middlebox implementations and especially no NAT implementations. So we can follow up his thesis and use similar methods to test middleboxes in our testbed. 
 
+To help use with the implemenation of the middlebox we can use different APIs for modular development of middleboxes. An example would be mOS, described in \emph{mOS: A Reusable Networking Stack for Flow Monitoring Middleboxes} \cite{WORK:2}. Such an reusable networking stack will be useful when setting up different middleboxes in the testbed.
+
+If we want to use a middlebox with deep packet inspection BlindBox might come in handy, described in \emph{BlindBox: Deep Packet Inspection
+over Encrypted Traffic} \cite{WORK:3}. 
+
 
 \subsection*{Time Management}
  \begin{tabular}{| l | c | r |}
  	\hline 
  	\textbf{Tasks} & \textbf{Start Date} & \textbf{End Date}  \\ \hline
 	Research about middlebox implementations, induction in the testbed & 15-April & 15-May \\ \hline
-	Testing of middlebox implementations, data collection & 15-May & 1-June \\ \hline
-	Evaluate the data, identify performance issues & 1-June & 1-July \\ \hline
+	Testing of middlebox implementations, data collection & 15-May & 15-June \\ \hline
+	Evaluate the data, find models for characteristic effects & 1-June & 1-July \\ \hline
 	Write the thesis and print it & 1-July & 15-August \\ 
 	\hline
  \end{tabular}
