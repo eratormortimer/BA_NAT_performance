@@ -1,0 +1,119 @@
+\documentclass[11pt,a4paper,twoside,openright,bachelor,english]{netthesis}
+\usepackage[utf8]{inputenc}
+
+% Include common packages
+\input{pream/Packages}
+
+% Maybe we want to inlcude some additional packages
+
+
+% hyphenation
+\hyphenation{op-ti-cal net-work net-works semi-con-duc-tor tech-nique tech-niques}
+
+
+% Needed for Bachelor's theses, Master's theses and IDP
+\titlegerman{Leistungsanalyse der Funktionen von Middleboxes}
+\titleenglish{Performance analysis of Middlebox functionality}
+\submitteddate{\today}
+\author{Simon Sternsdorf}
+\supervisor{\NEThead}
+\advisor{Florian Wohlfart}
+
+% Additionally needed for dissertations
+\committeechair{}
+\committeeexaminers{}{}{}
+\accepteddate{}
+
+
+\begin{document}%
+
+% Makes sure that same author names are not replaced by dahes
+\bstctlcite{IEEEexample:BSTcontrol}
+
+\pagenumbering{gobble}
+\maketitle%
+
+
+\subfile{include/abstract.tex}
+
+
+\pagenumbering{Roman}%
+
+{\tableofcontents}
+{\listoffigures}
+{\listoftables}
+
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+\section{Motivation}
+Middleboxes are mediating devices used by both End-user Internet Service Providers and normal home users. The requirements ISPs have for Middleboxes are of course vastly different from the requirements of private users. Thus the implementations differs greatly as well. Middleboxes for home users do not have high performance requirements. They conduct mostly very simple tasks for a low amount of devices. This is changing of course, as more and more web-enabled devices are used in modern households. 
+Still the required performance is low in contrast to at an ISP for example. Especially carrier grade network address translation is used to provide ipv4 connectivity for mobile phones, since IPv4 addresses are getting rare \cite{A10}. The middleboxes used are mostly implemented in hardware, which has assets and drawbacks. Those drawbacks are significant. 
+Middleboxes specifically produced for ISPs are expensiv both in acquisition and maintainance, also they usually have to be replaced to introduce new features \cite{WhiteP}. Also they are difficult to scale with higher or lower demand. All these problems are avoidable through network function virtualization. And the long-term plan is indeed to replace these hardware middleboxes with all-purpose hardware that is cheap and easily replaceable. The networking functions would be implemented in software. 7 of the worlds largest telecoms network operators are in an standards group for virtualization of network functions. So the topic is already being discussed in ISPs \cite{NetDis} 
+
+
+
+\section{Goal of the thesis}
+The goal of this thesis is to test different software Middlebox implementations. We will install different middlebox implementations in our testbed. Then we will test the packet processing capability, try to find bottlenecks for the performance when processing packets. We will evaluate our results. 
+Additionally we want to evaluate if software Middleboxes are competitive with hardware implemented Middleboxes and could replace them in the foreseeable future. 
+
+
+\section{Outline}
+
+The thesis reads as follows. The second chapter introduces the theoretical concept of NAT and a NAT model which we used in our tests. Also it defines performance testing. Additionally the Data Plane Development Kit is introduced, DPDK. The third chapter informs the reader about the general idea behind our tests. Further it presents the software used for the tests. This includes the software running on the device under test, as well as the software used to run the tests. It explains the methodological approach used in this thesis. Here it explains the setup for the experiment. In chapter 4 are the collected results of the Firewall and NAT tests with a brief analysis of the result. Finally chapter 5 summarizes the outcome and gives possible future works of this thesis. 
+
+\chapter{Background}
+
+\section{NAT}
+
+\section{NAT model}
+
+\section{Performance testing}
+
+\section{Data Plane Development Kit}
+
+\chapter{Methodology}
+
+\section{General Idea}
+
+\subsection{Software}
+
+\section{Test Methodology}
+
+\subsection{Experimental Setup}
+
+\subsection{MoonGen Traffic Generator}
+
+\subsection{Open VSwitch}
+
+\subsection{mOS}
+
+\chapter{Evaluation and Analysis of results}
+
+\section{Firewall tests}
+
+\section{NAT tests}
+
+\chapter{Conclusion}
+
+\section{Future Works}
+
+
+%\subfile{include/outline.tex}
+\appendix
+%\subfile{Appendix.chap.tex}
+
+%\subfile{Nomenclature.chap.tex}
+
+
+
+\bibliographystyle{packages/IEEEtran}
+\bibliography{lit}
+
+\end{document}
+
+% vim: set sw=4 ts=4 et tw=72 :
+

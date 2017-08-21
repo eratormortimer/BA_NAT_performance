@@ -1,0 +1,52 @@
+% All mathematical definitions
+% use msvsymbols package
+%\usepackage{msvsymbols}
+
+\usepackage[libertine,cmintegrals,libaltvw]{newtxmath}
+\usepackage[
+bb=ams,
+scr=rsfs,
+cal=cm
+]{mathalfa}
+
+% libertine math font stuff
+\makeatletter
+\DeclareMathSymbol{0}\mathalpha{operators}{"30}
+\DeclareMathSymbol{1}\mathalpha{operators}{"31}
+\DeclareMathSymbol{2}\mathalpha{operators}{"32}
+\DeclareMathSymbol{3}\mathalpha{operators}{"33}
+\DeclareMathSymbol{4}\mathalpha{operators}{"34}
+\DeclareMathSymbol{5}\mathalpha{operators}{"35}
+\DeclareMathSymbol{6}\mathalpha{operators}{"36}
+\DeclareMathSymbol{7}\mathalpha{operators}{"37}
+\DeclareMathSymbol{8}\mathalpha{operators}{"38}
+\DeclareMathSymbol{9}\mathalpha{operators}{"39}
+\makeatother
+
+%% math alphabet fonts
+\DeclareSymbolFont{nxlmibit}{OML}{nxlmi}{bx}{it}
+\DeclareSymbolFontAlphabet{\mathbit}{nxlmibit}
+%FIMXE: the first package seems to cause an \if\fi bug
+%\DeclareSymbolFont{libertineplus}{T1}{ntxrx}{m}{n}
+%\DeclareMathSymbol{+}{\mathbin}{libertineplus}{43}
+
+\newcommand\showmathalphabet{\noindent\begin{tabular}{ll}
+    mathnormal  & $abcdefghijklmnopqrstuvwxyz$\\
+                & $ABCDEFGHIJKLMNOPQRSTUVWXYZ$\\
+    mathrm      & $\mathrm{abcdefghijklmnopqrstuvwxyz}$\\
+                & $\mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+%    mathit      & $\mathit{abcdefghijklmnopqrstuvwxyz}$\\
+%                & $\mathit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+    mathbf      & $\mathbf{abcdefghijklmnopqrstuvwxyz}$\\
+                & $\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+    mathbit     & $\mathbit{abcdefghijklmnopqrstuvwxyz}$\\
+                & $\mathbit{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+%    mathfrak    & $\mathfrak{abcdefghijklmnopqrstuvwxyz}$\\
+%                & $\mathfrak{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+    mathcal     & $\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+%    mathscr     & $\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+%    matheus     & $\matheus{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$\\
+\end{tabular}}
+
+% vim: set sw=4 ts=4 et tw=0 :
+

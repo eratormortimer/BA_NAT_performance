@@ -1,0 +1,17 @@
+#!/bin/bash
+mkdir test
+for i in {100..900..100} 
+    do 
+    mv histogramRate_$i.csv test/
+    mv histogramRate_1$i.csv test/
+    mv outputRate_$i test/outputRate_$i.x
+    mv outputRate_1$i test/outputRate_1$i.x
+done
+cd test
+for n in {0..9} 
+    do 
+    mv histogramRate_$n\00.csv hist$n.csv
+    mv histogramRate_1$n\00.csv hist1$n.csv
+    mv outputRate_$n\00.x output-send$n
+    mv outputRate_1$n\00.x output-send1$n
+done

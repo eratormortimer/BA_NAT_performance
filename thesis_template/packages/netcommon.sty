@@ -1,0 +1,135 @@
+%
+% netcommon.sty
+%
+% This style file defines some common macros for net style and class
+% files. Based on msvcommon.sty (2013/06/25 v0.06.1).
+%
+
+%----------------------------------------------------------------------
+% Identify package
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{netcommon}%
+    [2015/02/26 v1.1 %
+    netcommon.sty TUM logos and basic font setup]
+
+%----------------------------------------------------------------------
+% Check for equal strings and empty strings
+%
+\newif\ifequal
+\equalfalse
+\newcommand\isequal[2]{%
+    \equalfalse
+    \edef\equal@a{\expandafter\detokenize\expandafter{#1}}%
+    \edef\equal@b{\expandafter\detokenize\expandafter{#2}}%
+    \ifx\equal@a\equal@b
+        \equaltrue
+    \fi
+}
+\newif\ifempty
+\emptyfalse
+\newcommand\isempty[1]{%
+    \emptyfalse
+    \ifx\relax\detokenize{#1}\relax
+        \emptytrue
+    \fi
+}
+\newcommand{\ifisequal}[2]{\isequal{#1}{#2}\ifequal}
+
+%----------------------------------------------------------------------
+% Options
+%----------------------------------------------------------------------
+\RequirePackage{kvoptions}%
+\SetupKeyvalOptions{family=net,prefix=net@}%
+% names / babel
+\DeclareBoolOption{german}%
+\DeclareVoidOption{ngerman}{\net@germantrue}%
+% font
+\DeclareBoolOption[false]{timesmath}
+\DeclareComplementaryOption{cmrmath}{timesmath}
+% default
+\DeclareDefaultOption{\relax}%
+% process options
+\ProcessKeyvalOptions*\relax
+
+% Packages
+\RequirePackage{packages/tumcolors}%
+\RequirePackage[english,ngerman]{babel}%
+\RequirePackage{packages/netlogos}%
+
+%----------------------------------------------------------------------
+% Language specific names and settings
+%----------------------------------------------------------------------
+\newcommand\TUMnameenglish{Technische Universit\"at M\"unchen}
+\newcommand\TUMnamegerman{\TUMnameenglish}
+\newcommand\TUMname{\TUMnameenglish}
+
+\newcommand\INnameenglish{Department of Informatics}
+\newcommand\INnamegerman{Fakult\"at f\"ur Informatik}
+\newcommand\INname{\INnameenglish}
+
+\newcommand\EInameenglish{Department of Electrical Engineering and Information Technology}
+\newcommand\EInamegerman{Fakult\"at f\"ur Elektrotechnik und Informationstechnik}
+\newcommand\EIname{\EInameenglish}
+
+\newcommand\NETnameenglish{Chair for Network Architectures and Services}
+\newcommand\NETnamegerman{Lehrstuhl f\"ur Netzarchitekturen und Netzdienste}
+\newcommand\NETname{\NETnameenglish}
+
+\newcommand\MSVnameenglish{Associate Institute for Signal Processing}
+\newcommand\MSVnamegerman{Fachgebiet Methoden der Signalverarbeitung}
+\newcommand\MSVname{\MSVnameenglish}
+
+\newcommand\OSnameenglish{Associate Institute for Operating Systems}
+\newcommand\OSnamegerman{Fachgebiet f\"ur Betriebssysteme}
+\newcommand\OSname{\OSnameenglish}
+
+\newcommand\NEThead{Prof.\ Dr.-Ing.\ Georg Carle}
+\newcommand\MSVhead{Univ.-Prof.\ Dr.-Ing.\ Wolfgang Utschick}
+\newcommand\OShead{Prof.\ Dr.\ Uwe Baumgarten}
+
+\ifnet@german
+    \renewcommand\EIname{\EInamegerman}
+    \renewcommand\INname{\INnamegerman}
+    \renewcommand\NETname{\NETnamegerman}
+    \renewcommand\MSVname{\MSVnamegerman}
+    \renewcommand\OSname{\OSnamegerman}
+\fi
+\ifnet@german
+    \AtBeginDocument{\selectlanguage{ngerman}}
+\else
+    \AtBeginDocument{\selectlanguage{english}}
+\fi
+
+%----------------------------------------------------------------------
+% Font settings
+%----------------------------------------------------------------------
+\RequirePackage{helvet}%
+\renewcommand\rmdefault{ptm}%
+\renewcommand\sfdefault{phv}%
+\renewcommand\ttdefault{pcr}%
+
+% Configure math fonts
+\providecommand\mathfamilydefault{\relax}
+\renewcommand\mathfamilydefault{cmr}
+\DeclareMathAlphabet{\mathbit}{OML}{cmr}{bx}{it}
+\ifnet@timesmath
+    \DeclareSymbolFont{timesmath}{T1}{\rmdefault}{m}{n}
+    \SetSymbolFont{timesmath}{bold}{T1}{\rmdefault}{b}{n}
+    \DeclareSymbolFontAlphabet{\mathrm}{timesmath}
+    \def\operator@font{\mathgroup\symtimesmath}
+    \DeclareMathAlphabet{\mathit}{T1}{\rmdefault}{m}{it}
+    \DeclareMathAlphabet{\mathbf}{T1}{\rmdefault}{b}{n}
+    \DeclareMathSymbol{0}\mathalpha{timesmath}{"30}
+    \DeclareMathSymbol{1}\mathalpha{timesmath}{"31}
+    \DeclareMathSymbol{2}\mathalpha{timesmath}{"32}
+    \DeclareMathSymbol{3}\mathalpha{timesmath}{"33}
+    \DeclareMathSymbol{4}\mathalpha{timesmath}{"34}
+    \DeclareMathSymbol{5}\mathalpha{timesmath}{"35}
+    \DeclareMathSymbol{6}\mathalpha{timesmath}{"36}
+    \DeclareMathSymbol{7}\mathalpha{timesmath}{"37}
+    \DeclareMathSymbol{8}\mathalpha{timesmath}{"38}
+    \DeclareMathSymbol{9}\mathalpha{timesmath}{"39}
+\fi
+
+\endinput

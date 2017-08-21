@@ -1,0 +1,125 @@
+Einleitung
+ 
+Verschlüsselung fand schon im alten Rom Anwendung. Einer der ersten und wohl auch bekanntesten Verschlüsselungsalgorithmen der Werlt, die sogeannte "Cäsar-Chiffre", findet man heutzutage in Popkultur um die ganze Welt. Es ist ein sehr einfaches symmetrisches Verfahren, bei dem das uns bekannte Alphabet zum einsatz kommmt. Jeder Buchstabe wird durch einen anderen Buchstaben aus unserem Alphabet ersetzt, der um eine bestimmte Anzahl weiter hinten im Alphabet steht. Das ganze ist zyklisch und ergibt am Ende eine einfache Umwandlungstabelle. \footnote{http://www.kryptowissen.de/caesar-chiffre.html - 07.03.2016 13:50} Dieser Algorithmus ist heutzutage natürlich viel zu leicht zu knacken mit gerade einmal 25 verschiedenen Verschlüsselungsmöglichkeiten. Aber das Prinzip des symmetrischen Verschlüsselns mittels einer Chiffre ist uns bis heute erhalten geblieben. Der hier behandelte Algorithmus arbeitet im Grunde ganz ähnlich: Der DES Algorithmus.
+
+Geschichte 
+Der DES Algorithmus ist trotz seiner Sicherheitsprobleme immer noch einer der weltweit am weitesten verbreiteten Verschlüsselungsalgorithmen. Nicht umsonst heißt er Data Encryption Standart. Vor allem in dem Derivat "triple-DES" oder auch verkürzt "3DES" wird er noch eingesetzt und wird es wohl auch noch viele Jahre lang werden. Er wurde 1974 in Folge einer Ausschreibung des NBS, des National Bureau of Standars,  für einen sicheren Verschlüsselungsstandart zum verschicken von Daten in den USA von IBM eingereicht. IBM beschäfftigte damals unter anderem Horst Feistel, auf dessen Chiffren später genauer eingegangen wird. DES basiert grob auf dem schon zuvor entwickelten Algorithmus Luciver.\footnote{http://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm - 07.03.2016 13:50} Der Algorithmus wurde 1976 nach Anpassungen der NSA, der National Security Agency, als allgemeiner Standart für verschlüsselte Datenverbindungen im Internet übernommen, und wurde vor allem von der Bankenindustrie und der us-amerikanischen Regierung für die Kommunikation eingesetzt. \footnote{http://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm - 07.03.2016 13:50}
+
+Kritik an Sicherheit
+Die Anpassungen der NSA sind sehr umstritten, so soll etwa der Sicherheitsgrad gesenkt worden sein durch Verkürzung der Schlüssellänge von 128 Bit auf 56 Bit und eventuell sogar die zur Verschlüsselung notwendigen Substitutions-Boxen von der NSA verändert worden sein, um sich eine Hintertür, einen sogenannten "backdoor" in den Algorithmus einzubauen. Da DES von Anfang an nur für den normalen Datenverkehr, aber nicht für Dokumente der höchsten Sicherheitsstufe eingesetzt wurde, ist es bis heute sehr umstritten wie sicher DES wirklich ist.\footnote{http://www-lehre.informatik.uni-osnabrueck.de/~rspier/referat/internet/DES-Algorithmus.html - 07.03.2016 13:50} Allerdings haben sich die meisten dieser Spekulationen nicht bestätig.\footnote{Christian Karpfinger, Hubert Kiechle. Kryptologie. 1. Auflage. Seite 44. Vieweg+Teubner, 2010}
+
+Mathematische Grundlagen: 
+Der DES-Algorithmus arbeitet mit sehr einfachen mathematischen Methoden. Der Schlüssel ist hierbei immer 64 Bit lang, wobei immer das letzte von 8 Bit als Korrektur-Bit verwendet wird, mit dem Speicher- und Übertragungsfehler ausgeglichen werden können.\footnote{Buchmann. Einführung in die Kryptologie. 4te, erweiterte Auflage. Seite 104. Springer-Verlag Berlin Heidelberg, 2008}Dieser Schlüssel wird so zum Verschlüsseln auf die Nachricht angewandt, die jeweils in 64 Bit Blöcke unterteilt wird. Eine Permutation auf diese Bits entspricht einem Verschieben der Bits auf eine neue Position innerhalb des Blocks. Das ganze wird gerne als Tabelle dargestellt. "Anlage 1" \footnote{Buchmann. Einführung in die Kryptologie. 4te, erweiterte Auflage. Seite 105. Springer-Verlag Berlin Heidelberg, 2008} Jede Zahl in der Tabelle beziffert die neue Position innerhalb des Blocks für das Bit an dessen Stelle die Zahl steht. Ähnlich funktioniert die Expansion, dabei werden nur manche Bits auf mehrere Positionen abgebildet. Hierdurch wird die Bitfolge insgesamt länger. Dies wird ebenfalls mit einer Tabelle wie in Anlage 1 dargestellt
+Weiter wichtig sind zudem Substitutionen. Auf ihren Nutzen für die Sicherheit des Verfahrens wird später noch genauer eingegangen. Im Allgemeinen wird bei der Substitution ein Block an Bits durch einen anderen ersetzt. Dies geschieht wiederum durch Tabellen, wobei man hier beim DES auch von einer gleichzeitigen Kontraktion sprechen kann, da die Bitfolge verkürzt wird !!!!!Absprechen!!!!!  . \footnote{Buchmann. Einführung in die Kryptologie. 4te, erweiterte Auflage. Seite 107. Springer-Verlag Berlin Heidelberg, 2008} 
+Expansion und Permutation sind lineare Abbildungen, wobei die Permutation eine Abbildung $\mathbb{Z}-> \mathbb{Z} $ und die Expansion eine Abbildung E: $ \mathbb{Z}^32_2 -> \mathbb{Z} $sind.
+Die Substitution ist eine nicht-lineare Abbildung.\footnote{Christian Karpfinger, Hubert Kiechle. Kryptologie. 1. Auflage. Seite 52. Vieweg+Teubner, 2010} 
+Linearität? Schon eingeführt
+Kryptosysteme
+Wir verwenden in dieser Arbeit die Definition eines Kryptosystems wie folgt: 
+Ein Kryptosystem ist ein Tupel(P, C, K, f, g) wobei P, C und K nicht leer sein dürfen. Hierbei ist: 
+\begin{itemize} 
+\item \textbf{P} die Klartextmenge, sprich der Text der verschlüsselt werden soll
+\item \textbf{C} die Geheimtextmenge, sprich der verschlüsselte Text
+\item \textbf{K} die Schlüsselmenge, also der Schlüssel der zum verschlüsseln der Klartextmenge zur Geheimtextmenge verwendet wurde
+\item \textbf{f} die Verschlüsselungsfunktion, eine Abbildung $f: P x K -> C$ , die aus der Klartextmenge die Geheimtextmenge bildet
+\item \textbf{g} die Entschlüsselungsfunktion, eine Abbildung $g: C x  K -> P$ , die aus der Geheimtextmenge die Klartextmenge bildet
+\end{itemize}
+
+Weiter muss gelten das $\forall k \in K \exists k' \in K : g_k' o f_k = id_P $, was gleichbedeutent ist mit Injektivität und Surjektivität der Abbildung. Ohne diese Vorraussetzung wäre eine verschlüsselte Nachricht nicht mehr entschlüsselbar. Bei DES gilt $k' = k$. \footnote{Christian Karpfinger, Hubert Kiechle. Kryptologie. 1. Auflage. Seite 9. Vieweg+Teubner, 2010}
+Perfekte Sicherheit
+Um zu verstehen wie sicher oder unsicher der DES-Algorithmus ist, braucht man das Konzept der perfekten Sicherheit. Hierbei gehen wir davon aus das der Angreifer über unendliche Rechenkapazitäten verfügt. Weiterhin haben wir ein Kryptosystem $ \pi = (P,C,K,f,g) $, das ein nach Kerckhoff's Prinzip sicheres Verschlüsselungsverfahren enthält, was heißt f und g sind allgemein bekannt.\footnote{\url{http://www.cits.rub.de/imperia/md/content/may/ws1516/krypto_i.pdf} - 09.03.2016 15:05}
+Wir haben nun Wahrscheinlichkeits-Verteilungen Ws auf P,C und K und $\textit{P}, \textit{C}$ und $\textit{K}$ sind die Zufallsvariablen für die Ws-Verteilungen. Nun ziehen wir ein $p \in P$ mit $Ws[\textit{P} = p]$ und analog für C und K. Die Wahrscheinlichkeit für $\textit{P} = p und \textit{C} = c$ sollen dabei $> 0$ sein. Nun ist unser Kryptosystem und damit unser Verschlüsselungsverfahren sicher wenn der folgende Satz gilt:
+\newtheorem{satz}{Satz}
+
+\begin{satz}
+[Chiffretext-Verteilung]
+ $ Ws[ \textit{P} = p | \textit{C} = c] = Ws[\textit{P} = p] | \forall p \in P, c \in C $. 
+\end{satz}
+\begin{proof} 
+$ Annahme: \pi sei perfekt sicher. Dann gilt nach Satz von Bayes: $
+$$ \frac{Ws[ \textit{P} = p | \textit{C} = c] * Ws[\textit{P} = p]}{Ws[\textit{C} = c]} = Ws[ \textit{P} = p | \textit{C} = c] =  Ws[\textit{P} = p]$$
+$$ Daraus folgt Ws[ \textit{P} = p | \textit{C} = c] = Ws[\textit{C} = c] $$
+$$Aus Ws[ \textit{P} = p | \textit{C} = c] = Ws[\textit{C} = c] folgt mit dem Satz von Bayes Ws[\textit{P} = p] = Ws[ \textit{P} = p | \textit{C} = c]$$
+$$Damit ist nachgewiesen, dass \pi perfekt sicher ist$$
+\end{proof}
+Ein Angreifer der sowohl die entschlüsselte Nachricht wie auch die verschlüsselte besitzt hat mit diesem System keine Vorteile.\footnote{\url{http://www.cits.rub.de/imperia/md/content/may/0910/ws0910/krypto1ws09/02_perfekt.pdf} - 09.03.2016 15:30}!!!!!!!!Alex fragen!!!!
+Man kann auch sagen p und c sind stochastisch unabhängig. 
+Mit dem Satz der Chiffren-Verteilung kann man folgendes nachweisen
+\begin{satz}
+[Ununterscheidbarkeit von Verschlüsselung]
+Ein Verschlüsselungsverfahren $\pi$ ist perfekt sicher wenn gilt: 
+$$p_0 , p_1 \in P, c \in C : Ws[ \textit{P} = p_0 | \textit{C} = c] =  Ws[ \textit{P} = p_1 | \textit{C} = c]$$
+\end{satz}
+\begin{proof}
+$$Aus Satz 1 folgt für ein \pi das perfekt sicher ist: $$
+$$Ws[ \textit{P} = p_0 | \textit{C} = c] = Ws[ \textit{C} = c]$$
+$$ \exists c \in C : Ws[ \textit{C} = c] = Ws[ \textit{P} = p_1 | \textit{C} = c] $$
+$$Sei p' \in P frei wählbar. Dann gilt: $$
+$$Ws[ \textit{C} = c] = \sum_{p \in P} Ws[ \textit{P} = p | \textit{C} = c] * Ws[ \textit{P} = p] $$
+$$ = Ws[ \textit{P} = p' | \textit{C} = c] * \sum_p\in P Ws[ \textit{P} = p]$$
+$$= Ws[ \textit{P} = p' | \textit{C} = c]$$
+$$Insgesamt folgert daraus die perfekte Sicherheit von \pi$$
+\end{proof}
+Man kann außerdem Nachweisen das für das perfekte Verschlüsselungsverfahren gelten muss: 
+\begin{satz}
+[Minimale Größe des Schlüsselraumes]
+Annahme: $\pi$ sei perfekt sicher. Dann gilt: $|K| \ge |P| $
+\end{satz}
+\begin{proof}
+Beweis durch Widerspruch: 
+Annahme: $|K| < |P| $
+Für ein $c \in C$ definieren wir ein G(c) = {p | p = g(c,k) mit $k \in K$ }.
+Es muss $|G(c)| \le |K|$ gelten, da ein Schlüssel k genau einen Klartext p liefert.  
+Es gilt aber |K| < |P|. Daraus folgt das |G(c)| < |P|. Somit muss es ein $p \in P$ geben für das gilt: $Ws[\textit{P} = p | \textit{C} = c] = 0 < Ws[\textit{P} = p] $.
+Das würde bedeuten, dass $\pi$ nicht perfekt sicher sein kann, da die Ws als > 0 definiert wurden. 
+Mit dem Satz von Shannon können wir uns zudem noch die Verteilung der Schlüssel anschauen. 
+\begin{satz} 
+[Shannon]
+Für ein Kryptosystem $\pi$ = (P,C,K,f,g) mit |P|=|C|=|K| gilt: $\pi$ ist perfekt sicher gdw : alle $k \in K$ werden durch f gleichverteilt gewählt mit einer Wahrscheinlichkeit von $ \frac{1}{|K|} $. Zudem gibt es für alle $p \in P, c \in C genau ein k \in K $ sodass gilt: c = f(p,k).
+\end{satz}
+Hier beweisen wir zunächst die Gegenrichtung($\Leftarrow$): 
+\begin{proof}
+Wir können ein $ c \in C$ genau zu einem $p \in P$ entschlüsseln mit einem $k \in K $, bedeutet g(c,k) = p. Dies geschieht mit $Ws[\frac{1}{|K|}] $ gleichverteilt. Wir folgern: 
+$$Ws[\textit{C} = c | \textit{P} = p] = \frac{1}{|K|} für alle p \in P$$
+Hieraus folgt mit Satz 2: 
+$$Ws[\textit{C} = c | \textit{P} = p_0] = \frac{1}{|K|} = Ws[\textit{C} = c | \textit{P} = p_1]$$
+Die Hinrichtung ($\Rightarrwo$) folgt somit:
+Widerspruchsbeweis:
+Wir nehmen an: $\exists (p,c) mit c \ne f(p,k) für alle k \in K $
+Deswegen gilt: $Ws[\textit{P} = \textit{P} | \textit{C} = c] = 0 < Ws[\textit{P} = p}]. Dies steht im Widerspruch zu unserer Definition von einem perfekt sicherem System. 
+Nehmen wir anders herum an: $\exists (p,c) mit c = f(p,k) für mehrere k \in K (\ge 2) .$
+Dann gilt: $\exists (p',c') mit c' \ne f(p',k) für alle k \in K $ 
+Dies erzeugt einen Widerspruch wie oben. 
+Daraus folgern wir: Es gibt für jedes feste $p \in P, c \in C$ genau ein $k \in K$ für das gilt: f(p,k) = c. 
+Im weiteren ergibt sich für alle p, p' : 
+$Ws[textit{K} = k_p] = Ws[\textit{C} = c | \textit{P} = p]$
+$ = Ws[\textit{C} = c | \textit{P} = p'] = Ws[\textit{K} = k_p']$
+$-> Ws[\textit{K} = k ] = \frac{1}{|K|} für alle k \in K $
+\end{proof}
+\footnote{http://www.cits.rub.de/imperia/md/content/may/0910/ws0910/krypto1ws09/02_perfekt.pdf} - 09.03.2016 16:20 } 
+Ein gutes Beispiel ist hier das Vernam'sche One-Time-Pad, eine 1918 von Gilbert Vernam entwickelte Verschlüsselungsmethode, die zum verschlüsseln des roten Telefons im Kalten Krieg zwischen dem US-Präsidenten und dem sowjetischen Generalsekretär genutzt wurde. Die Besonderheit ist, dass der Schlüssel genauso lang wie die zu verschlüsselnde Nachricht war. Zur Ver-und Entschlüsselung wurden Buchstaben nach einer Tabelle addiert. "Anlage 2" \footnote{http://www.mathe.tu-freiberg.de/~hebisch/Praktikum11-4/Seite2.html - 09.03.2016 16:00} Addiert wurde mit einer zufälligen Buchstabenfolge die beiden Seiten bekannt war.\footnote{http://www.mathe.tu-freiberg.de/~hebisch/Praktikum11-4/Seite2.html - 09.03.2016 - 16:00} Mathematisch wurde das One-Time-Pad definiert durch ein Kryptosystem $\pi = (P,C,K,f,g) $ wobei $ P=C=K={0,1}^l $ 
+$ \exists k \in K, \exists p \in P : c \in C = f(p,k) = p \oplus k$
+$ \exists k \in K, \exists c \in C : p \in P = g(c,k) = c \oplus k$
+Annahme: Das One-Time-Pad ist ein perfekt sicheres Verfahren. 
+\begin{proof}
+$Da \textit{C} = \textit{P} \oplus \textit{K} gilt: $
+$\forall p_0 , p_1 \in P und c \in C : Ws[\textit{C} = c | \textit{P} = p_0 ] = Ws[\textit{P} \oplus \textit{K} = p_0 ] = Ws [\textit{K} = p_0 \oplus c] $
+$ = \frac{1}{2^l} = Ws[\textit{C} = c | \textit{P} = p_1 ]$
+\end{proof}
+Dies entspicht dem Satz über Ununterscheidbarkeit von Verschlüsselung.
+Somit ist das One-Time-Pad perfekt sicher. \footnote{\url{http://www.cits.rub.de/imperia/md/content/may/0910/ws0910/krypto1ws09/02_perfekt.pdf} - 09.03.2016 16:20 } 
+Das Beispiel zeigt gut wie wenig praktikabel eine Verschlüsselung mit perfekter Verschlüsselung im Alltag ist. Ein so langer Schlüssel macht nicht nur das Ver- und Entschlüsseln langsam, sondern fördert auch das Auftreten von Fehlern. Wenn beim One-Time-Pad die zufälligen Buchstabenfolgen nicht übereinstimmten oder etwa falsch gelesen wurden konnten beide Seiten nicht mehr kommunizieren und es mussten neue Folgen ausgetauscht werden, was wiederum anfällig für Fehler und Angriffe von 3ten Parteien war. Somit kann das Ziel bei der Konstruktion eines Verschlüsselungsalgorithmus nie sein, ihn perfekt sicher zu machen, sondern nur sicher genug. In der Realität haben die Angreifer auf eine Verschlüsselung nie unbegrenzte Resourcen zur Verfügung. Somit ist sehr viel kürzerer Schlüssel als die Länge des Klartextes oftmals ausreichend. 
+Auch ist die Wahl eines Algorithmus der die Schlüssel absolut gleichverteilt wählt sehr schwierig und nur bei einem riesigem Schlüsselraum realistsisch. Ein solches Verschlüsselungsverfahren zu bauen und zu verwalten ist nicht praktisch. 
+KryptoAnalyse: 
+
+
+
+Schluss: 
+Kritik an DES: 
+Schon recht früh nach Einführung des DES-Algorithmus als Standart Verschlüsselung in vielen Bereichen des Öffenlichen Lebens kam Kritk auf. So wurde bereits früh, im Jahr 1975, vor der Möglichkeit eines Brute-Force Angriffs gewarnt, der Aufgrund der recht kurzen Schlüssellänge gut möglich wäre. Im speziellen Martin Hellman und Whitfield Diffie, die Erfinder des Konzepts der Public-Key Verschlüsselnung warnten vor möglichen Angriffen von Regierungsorganisationen, im speziellen Geheimdienste. Diese hätten Zugriff auf die für damalige Verhältnisse recht hohe Rechenleistung.\footnote{\url{http://page.math.tu-berlin.de/~kant/teaching/hess/krypto-ws2006/des.htm} - 11.3.2016 - 17:20}  
+Ein Brute-Force-Angriff ist die einfachste und gewaltsamste Art eine Verschlüselung zu knacken. Dabei wird von einem Computer systematisch jede Kombination aus Zahlen, Buchstaben und Sonderzeichen bis zu einer zuvor festgelegten Länge durchprobiert. Je kürzer dabei die Länge des Verwendeten Schlüssels ist desto schneller ist das Verfahren. Zudem hängt es von der verwendeten Rechenpower des Angreifers ab. Ein höherer Einsatz von Rechenleistung erhöht die Geschwindigkeit der Suche.\footnote{\url{http://www.itwissen.info/definition/lexikon/Brute-Force-Angriff-brute-force-attack.html} - 11.03.2016 17:20} Moderne Verchlüsselungen setzen deswegen heutzutage auf Schlüssel die sehr viel Länger sind als die 56 Bit des DES-Algorithmus. Der weit verbreitete Verschlüsselungsalgorithmus AES setzt auf Schlüssellängen bis zu 256 Bit. \footnote{\url{https://www.boxcryptor.com/de/verschl%C3%BCsselung} - 11.03.2016 - 17:30} 
+
+
+
+
+

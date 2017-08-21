@@ -1,0 +1,26 @@
+===============================================================================
+[2015-02-25]
+===============================================================================
+1) We abandoned tikzexternalize since it causes more problems than it solves.
+Instead there all TiKz figures should go into ./figures/<filename>.tikz and use
+the standalone document class (see ./figures/test.tikz for an example). A
+subordinate Makefile compiles all figures. If you supply -j <threads>, it will
+also compile figures in parallel.
+Due to this change it is more important than ever that you include all
+additional packages in ./pream/Packages.tex, since this file is included by all
+figures in order to get consistent fonts etc.
+
+2) There is currently a known bug ./pream/MathConfiguration.tex (see FIXME). The
+temporary fix is to comment the offending package, which is done by default.
+
+===============================================================================
+[2015-09-25]	by Thomas Schultz
+===============================================================================
+1) All sty-files are stored in the package folder.
+2) The Makefile in figures did not work for me, so I modified it a little. The
+pream and packages folder is now copied into the figures subfolder.
+3) I was unable to install the IEEtrans packet from my system reposiory, so I
+put the files in the package folder.
+4) For easy installation, here is a list of packages, I had to install:
+	textlive-subfiles, texlive-libertine, textlive-newtx, texlive-mathalfa,
+	texlive-makeshape, texlive-pgfplots, textlive-standalone,

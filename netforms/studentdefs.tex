@@ -1,0 +1,37 @@
+\RequirePackage{netcommon}
+
+% Alle Konfigurationsbefehle sind optional. Fehlende Befehle fueheren einfach
+% zu "blank forms".
+
+% Typ der Arbeit/Einstellung. Gueltige Argumente sind:
+% bachelor,master,diplom,idp,gr,hiwi,other
+% Falls 'other' gewaehlt wird, kann als optionales Argument eine spezielle Art
+% von Abschlussarbeit angegeben werden, z.B. \type[Sklave]{other}. Andernfalls
+% wird 'Other' als Standardbeschreibung gesetzt.
+\type{bachelor}
+
+% Informationen ueber den Studenten. Sollte selbsterklaerend sein.
+\anrede{Herr}
+\nachname{nachname}
+\vorname{vorname}
+\matrikel{matrikel}
+\sunhalle{sunaccount}
+\semester{1}{SoSe\,2016}
+\studientelefon{}{tel}
+\heimattelefon{}{--}
+\studienadresse{strasse}{plz stadt}
+\heimatadresse[adresszusatz=,appartment=]{}{}
+
+% Informationen ueber die Arbeit. Sollte selbsterklaerend sein.
+\themensteller{\NEThead}
+\beginn{04}{2016}
+\endt{08}{2016}
+\betreuer{Stephan G\"unther, Maurice Leclaire}
+\title{titleenglish}{titlegerman}
+\studiengang{Informatik}
+
+
+% Falls \type{hiwi} gesetzt wurde, wird die Taetigkeit auf dem Aufnahmeformular
+% des Lehrstuhls angegeben.
+\taetigkeit{test}
+

@@ -1,0 +1,104 @@
+\documentclass[a4paper,titlepage,10pt]{article} 
+
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[german]{netcommon}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage[ngerman]{babel}
+
+% font settings
+\renewcommand*\familydefault{\sfdefault}
+
+% page design settings
+\geometry{a4paper, left=25mm,right=25mm, top=3.5cm, bottom=2cm} 
+\pagenumbering{gobble}
+\parindent0pt
+\pagestyle{fancy}
+
+% page header
+\headheight24pt
+\lhead{\scriptsize Antrag an den\\ Prüfungsausschus für Informatiker}
+\rhead{\scriptsize Studiensekretariat Informatik\\Raum: 00.10.041\\Telefon: 17558, Fax: 17559}
+
+% In the best case only the following information must be changed to get a minimal effort extension letter
+
+% information about student
+\newcommand{\name}{Simon Sternsdorf}
+\newcommand{\strnum}{Helene-Mayer-Ring 7A}
+\newcommand{\zipcity}{80809 München}
+\newcommand{\mail}{simon.sternsdorf@tum.de}
+\newcommand{\phone}{0176 81515096}
+\newcommand{\fieldofstudy}{Informatik (Bachelor)}
+\newcommand{\matrikel}{3652595}
+\newcommand{\semester}{6}
+
+% stuff about thesis
+\newcommand{\reason}{Software probleme}
+\newcommand{\dat}{15. September 2017}
+
+\begin{document}
+\section*{Antrag auf Verlängerung}
+\begin{tabular}{@{}ll}
+Antragsteller: & \name{}\\	
+Datum: &\today \\
+\\
+Adresse:&	 \strnum{}\\
+			&\zipcity{}\\
+E-Mail:		&	\mail{}\\
+Telefon:&  \phone{}\\
+\\
+Studienrichtung:	&\fieldofstudy{}\\
+Matrikelnummer: &	\matrikel{}\\
+Fachsemester: 	&	\semester{}\\
+\end{tabular}
+\vspace{3ex}\\
+Bisher wurden keine Verlängerungen beantragt.
+\vspace{3ex}\\
+Der Antragssteller bittet um eine einmonatige Fristverlängerung zur Abgabe der Bachelorarbeit. Der neue Abgabetermin wäre damit der \dat{}.
+
+$\newline \newline$
+Im Rahmen der Arbeit sollen verschiedene Software-Middleboxes in einem Testbed
+experimentell untersucht und vermessen werden. Zur Implementierung der Software-
+Middleboxes benutzten wir mOS  (middlebox OS), ein performantes und flexibles
+Framework zur Paketverarbeitung in Software. Die mOS Software erfüllte alle
+unsere Anforderungen und erschien uns als die passende Umsetzung für das
+Projekt. Leider bemerkten wir im Testbetrieb -- also nachdem wir einigen Aufwand
+in die Implementierung gesteckt hatten -- dass die mOS Software einen
+schwerwiegenden Fehler aufweist der mOS für unseren Zweck unbrauchbar macht. mOS
+ist nicht in der Lage mehr als 23 Paketströme (flows) gleichzeitig zu
+verarbeiten. Alle Versuche diesen Fehler zu reparieren, auch mit Hilfe der
+Entwickler von mOS, schlugen leider fehl.
+$\newline \newline$
+Dieses Problem verursacht deutliche Verzögerungen bei der Durchführung dieser
+Arbeit. Zum einen benötigte die (letzlich gescheiterte) Fehlersuche in mOS
+einige Zeit, zum anderen müssen die zu testenden Middleboxes nun in einem
+anderen Framework implementiert werden, was weitere Zeit kostet. Aufgrund dieser
+Verzögerungen beantrage ich die oben genannte Fristverlängerung.
+
+\vskip4em
+Garching b. München, 
+\rule[-.4em]{2cm}{0.25mm}
+\hfill%
+	\rule[-.4em]{7cm}{0.25mm}
+
+\vskip.3em \hfill  \name{}
+
+\vfill
+\textbf{Kurze Stellungnahme und Unterschrift des Themenstellers}
+
+\vskip2em
+\hspace{.5cm}\rule[-.4em]{15cm}{0.25mm}
+%\vskip2em
+%\hspace{.5cm}\rule[-.4em]{15cm}{0.25mm}
+
+\vskip3em
+Garching b. München, 
+\rule[-.4em]{2cm}{0.25mm}
+\hfill%
+\rule[-.4em]{7cm}{0.25mm}
+
+\vskip.3em \hfill  \NEThead{}
+
+\end{document}

@@ -1,0 +1,64 @@
+% raise package limit
+\usepackage{etex}
+
+% input encoding
+\usepackage[utf8]{inputenc}
+
+% subfiles
+\usepackage{subfiles}
+\makeatletter
+\newif\ifsubfile\subfilefalse
+\@ifclassloaded{subfiles}{\subfiletrue}{\subfilefalse}
+\makeatother
+
+% fonts
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[scaled=0.8]{beramono}
+\usepackage[expansion,protrusion,shrink=15,stretch=15]{microtype}
+\input{pream/FontConfiguration.tex}
+
+% tables
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltxtable}
+
+% lists etc
+\usepackage{cite}
+
+% text configurations not including font
+%\input{pream/TextConfiguration.tex}
+
+% math
+\usepackage{mathtools}
+\usepackage{packages/accents}
+\usepackage{fixmath} % upper case Greek letters in italics.
+\input{pream/MathConfiguration.tex}
+
+% theorems
+%\input{pream/TheoremStyles.tex}
+
+% listings
+\usepackage{listings}
+
+% drawing and graphics
+\usepackage{packages/tumcolors}
+\usepackage{tikz}
+\input{pream/TikzStyles.tex}
+\usepackage{packages/moeptikz}
+
+% IEEE tools for tweaking bib style
+\usepackage{packages/IEEEtrantools}
+
+% enable links
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+\newcommand\toc{\relax}
+
+% pgfplots
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{colormap={moepcolormap}{[1cm] color(0cm)=(black!60) color(5cm)=(black!1)}}
+%\pgfplotsset{colormap={moepcolormap}{[1cm] color(0cm)=(TUMDarkerBlue) color(1cm)=(TUMLighterBlue) color(2cm)=(TUMGreen) color(3cm)=(TUMBeamerYellow) color(4cm)=(TUMOrange) color(5cm)=(I8LogoRed)}}
+
