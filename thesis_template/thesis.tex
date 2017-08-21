@@ -80,7 +80,18 @@ Here we see the simple version with only one public IPv4 address.
 \label{fig:NATPrivate}
 \end{figure}
 
-A NAT middlebox manages the translation between the different IPv4 address spaces. 
+A NAT middlebox manages the translation between the different IPv4 address spaces. To achieve this the middlebox has to save a mapping of the private IP addresses to the public ones. In the simplest imaginable case we have as many public IPv4 addresses as we have private ones. In that case the mapping is simply a bijection. When the NAT middlebox receives a packet from a new private IP S in the internal network it maps it to a not used public IP from its address pool. This mapping is saved. To translate the packet the NAT middlebox has to : $\newline$
+\begin{enumerate}
+
+\item Replace the original source IP from the packet with the mapped public IP
+\item Completely recompute the IP header checksum, as not only the Time To Live header field changes, but also the source IP header field \cite{tanenbaum1996computer}[Page 435]
+\item Recompute the checksum in the TCP or UDP header if existent. The checksum of these protocols computes the checksum over the whole packet
+
+\end{enumerate} 
+
+When an answer from the internet arrives the NAT middlebox has to to the same process only with replacing the destination IP address with the source address of the private host. This is done with the same mapping. Afterwards the packet is forwarded to the host in the private network. $\newline$
+
+
 
 \section{NAT model}
 
