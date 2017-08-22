@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  22 AUG 2017 10:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  22 AUG 2017 11:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2070,7 +2070,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--84
 ]
 Chapter 3.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 107.
+(Font)              scaled to size 12.0pt on input line 108.
 [7] [8
 
 ]
@@ -2088,21 +2088,21 @@ ns-la-tion,'' []$https : / / www . a10networks . com /
  []
 
 ) [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 141.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 141.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 141.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 141.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 13C8A65C5A332B23939995ADB83F3B74;1299.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 141.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  ) 
 Here is how much of TeX's memory you used:
- 35931 strings out of 494946
- 811874 string characters out of 6180981
+ 35937 strings out of 494946
+ 812024 string characters out of 6180981
  1082696 words of memory out of 5000000
  38315 multiletter control sequences out of 15000+600000
- 78514 words of font info for 131 fonts, out of 8000000 for 9000
+ 79056 words of font info for 135 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
  76i,6n,84p,791b,637s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/us
@@ -2112,7 +2112,7 @@ ive/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}</usr/share/texlive/te
 xmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
-Output written on thesis.pdf (29 pages, 277908 bytes).
+Output written on thesis.pdf (29 pages, 278311 bytes).
 PDF statistics:
  312 PDF objects out of 1000 (max. 8388607)
  265 compressed objects within 3 object streams
