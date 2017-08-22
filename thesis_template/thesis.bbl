@@ -52,4 +52,8 @@ O.~Bonaventure, \emph{Computer Networking: Principles, Protocols, and
 \bibitem{tanenbaum1996computer}
 A.~S. Tanenbaum, \emph{Computer networks}, 1996, no. 04; TK5105. 5, T35 1996.
 
+\bibitem{FTP}
+``Ftp connection modes (active vs. passive),''
+  \url{https://winscp.net/eng/docs/ftp_modes}, visited: 22.08.2017 15:50.
+
 \end{thebibliography}
