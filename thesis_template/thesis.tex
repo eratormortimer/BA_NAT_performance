@@ -13,7 +13,7 @@
 
 % Needed for Bachelor's theses, Master's theses and IDP
 \titlegerman{Leistungsanalyse der Funktionen von Middleboxes}
-\titleenglish{Performance analysis of Middlebox functionality}
+\titleenglish{Performance Analysis of Middlebox Functionality}
 \submitteddate{\today}
 \author{Simon Sternsdorf}
 \supervisor{\NEThead}
@@ -51,7 +51,7 @@
 
 \section{Motivation}
 Middleboxes are mediating devices used by both End-user Internet Service Providers and normal home users. The requirements ISPs have for Middleboxes are of course vastly different from the requirements of private users. Thus the implementations differs greatly as well. Middleboxes for home users do not have high performance requirements. They conduct mostly very simple tasks for a low amount of devices. This is changing of course, as more and more web-enabled devices are used in modern households. 
-Still the required performance is low in contrast to at an ISP for example. Especially carrier grade network address translation is used to provide ipv4 connectivity for mobile phones, since IPv4 addresses are getting rare \cite{A10}. The middleboxes used are mostly implemented in hardware, which has assets and drawbacks. Those drawbacks are significant. 
+Still the required performance is low in contrast to at an ISP for example. Especially carrier grade network address translation is used to provide ipv4 connectivity for mobile phones, since IPv4 addresses are getting rare \cite{A10}. The Middleboxes used are mostly implemented in hardware, which has assets and drawbacks. Those drawbacks are significant. 
 Middleboxes specifically produced for ISPs are expensiv both in acquisition and maintainance, also they usually have to be replaced to introduce new features \cite{WhiteP}. Also they are difficult to scale with higher or lower demand. All these problems are avoidable through network function virtualization. And the long-term plan is indeed to replace these hardware middleboxes with all-purpose hardware that is cheap and easily replaceable \cite{Click}. The networking functions would be implemented in software. 7 of the worlds largest telecoms network operators are in an standards group for virtualization of network functions. So the topic is already being discussed in ISPs \cite{NetDis} 
 
 
@@ -59,7 +59,8 @@ Middleboxes specifically produced for ISPs are expensiv both in acquisition and 
 \section{Goal of the thesis}
 The goal of this thesis is to test different software Middlebox implementations. We will install different middlebox implementations in our testbed. Then we will test the packet processing capability, try to find bottlenecks for the performance when processing packets. We will evaluate our results. 
 Additionally we want to evaluate if software Middleboxes are competitive with hardware implemented Middleboxes and could replace them in the foreseeable future. 
-ection{Outline}
+
+\section{Outline}
 
 The thesis reads as follows. The second chapter introduces the theoretical concept of NAT and a NAT model which we used in our tests. Also it defines performance testing. Additionally the Data Plane Development Kit is introduced, DPDK. The third chapter informs the reader about the general idea behind our tests. Further it presents the software used for the tests. This includes the software running on the device under test, as well as the software used to run the tests. It explains the methodological approach used in this thesis. Here it explains the setup for the experiment. In chapter 4 are the collected results of the Firewall and NAT tests with a brief analysis of the result. Finally chapter 5 summarizes the outcome and gives possible future works of this thesis. 
 
@@ -69,8 +70,8 @@ This chapter gives a overview over network address translation and the NAT model
 
 \section{NAT}
 
-Network address translation NAT was first described 1993 and written into \href{https://tools.ietf.org/html/rfc3022.html}{RFC 3022} in 2001. It was proposed as an temporary solution for the shortage of IPv4 addresses. It should slow down the need for IPv4 addresses of private customers and businesses \cite{bonaventure2011computer}. It does this by working as a connector between 2 different networks with different IPv4 address spaces. Mostly it translates between the address space of the internet and a private network. Since NAT is used so broadly it is one of the most common middleboxes. $\newline$
-NAT in private households is in many instances implemented directly in the router. The home ususally only gets one IPv4 address from its ISP. The router then interconnects the home network to the internet via an ISP. It translates the private IP addresses of the home network to enable them to share the single IPv4 address \cite{bonaventure2011computer}[Page 168]. In corporate networks it basically fulfills the same purpose. The main difference is that the border router manages multiple public IPv4 addresses and manages the correct translation between them and the private IPv4 addresses in the private network. 
+Network address translation NAT was first described 1993 and written into RFC 3022 \cite{RFC3022} in 2001. It was proposed as an temporary solution for the shortage of IPv4 addresses. It should slow down the need for IPv4 addresses of private customers and businesses \cite{bonaventure2011computer}. It does this by working as a connector between two different networks with different IPv4 address spaces. Mostly it translates between the address space of the Internet and a private network. Since NAT is used so broadly it is one of the most common middleboxes. $\newline$
+NAT in private households is in many instances implemented directly in the router. The home ususally only gets one IPv4 address from its ISP. The router then interconnects the home network to the Internet via an ISP. It translates the private IP addresses of the home network to enable them to share the single IPv4 address \cite{bonaventure2011computer}[Page 168]. In corporate networks it basically fulfills the same purpose. The main difference is that the border router manages multiple public IPv4 addresses and manages the correct translation between them and the private IPv4 addresses in the private network. 
 Here we see the simple version with only one public IPv4 address.
 
 \begin{figure}[h]
@@ -89,13 +90,21 @@ A NAT middlebox manages the translation between the different IPv4 address space
 
 \end{enumerate} 
 
-When an answer from the internet arrives the NAT middlebox has to to the same process only with replacing the destination IP address with the source address of the private host. This is done with the same mapping. Afterwards the packet is forwarded to the host in the private network. $\newline$
+When an answer from the Internet arrives the NAT middlebox has to to the same process only with replacing the destination IP address with the source address of the private host. This is done with the same mapping. Afterwards the packet is forwarded to the host in the private network. $\newline$
 In the realistic case where we have less public IP addresses then private ones the translation occurs over the IP and the port number. An NAT middlebox that uses this translation method maps the internal IP and the internally used port number of the TCP or UDP packet to a public IP from the IP pool available to the NAT middlebox and the first available port number \cite{bonaventure2011computer}[Page 169]. The entries in the mapping table are removed by the system after either the TCP connection is closed or the connection is idle for a longer time. Here the NAT middlebox functions similarly to a stateful firewall, which will become important later. 
-When the NAT middlebox has to handle packets from the internet, it looks up a mapping from its state table for the destination IP address and the destination port. If a matching mapping exists the packet is translated accordingly and forwarded to the matching internal host. If no such mapping exists the packet gets discarded, as there is no way to determine the correct internal host. $\newline$
-NAT has two main disadvantages: Opening TCP connections from the internet to an internal network is very difficult. This means that for example FTP users behind NAT have problems. In active mode, the FTP client first establishes a control connection to the server.After that the client listens on a random port for the incoming data connection from the server. If the client sits behind a NAT this connection will not work \cite{FTP}.$\newline$
-The other disadvantage is that NAT breaks the end- to end transparency of the IP layer and the application layer. This problem occurs when the IP address is used in the application layer, as the NAT only replaces the IP in the IP header. This can be avoided with an Application Level Gateway installed at the NAT. However it is not feasible to install an an ALG for every application that relies on the IP in layer 7. 
+When the NAT middlebox has to handle packets from the Internet, it looks up a mapping from its state table for the destination IP address and the destination port. If a matching mapping exists the packet is translated accordingly and forwarded to the matching internal host. If no such mapping exists the packet gets discarded, as there is no way to determine the correct internal host. $\newline$
+NAT has two main disadvantages: Opening TCP connections from the Internet to an internal network is very difficult. This means that for example FTP users behind NAT have problems. In active mode, the FTP client first establishes a control connection to the server.After that the client listens on a random port for the incoming data connection from the server. If the client sits behind a NAT this connection will not work \cite{FTP}.$\newline$
+The other disadvantage is that NAT breaks the end- to end transparency of the IP layer and the application layer. This problem occurs when the IP address is used in the application layer, as the NAT only replaces the IP in the IP header. This can be avoided with an Application Level Gateway installed at the NAT. However it is not feasible to install an an ALG for every application that relies on the IP in layer 7 \cite{bonaventure2011computer}[Page 169]. $\newline$
+IPv6 would make NAT middleboxes obsolete, although some people argue NAT still has some use cases when only IPv6 is used. This is discussed in RFC 5902 \cite{RFC5902}. With IPv6 enough addresses are available to give each device a unique global IP. 
 
 \section{NAT model}
+
+This section is about the NAT model we will use in this thesis and why it is important for the performance tests we did. This model is based on the basic concept of how a NAT middlebox works. Roughly speaking we will split up NAT in different components. This way we can get an better understanding of which part of the NAT is actually responsible for how much of the time we need to forward a packet. $\newline$ 
+
+
+We will first implement a stateless firewall to measure how much time it takes to parse a packet.     Afterwards we will implement an state-full firewall to measure the costs of holding a state. And finally we will test an full NAT implementation. There we will measure the extra costs of rewriting the IP address and the port in a packet.
+ 
+
 
 \section{Performance testing}
 
