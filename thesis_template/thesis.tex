@@ -100,13 +100,20 @@ IPv6 would make NAT middleboxes obsolete, although some people argue NAT still h
 \section{NAT model}
 
 This section is about the NAT model we will use in this thesis and why it is important for the performance tests we did. This model is based on the basic concept of how a NAT middlebox works. Roughly speaking we will split up NAT in different components. This way we can get an better understanding of which part of the NAT is actually responsible for how much of the time we need to forward a packet. $\newline$ 
-
-
-We will first implement a stateless firewall to measure how much time it takes to parse a packet.     Afterwards we will implement an state-full firewall to measure the costs of holding a state. And finally we will test an full NAT implementation. There we will measure the extra costs of rewriting the IP address and the port in a packet.
- 
+In the model the NAT middlebox performs 3 tasks excluding the sheer forwarding of the packet: 
+\begin{itemize}
+\item Parse the packet. This means it has to check the IP header for the source  and destination IP address and also the port numbers. Here the NAT compares to a stateless firewall, which has to do the same things. 
+\item Holding a state. The NAT middlebox has to remember the mapping it created for a connection. This is similar to the state-holding of a stateful firewall. A stateful firewall tracks the state of every single TCP connection that goes through it and keeps a 5-tuple for every open connection. This 5-tuple persists of the source and destination IP, the source and destination port and the protocol used for the connection. This makes 5-tuple unique to its connection \cite{bonaventure2011computer}[Page 167].
+\item Rewriting either the source or destination IP address, and rewriting the source or destination port respectively. When the NAT middlebox has to translate the packet to forward it either to the Internet or the private network it has to replace the right IP address and the right port. 
+\end{itemize}
+$\newline$
+This simple model for a NAT middlebox will us help hopefully to determinate the different factors that influence the performance of the NAT middlebox.  
 
 
 \section{Performance testing}
+
+Performance testing is the term that designates a testing technique to determine how a system reacts in term of steadiness and amenability under different amounts of load. This 
+
 
 \section{Data Plane Development Kit}
 
