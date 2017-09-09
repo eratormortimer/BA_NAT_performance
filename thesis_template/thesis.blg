@@ -14,47 +14,48 @@ Warning--I didn't find a database entry for "IEEEexample:BSTcontrol"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 Warning--empty journal in Click
 Warning--missing publisher in tanenbaum1996computer
+Warning--empty journal in schmidt2017
 
 Done.
-You've used 10 entries,
+You've used 16 entries,
             4087 wiz_defined-function locations,
-            904 strings with 9390 characters,
-and the built_in function-call counts, 3311 in all, are:
-= -- 234
-> -- 19
+            934 strings with 10334 characters,
+and the built_in function-call counts, 5239 in all, are:
+= -- 379
+> -- 31
 < -- 1
-+ -- 13
-- -- 3
-* -- 117
-:= -- 557
-add.period$ -- 19
-call.type$ -- 10
-change.case$ -- 15
++ -- 21
+- -- 5
+* -- 175
+:= -- 879
+add.period$ -- 31
+call.type$ -- 16
+change.case$ -- 26
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 303
-empty$ -- 368
-format.name$ -- 3
-if$ -- 742
+cite$ -- 19
+duplicate$ -- 490
+empty$ -- 576
+format.name$ -- 5
+if$ -- 1180
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 65
-newline$ -- 53
-num.names$ -- 3
-pop$ -- 199
+int.to.str$ -- 16
+missing$ -- 106
+newline$ -- 71
+num.names$ -- 5
+pop$ -- 324
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 264
+skip$ -- 417
 stack$ -- 0
-substring$ -- 22
-swap$ -- 150
+substring$ -- 38
+swap$ -- 241
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 10
-warning$ -- 2
-while$ -- 3
-width$ -- 12
-write$ -- 93
-(There were 3 warnings)
+type$ -- 16
+warning$ -- 3
+while$ -- 5
+width$ -- 18
+write$ -- 136
+(There were 4 warnings)

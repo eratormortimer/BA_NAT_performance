@@ -64,4 +64,33 @@ A.~S. Tanenbaum, \emph{Computer networks}, 1996, no. 04; TK5105. 5, T35 1996.
 ``Rfc5902,'' \url{https://tools.ietf.org/html/rfc5902}, visited: 23.08.2017
   15:50.
 
+\bibitem{TutPer}
+``Performance testing,''
+  \url{https://www.tutorialspoint.com/software_testing_dictionary/performance_testing.htm},
+  visited: 24.08.2017 17:30.
+
+\bibitem{Stress}
+M.~Rouse, ``Definition: Stress testing,''
+  \url{http://searchsoftwarequality.techtarget.com/definition/stress-testing},
+  visited: 24.08.2017 15:50.
+
+\bibitem{DPDKEx}
+``Roving reporter: Dpdk goes open-source,''
+  \url{https://embedded.communities.intel.com/community/en/software/blog/2013/05/16/roving-reporter-dpdk-goes-open-source},
+  visited: 26.08.2017 13:30.
+
+\bibitem{schmidt2017}
+O.~Schmidt, ``A programming language for protocol-independent packet
+  processing: Analyzing and evaluating p4,'' 2017.
+
+\bibitem{Blackbox}
+``Black box testing fundamentals,''
+  \url{http://softwaretestingfundamentals.com/black-box-testing/}, visited:
+  29.08.2017 14:30.
+
+\bibitem{BlackboxDis}
+``Black box testing, its advantages and disadvantages,''
+  \url{https://www.codeproject.com/Articles/5579/Black-Box-Testing-Its-Advantages-and-Disadvantages},
+  visited: 29.08.2017 13:30.
+
 \end{thebibliography}

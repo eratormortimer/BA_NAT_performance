@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper,twoside,openright,bachelor,english]{netthesis}
 \usepackage[utf8]{inputenc}
-
+\usepackage[section]{placeins}
+\usepackage{float}
 % Include common packages
 \input{pream/Packages}
 
@@ -112,26 +113,127 @@ This simple model for a NAT middlebox will us help hopefully to determinate the 
 
 \section{Performance testing}
 
-Performance testing is the term that designates a testing technique to determine how a system reacts in term of steadiness and amenability under different amounts of load. This 
+Performance testing is the term that designates a testing technique to determine how a system reacts in term of steadiness and amenability under different amounts of load. 
+With this testing we can learn about the quality of our system and its attributes \cite{TutPer}. There are different forms of performance testing. $\newline$
+\begin{itemize}
+
+\item Load testing. Load testing is a very simple form of performance testing where the system is tested under specific work loads. All the parts of the system get monitored. With this one can predict how the system will react in the future under concrete work loads.
+
+\item Soak testing. Here the system is monitored under an continuous load. The load is set to the excepted average work load the system has to handle. With this testing the endurance of the system is determined. Critical parts like the memory of the system are monitored to find possible performance issues or errors under uninterrupted use.
+
+\item Spike testing. As the name suggests this testing revolves around a sudden spike of new users in the system. This is simulated by suddenly increasing the number of virtual users and monitoring the system. This test shows if a system can manage such a strong spike of new users and also if the system can handle the continuous workload that comes with a bigger user base.
+
+\item Stress testing. Stress testing is used to determine the maximum workload a system can handle. Also it shows how a system performs with a workload well above its limits. This is done by monitoring the system and increasing the workload until a part of the system fails or cannot complete the work correctly.
+
+\end{itemize}
+$\newline$
+
+We will take a closer look at stress testing since it is the main form of performance testing we used here. In a stress test the condition of our system is progressively worsened until the performance is too low as that we could use the system or the system fails entirely. To exactly determine which element of the system failed we have to have indivisual stressors that are varied, and see which effect they have. Stress testing can often take a long time, but is really important to determine the degree of graceful degradation of a system. Graceful degradation describes the capability of a system to still be somewhat operational even under extreme circumstances. This is important for critical systems which always have to be operational \cite{Stress}. 
+
 
 
 \section{Data Plane Development Kit}
 
+The Intel Data Plane Development Kit, Intel DPDK, is a group of programming libraries available in source code. These libraries enable faster basic data plane functions on Intel processors. These lbraries are especially designed to optimize the packet processing capabilities on IA processors. These are processors from the Xeon series. These libraries allow for fast implementation of packet forwarding functions \cite{DPDKEx}.
+The most important DPDK elements can be seen in \ref{fig:DPDKEx} 
+\begin{figure}[h]
+\centering
+{\includegraphics[width=.75\columnwidth]{figures/IntelDPDK}} \quad
+\caption[ Intel® Data Plane Development Kit]{ Intel® Data Plane Development Kit \cite{DPDKEx}}
+\label{fig:DPDKEx}
+\end{figure}
+
+This shows the different DPDK libraries for buffer management, queue management, packet flow classification and poll mode drivers for different network interface cards. DPDK provides a model with a low overhead to enable a optimal data plane performance. It includes an Environment Abstraction Layer, which includes platform specific code. This simplifies application porting \cite{DPDKEx}. $\newline$
+The buffer management includes the DPDK Memory Manager, which allocates pools of objects in the memory. This is realized through a ring to store free objects, which accelerates the whole process. Additionally the DPDK Buffer Manager reserves buffers with a fixed size. This additionally accelerates the system, as we no longer have to constantly allocate new buffers or free buffers which are no longer in use. $\newline$
+The packet flow classification includes the Intel DPDK Flow Classifier, which uses Streaming SIMD Extensions to speed up the process of placing packets in the right flow to get them processed. This additionally improves the throughput of the system \cite{DPDKEx}.
+$\newline$
+The poll drivers included in DPDK work for Gigabit Ethernet and 10 Gigabit Ethernet and work with asynchronous signal mechanisms. This improves the performance for pipe-lining packets. $\newline$
+Since 2013 exists dpdk.org \cite{DPDKOv}, a Open Source Project founded by 6WIND \cite{DPDKEx}. Through this project source code, a documentation and example applications are available. This code is pretty much up-to date with the Intel DPDK releases and provides high processing-performance. The open-source project sees a lot of interest and is used already in several big projects and of course many smaller programs. One of them is for example MoonGen, which we will discuss in the Methodology chapter. $\newline$ 
+As a short conclusion in DPDK, we can see that DPDK could be vital to accelerate packet processing and handling in software middleboxes. It has great capabilities and sees a lot of ongoing development from Intel \cite{DPDKEx}.
+
+
 \chapter{Methodology}
+
+Before we can start testing the performance of a software middlebox of our choice, we have to decide on test parameters. This involves how we should conduct the measurements, what we want to measure, how the measurements should look like etc. For example we have to decide on a load generator, what kind of test environment, how we want to collect and visualize the data that we derive, and most importantly the middlebox software we want to survey. 
+$\newline$
+In this chapter we talk about the research methodology and how to build it \cite{schmidt2017}[Page 23].
 
 \section{General Idea}
 
+To test a software middlebox we defined a specific test setup which will help us derive the best results. The exact setup will be described in the following section. $\newline$
+The short abstract of it is: We will conduct blackbox tests of a middlebox software we installed on the DUT, the device under test. This DUT is connected to our testserver. This testserver runs a load generator to stress test our middlebox software. $\newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.85\columnwidth]{figures/Testsetup}} \quad
+\caption[ ]{ Testsetup }}
+\label{fig:Testsetup}
+\end{figure}
+$\newline$
+
+\subsection{Blackbox testing}
+
+Blackbox testing is a method to test software in which the internal setup of the DUT is not known to the tester. This testing method is named blackbox testing as the interior of the DUT is not visible to the tester as the interior of a blackbox is not visible \cite{Blackbox}. This testing method is mostly used to find: 
+\begin{itemize}
+
+\item Performance errors
+
+\item Initialization and termination errors 
+
+\item Database errors (External and internal)
+
+\item Interface errors
+
+\end{itemize} 
+\cite{Blackbox}
+$\newline$
+This method has mostly advantages for the tester:
+\begin{itemize}
+
+\item The tester not need to know how the software that they test is implemented. This means the tester must not be a software developer. 
+
+\item The tester can be someone independent from the developer, removing possible bias from the tests and how the are conducted
+
+\item The tests are automatically from the viewpoint of a user
+
+\end{itemize} 
+
+Some disadvantages of blackbox testing include: 
+\begin{itemize}
+
+\item Only a limited amount of inputs can be tested, a full test of the software is not possible. This means that many possible cases for the software will not be tested. 
+
+\item Test cases are difficult to design without the exact specifications of the software. 
+
+\item Possibility to have redundant tests that the developer already performed. 
+
+\end{itemize}
+\cite{BlackboxDis}
+
+
 \subsection{Software}
 
+For the tests we need different software. For one we of course need the middlebox software. We want to test the different 'states' of NAT, so our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
+
+%%Potential: Testframework
+
+
 \section{Test Methodology}
+
+This section introduces the specific software we chose for the testsetup. We will discuss why 
+
 
 \subsection{Experimental Setup}
 
 \subsection{MoonGen Traffic Generator}
 
-\subsection{Open VSwitch}
-
 \subsection{mOS}
+
+\subsubsection{General Information}
+
+\subsubsection{Problems}
+
+\subsection{Open VSwitch}
 
 \chapter{Evaluation and Analysis of results}
 

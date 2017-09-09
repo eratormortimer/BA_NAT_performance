@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  26 JUL 2017 11:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  31 AUG 2017 16:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -869,23 +869,30 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 43.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 43.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 89.
- [1{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
 
-] (./extension.aux) ) 
+Overfull \hbox (1.11095pt too wide) in paragraph at lines 71--74
+\T1/phv/m/n/10 We-gen dieser Prob-leme musste auf eine neue Soft-ware umgestell
+t wer-den was die Ar-beit stark verzögert
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 84.
+[1{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}
+
+]
+(./extension.aux) ) 
 Here is how much of TeX's memory you used:
  13244 strings out of 494946
  256131 string characters out of 6180981
- 311524 words of memory out of 5000000
+ 311522 words of memory out of 5000000
  16263 multiletter control sequences out of 15000+600000
  17379 words of font info for 24 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 69i,11n,58p,440b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
-}</usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on extension.pdf (1 page, 23151 bytes).
+ 69i,11n,58p,450b,255s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}<
+/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on extension.pdf (1 page, 23231 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  14 compressed objects within 1 object stream
