@@ -166,7 +166,7 @@ The short abstract of it is: We will conduct blackbox tests of a middlebox softw
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.85\columnwidth]{figures/Testsetup}} \quad
-\caption[ ]{ Testsetup }}
+\caption[ ]{ Testsetup }
 \label{fig:Testsetup}
 \end{figure}
 $\newline$
@@ -213,7 +213,7 @@ Some disadvantages of blackbox testing include:
 
 \subsection{Software}
 
-For the tests we need different software. For one we of course need the middlebox software. We want to test the different 'states' of NAT, so our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
+For the tests we need different software. For one we need the middlebox software. We want to test the different 'states' of NAT, so our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
 
 %%Potential: Testframework
 
