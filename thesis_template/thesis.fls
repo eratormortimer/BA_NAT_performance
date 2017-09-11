@@ -516,6 +516,9 @@ INPUT ./figures/Testsetup.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
+INPUT figures/OpenVSwitch.png
+INPUT ./figures/OpenVSwitch.png
+INPUT ./figures/OpenVSwitch.png
 INPUT thesis.bbl
 INPUT thesis.bbl
 INPUT thesis.aux

@@ -166,7 +166,7 @@ The short abstract of it is: We will conduct blackbox tests of a middlebox softw
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.85\columnwidth]{figures/Testsetup}} \quad
-\caption[ ]{ Testsetup }
+\caption[Our testsetup ]{ Testsetup }
 \label{fig:Testsetup}
 \end{figure}
 $\newline$
@@ -220,7 +220,7 @@ For the tests we need different software. For one we need the middlebox software
 
 \section{Test Methodology}
 
-This section introduces the specific software we chose for the testsetup. We will discuss why 
+This section introduces the specific software we chose for the testsetup. We will discuss the advantages and disadvantages of the choices we made. Also we will explain the experimental setup we arranged to test the middlebox software. A great deal of the setup was already established by the testbed. 
 
 
 \subsection{Experimental Setup}
@@ -234,6 +234,34 @@ This section introduces the specific software we chose for the testsetup. We wil
 \subsubsection{Problems}
 
 \subsection{Open VSwitch}
+
+Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a very useful virtual switch. It is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{harshini2016measuring}. 
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.85\columnwidth]{figures/OpenVSwitch}} \quad
+\caption[ Distributed OpenVSwitch ]{ Distributed OpenVSwitch \cite{OpenVSwitchNVFI}  }
+\label{fig:OpenVSwitch}
+\end{figure}
+
+OpenVSwitch enables logical abstraction between different virtual machines and handles the offloading to the actual switching hardware. To control this OVS lies on top of the virtualization layer of the hypervisor and provides interfaces to the virtual machines. $\newline$
+The virtual machines contain virtual interfaces. These enable communication between the VMs running on the same hypervisor or connected in the same virtual network and forward the traffic to the actual network interface of the machine. Here OVS acts as a bridge between the VMs and the physical interfaces. In short it interconnects the virtual interfaces with the physical interfaces \cite{harshini2016measuring}. 
+
+\subsubsection{Advantages of Open VSwitch}
+
+Open VSwitch is used as an alternative to the basic Linux bridge for modern hypervisors. OVS has some clear cut advantages over the classic Linux bridge mostly in terms of performance. 
+\begin{itemize}
+
+\item Fast self-regulation when the network environment changes, realized through sFlow and Netflow. 
+
+\item Very easy configuration and automation of network systems. Slow and fast network states can be migrated between instances. 
+
+\item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes. 
+
+\end{itemize}
+
+
+
 
 \chapter{Evaluation and Analysis of results}
 
