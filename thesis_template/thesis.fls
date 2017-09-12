@@ -522,6 +522,9 @@ INPUT ./figures/OpenVSwitch.png
 INPUT figures/OVSDPDK.png
 INPUT ./figures/OVSDPDK.png
 INPUT ./figures/OVSDPDK.png
+INPUT figures/OVSconntrack.pdf
+INPUT ./figures/OVSconntrack.pdf
+INPUT ./figures/OVSconntrack.pdf
 INPUT thesis.bbl
 INPUT thesis.bbl
 INPUT thesis.aux

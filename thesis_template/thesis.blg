@@ -8,6 +8,11 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: lit.bib
+I was expecting a `,' or a `}'---line 130 of file lit.bib
+ : 
+ : @misc{BlackboxDis,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "IEEEexample:BSTcontrol"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
@@ -17,45 +22,45 @@ Warning--missing publisher in tanenbaum1996computer
 Warning--empty journal in schmidt2017
 
 Done.
-You've used 20 entries,
+You've used 21 entries,
             4087 wiz_defined-function locations,
-            952 strings with 10811 characters,
-and the built_in function-call counts, 6510 in all, are:
-= -- 470
-> -- 44
+            957 strings with 10987 characters,
+and the built_in function-call counts, 6960 in all, are:
+= -- 514
+> -- 45
 < -- 1
-+ -- 28
++ -- 29
 - -- 8
-* -- 207
-:= -- 1095
-add.period$ -- 39
-call.type$ -- 20
-change.case$ -- 30
+* -- 225
+:= -- 1174
+add.period$ -- 41
+call.type$ -- 21
+change.case$ -- 35
 chr.to.int$ -- 0
-cite$ -- 23
-duplicate$ -- 609
-empty$ -- 719
+cite$ -- 24
+duplicate$ -- 649
+empty$ -- 757
 format.name$ -- 8
-if$ -- 1468
+if$ -- 1570
 int.to.chr$ -- 0
-int.to.str$ -- 20
-missing$ -- 133
-newline$ -- 83
+int.to.str$ -- 21
+missing$ -- 143
+newline$ -- 86
 num.names$ -- 8
-pop$ -- 404
+pop$ -- 431
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 525
+skip$ -- 557
 stack$ -- 0
-substring$ -- 42
-swap$ -- 300
+substring$ -- 51
+swap$ -- 324
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 20
+type$ -- 21
 warning$ -- 3
 while$ -- 8
-width$ -- 22
-write$ -- 164
-(There were 4 warnings)
+width$ -- 23
+write$ -- 174
+(There was 1 error message)
