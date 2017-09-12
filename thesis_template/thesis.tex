@@ -235,7 +235,7 @@ This section introduces the specific software we chose for the testsetup. We wil
 
 \subsection{Open VSwitch}
 
-Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a very useful virtual switch. It is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{harshini2016measuring}. 
+Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a very useful virtual switch. It is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
 
 \begin{figure}[H]
 \centering
@@ -245,7 +245,7 @@ Open VSwitch is the middlebox software we settled on using. In it's core, OVS is
 \end{figure}
 
 OpenVSwitch enables logical abstraction between different virtual machines and handles the offloading to the actual switching hardware. To control this OVS lies on top of the virtualization layer of the hypervisor and provides interfaces to the virtual machines. $\newline$
-The virtual machines contain virtual interfaces. These enable communication between the VMs running on the same hypervisor or connected in the same virtual network and forward the traffic to the actual network interface of the machine. Here OVS acts as a bridge between the VMs and the physical interfaces. In short it interconnects the virtual interfaces with the physical interfaces \cite{harshini2016measuring}. 
+The virtual machines contain virtual interfaces. These enable communication between the VMs running on the same hypervisor or connected in the same virtual network and forward the traffic to the actual network interface of the machine. Here OVS acts as a bridge between the VMs and the physical interfaces. In short it interconnects the virtual interfaces with the physical interfaces \cite{pothuraju2016measuring}. 
 
 \subsubsection{Advantages of Open VSwitch}
 
@@ -259,7 +259,21 @@ Open VSwitch is used as an alternative to the basic Linux bridge for modern hype
 \item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes. 
 
 \end{itemize}
+\cite{pothuraju2016measuring}
 
+\subsubsection{OVS with DPDK support}
+
+Open VSwitch forwards packets over the kernel data path, which means it uses the standart Linux kernel. This method divides the packet processing in a slow path and a fast path. The fast path matches incoming packets on a flowtable to determine the forwarding rule for the specific packet. The first packet from a new flow does not match anything in the flow table and is send via the slow path in the user space deamon. After the user space has processed the packet, the user space daemon gets the information for the flow table from him and includes them in the current flow table. All subsequent packets of the flow can be handled via the fast path again. $\newline$
+By using this approach native OVS is a lot faster than normal user space packet forwarding. Still, the context switching required for new flows limits the realistically achievable throughput. This means native OVS is not feasible for use cases were a high thoruhgput is mandatory \cite{OpenVSwitchDPDK}.  $\newline$
+With the use of DPDK in OVS, the slow path can make use of the Poll Mode Drivers. These enable the fast forwarding of packets from the user space to the interfaces, without the need for extra interrupt handling of the kernel. This means we essentially bypassing the whole kernel network stack. By incorporating DPDK with the Poll Mode Driver in Open VSwitch the slow path essentially becomes the fast path, as in both cases the path of the packet is the same. $\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.80\columnwidth]{figures/OVSDPDK}} \quad
+\caption[ OpenVSwitch with and without DPDK]{OpenVSwitch with and without DPDK \cite{OpenVSwitchDPDK}  }
+\label{fig:OpenVSwitchDPDK}
+\end{figure}
+
+This can be see in \ref{fig:OpenVSwitchDPDK}. Sadly the NAT extension of OVS does not support DPDK just yet. The support is announced for version 2.7 which will probably be released in 2018 \cite{OVSNATDPDK} . %%Possible Extension from Intel Page
 
 
 

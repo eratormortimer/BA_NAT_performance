@@ -93,11 +93,20 @@ O.~Schmidt, ``A programming language for protocol-independent packet
   \url{https://www.codeproject.com/Articles/5579/Black-Box-Testing-Its-Advantages-and-Disadvantages},
   visited: 29.08.2017 13:30.
 
-\bibitem{harshini2016measuring}
-N.~Harshini, ``Measuring and modeling of open vswitch performance:
-  Implementation in docker,'' 2016.
+\bibitem{pothuraju2016measuring}
+R.~Pothuraju, ``Measuring and modeling of open vswitch performance:
+  Implementation in kvm environment,'' 2016.
 
 \bibitem{OpenVSwitchNVFI}
 J.~M., ``Virtual networking in linux,'' 2010.
+
+\bibitem{OpenVSwitchDPDK}
+R.~G., ``Open vswitch* with dpdk overview,''
+  \url{https://software.intel.com/en-us/articles/open-vswitch-with-dpdk-overview},
+  2016.
+
+\bibitem{OVSNATDPDK}
+``Roadmap for dpdk usespace nat,''
+  \url{https://mail.openvswitch.org/pipermail/ovs-discuss/2016-September/042581.html}.
 
 \end{thebibliography}
