@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  12 SEP 2017 16:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  15 SEP 2017 17:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2072,7 +2072,7 @@ Chapter 1.
 
 ] [2]
 Chapter 2.
-<figures/NATPrivate.png, id=234, 498.86375pt x 168.63pt>
+<figures/NATPrivate.png, id=236, 498.86375pt x 168.63pt>
 File: figures/NATPrivate.png Graphic file (type png)
 
 <use figures/NATPrivate.png>
@@ -2102,7 +2102,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
-<figures/IntelDPDK.png, id=270, 420.6114pt x 356.0502pt>
+<figures/IntelDPDK.png, id=272, 420.6114pt x 356.0502pt>
 File: figures/IntelDPDK.png Graphic file (type png)
 
 <use figures/IntelDPDK.png>
@@ -2121,7 +2121,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
-<figures/Testsetup.pdf, id=294, 584.1825pt x 309.155pt>
+<figures/Testsetup.pdf, id=296, 584.1825pt x 309.155pt>
 File: figures/Testsetup.pdf Graphic file (type pdf)
 
 <use figures/Testsetup.pdf>
@@ -2139,51 +2139,59 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 174.
-[10 <./figures/Testsetup.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-<figures/OpenVSwitch.png, id=319, 776.9025pt x 353.32pt>
-File: figures/OpenVSwitch.png Graphic file (type png)
-
-<use figures/OpenVSwitch.png>
-Package pdftex.def Info: figures/OpenVSwitch.png used on input line 242.
-(pdftex.def)             Requested size: 326.40234pt x 148.44191pt.
- [12 <./figures/OpenVSwitch.png>]
-<figures/OVSDPDK.png, id=333, 752.8125pt x 623.32875pt>
-File: figures/OVSDPDK.png Graphic file (type png)
-
-<use figures/OVSDPDK.png>
-Package pdftex.def Info: figures/OVSDPDK.png used on input line 271.
-(pdftex.def)             Requested size: 307.20117pt x 254.36803pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--274
+[10 <./figures/Testsetup.pdf>] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
+[12] <figures/OpenVSwitch.png, id=329, 776.9025pt x 353.32pt>
+File: figures/OpenVSwitch.png Graphic file (type png)
 
-Underfull \vbox (badness 3861) has occurred while \output is active []
+<use figures/OpenVSwitch.png>
+Package pdftex.def Info: figures/OpenVSwitch.png used on input line 281.
+(pdftex.def)             Requested size: 326.40234pt x 148.44191pt.
+ [13 <./figures/OpenVSwitch.png>]
+<figures/OVSDPDK.png, id=344, 752.8125pt x 623.32875pt>
+File: figures/OVSDPDK.png Graphic file (type png)
 
- [13]
-<figures/OVSconntrack.pdf, id=345, page=6, 794.97pt x 614.295pt>
+<use figures/OVSDPDK.png>
+Package pdftex.def Info: figures/OVSDPDK.png used on input line 310.
+(pdftex.def)             Requested size: 307.20117pt x 254.36803pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 305--313
+
+ []
+
+[14] <figures/OVSconntrack.pdf, id=356, page=6, 794.97pt x 614.295pt>
 File: figures/OVSconntrack.pdf Graphic file (type pdf)
 
 <use figures/OVSconntrack.pdf, page 6>
-Package pdftex.def Info: figures/OVSconntrack.pdf, page6 used on input line 284
+Package pdftex.def Info: figures/OVSconntrack.pdf, page6 used on input line 323
 .
 (pdftex.def)             Requested size: 345.59766pt x 267.05681pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14 <./figures/OVSDPDK.png>] [15 <./figures/OVSconntrack.pdf>] [16
+ [15 <./figures/OVSDPDK.png>]
+<figures/OVSconntrack.pdf, id=368, page=13, 794.97pt x 614.295pt>
+File: figures/OVSconntrack.pdf Graphic file (type pdf)
+
+<use figures/OVSconntrack.pdf, page 13>
+Package pdftex.def Info: figures/OVSconntrack.pdf, page13 used on input line 33
+3.
+(pdftex.def)             Requested size: 345.59766pt x 267.05681pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16 <./figures/OVSconntrack.pdf>] [17 <./figures/OVSconntrack.pdf>] [18
 
 ]
 Chapter 4.
-[17] [18
+[19] [20
 
 ]
 Chapter 5.
-(./thesis.bbl [19] [20
+(./thesis.bbl [21] [22
 
 ]
 Underfull \hbox (badness 1043) in paragraph at lines 25--28
@@ -2209,34 +2217,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--81
  en / software / blog / 2013 / 05 / 16 /
  []
 
-[21]
-Underfull \hbox (badness 4699) in paragraph at lines 87--90
-[]\T1/LinuxLibertineT-TLF/m/n/10.95 (+15) ``Black box test-ing fun-da-men-tals,
-'' []$http : / / softwaretestingfundamentals . com /
- []
-
-
-Underfull \hbox (badness 3492) in paragraph at lines 109--112
+[23]
+Underfull \hbox (badness 3492) in paragraph at lines 115--118
 []\T1/LinuxLibertineT-TLF/m/n/10.95 (+15) ``Roadmap for dpdk us-es-pace nat,'' 
 []$https : / / mail . openvswitch . org / pipermail /
  []
 
-) [22]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 312.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 312.
+) [24]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 362.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 362.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 312.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 312.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 362.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 362.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 9F894515FDC18FA418BC38886094313C;1423.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 312.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 362.
  ) 
 Here is how much of TeX's memory you used:
- 36137 strings out of 494946
- 815862 string characters out of 6180981
+ 36149 strings out of 494946
+ 816130 string characters out of 6180981
  1085228 words of memory out of 5000000
- 38443 multiletter control sequences out of 15000+600000
- 82088 words of font info for 151 fonts, out of 8000000 for 9000
+ 38448 multiletter control sequences out of 15000+600000
+ 82251 words of font info for 152 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
  76i,7n,84p,1146b,637s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/us
@@ -2247,10 +2249,10 @@ xmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}</usr/share/texlive/texmf-di
 st/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/public/libertine/LinLibertineTI.pfb>
-Output written on thesis.pdf (38 pages, 1185367 bytes).
+Output written on thesis.pdf (40 pages, 1865158 bytes).
 PDF statistics:
- 545 PDF objects out of 1000 (max. 8388607)
- 445 compressed objects within 5 object streams
- 92 named destinations out of 1000 (max. 500000)
- 23827 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 614 PDF objects out of 1000 (max. 8388607)
+ 486 compressed objects within 5 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 23832 words of extra memory for PDF output out of 24883 (max. 10000000)
 

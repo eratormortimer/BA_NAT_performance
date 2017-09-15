@@ -225,7 +225,46 @@ This section introduces the specific software we chose for the testsetup. We wil
 
 \subsection{Experimental Setup}
 
+For the conducted experiments I used mostly the 2 same servers. When unavailable I used different servers in the testbed, but the servers have mostly the same hardware. 
+$\newline$ 
+The Hardware of one server was: 
+\begin{itemize}
+
+\item CPU: Intel(R) Xeon(R) CPU E31230 @ 3.20GHz
+
+\item Number of CPUs: 1
+\item Memory: 16 GB
+\item Mainboard: X9SCL/X9SCM
+\item NICs: 2x Intel X540 (1x X540-T2)
+
+
+\end{itemize}
+
+As operating system Debian 8.9 "Jessie" was used, as it was newest Debian system at the time. It was not further modified in any way. Debian was already preconfigured in the testbed for easy install. By using Debian I was able to automate most of the setup process for the device under test and the load server. The servers were connected as can be seen in \ref{fig:Testsetup} with 10 Gbit cables between them. On one server I installed the load generator on the other on the middlebox software which I configured for the tests. The following sections will explain the used programs in more detail. 
+
 \subsection{MoonGen Traffic Generator}
+
+\subsubsection{Advantages and disadvantages}
+
+MoonGen is a traffic generator that can saturate 10 Gbit Ethernet easily while using a very special approach for measuring the latency of the packets. MoonGen was selected out of a few possible candidates mainly because of its flexibility. Most packet generators are either very complicated or have no good performance. The tested alternatives to MoonGen were either very complicated to set up and run, or had a bad performance \cite{emmerich2015moongen}. MoonGen has 4 major advantages over the rest for my use case: $\newline$
+\begin{itemize}
+
+\item MoonGen is completely implemented in software and can run on a lot of commodity CPUs. This is achieved through its implementation on top of DPDK, the packet processing framework. The only requirenment for our hardware is that DPDK supports it and that it offers support for the time stamping and rate control. 
+
+\item Is very flexible, as the packet generator logic is written in Lua scripts. These scripts are very user friendly and can be completely modified. In this specific case LUA-JIT was used as its performance is suited for high speed packet processing. 
+
+\item Is able to saturate multiple 10 Gbit Ethernet interfaces with minimum size packets. This advantage was not really necessary for this specific test setup as we only needed to saturate on interface. But the good performance was still noticeable. 
+
+\item MoonGen allows to time stamp very accurately and building on that very good rate control. This point will be further explained below. 
+
+\end{itemize}
+
+One disadvantage of MoonGen is that it currently only supports UDP packets for layer 3 latency measurements. MoonGen is not able to understand the TCP stack and therefor cannot establish a TCP connection. This was important when testing the middlebox software mOS, which will be talked about later. 
+
+\subsubsection{Closer Look: Hardware timestamping }
+
+The type of hardware timestamping in MoonGen is very unique. It utilities the 
+
 
 \subsection{mOS}
 
@@ -286,7 +325,18 @@ With OVS 2.5 a connection tracking module was introduced. It supports the statef
 \label{fig:OpenVSwitchconntrack}
 \end{figure}
 
-As you can see in \ref{fig:OpenVSwitchconntrack} the new conntrack module allows us to create and update CT entry's without the need to go through the user space. This greatly improves the performance of the action. With the new module come extensions for OpenFlow which allow to send a new connection to conntrack to start tracking it as matching on fields in the first packet. 
+As you can see in \ref{fig:OpenVSwitchconntrack} the new conntrack module allows us to create and update CT entry's without the need to go through the user space. This greatly improves the performance of the action. With the new module come different extensions for OpenFlow, which allow us to send a new connection to conntrack to start tracking it. The extension match on fields in the first packet. $\newline \newline$
+This stateful matching enables a lot of other applications for OVS, for example also stateful NAT. As of now, OVS supports DNAT and SNAT. At the moment this uses the NAT features of netfilter, which is the packet filtering framework in linux. With netfilter the OVS NAT supports port range and address range mappings with different mapping modes. 
+This means the stateful NAT in OVS has all the features we expect from a middlebox NAT. 
+\begin{figure}[H]
+\centering
+{\includegraphics[page=13,width=.90\columnwidth]{figures/OVSconntrack}} \quad
+\caption[Stateful NAT flow in Open VSwitch]{Stateful NAT flow in Open VSwitch \cite{OVSconntrack}  }
+\label{fig:OpenVSwitchNATflow}
+\end{figure}
+
+As you can see in \ref{fig:OpenVSwitchNATflow}, the conntrack and the NAT module in Open VSwitch use netfilter to create and update the rules. Created routes get stored in the OVS flow table. 
+
 \chapter{Evaluation and Analysis of results}
 
 \section{Firewall tests}

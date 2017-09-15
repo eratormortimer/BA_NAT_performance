@@ -8,8 +8,9 @@
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Intel\IeC {\textregistered } Data Plane Development Kit}}{7}{figure.2.2}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Our testsetup }}{10}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Distributed OpenVSwitch }}{12}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces OpenVSwitch with and without DPDK}}{14}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces OpenVSwitch with the conntrack module}}{15}{figure.3.4}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Distributed OpenVSwitch }}{13}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces OpenVSwitch with and without DPDK}}{15}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces OpenVSwitch with the conntrack module}}{16}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Stateful NAT flow in Open VSwitch}}{17}{figure.3.5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
