@@ -9,9 +9,10 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Our testsetup }}{10}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces mOS/Apllication Interaction}}{14}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Distributed OpenVSwitch }}{15}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces OpenVSwitch with and without DPDK}}{16}{figure.3.4}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces OpenVSwitch with the conntrack module}}{17}{figure.3.5}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Stateful NAT flow in Open VSwitch}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces mOS application threading model}}{14}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Distributed OpenVSwitch }}{15}{figure.3.4}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces OpenVSwitch with and without DPDK}}{17}{figure.3.5}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces OpenVSwitch with the conntrack module}}{18}{figure.3.6}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Stateful NAT flow in Open VSwitch}}{19}{figure.3.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -277,11 +277,24 @@ The API of mOS includes programming presets that introduce the programmer to flo
 \centering
 {\includegraphics[width=.85\columnwidth]{figures/mOSFlow}} \quad
 \caption[ mOS/Apllication Interaction]{ mOS/Application Interaction \cite{jamshed2017mos}  }
-\label{fig:OpenVSwitch}
+\label{fig:mOSFlow}
 \end{figure}
 
 $\newline$
 mOS enables easier development by providing a monitoring socket for developers. This enables the developer to see exactly what happens with a single TCP flow running through the middlebox. Additionally, mOS includes scalable monitoring. Scalable monitoring helps to reduce the overhead that gets induced when tracking so many different flows. This reduces the memory usage of mOS for example for dynamic event registration and deregistration. Also developers can enable and disable event generation for flows and reduce recourse usage this way. By deacticating the tracking of unnessesary properties if the flows mOS reduces the overall system load. This leads to higher performance and reduces waste of CPU cycles \cite{jamshed2017mos}. $\newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.85\columnwidth]{figures/mOSThread}} \quad
+\caption[ mOS application threading model]{ mOS application threading model \cite{jamshed2017mos}  }
+\label{fig:mOSThread}
+\end{figure}
+$\newline$
+To increase performance mOS uses a shared-nothing parallel-processing threading model. This model works especially great on modern multi-core CPUs, 
+
+
+$\newline$
+We initially chose mOS as our middlebox test candidate because it promised great performance with high flexibility. Since it is based on mTCP it can work with the complete TCP stack and we planned to make further tests with the TCP stack. In its repository mOS also includes sample applications. These seemed very useful, as a NAT application and a stateless firewall application were given. With the simple expression language mOS uses for the applications they seemed easily modifiable. Also the testing of the sample applications could get us some insight in how the middlebox applications performed in our testbed with our load generator in general. mOS can run on commodity hardware. The hardware in our testbed is not exactly the same as the developers used in their paper but it is similar enough. 
 
 
 
