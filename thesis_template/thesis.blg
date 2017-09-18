@@ -22,45 +22,45 @@ Warning--missing publisher in tanenbaum1996computer
 Warning--empty journal in schmidt2017
 
 Done.
-You've used 22 entries,
+You've used 23 entries,
             4087 wiz_defined-function locations,
-            964 strings with 11247 characters,
-and the built_in function-call counts, 7948 in all, are:
-= -- 586
-> -- 74
-< -- 10
-+ -- 45
-- -- 13
-* -- 272
-:= -- 1303
-add.period$ -- 44
-call.type$ -- 22
-change.case$ -- 36
-chr.to.int$ -- 24
-cite$ -- 25
-duplicate$ -- 716
-empty$ -- 844
-format.name$ -- 14
-if$ -- 1808
+            969 strings with 11434 characters,
+and the built_in function-call counts, 8928 in all, are:
+= -- 658
+> -- 103
+< -- 19
++ -- 61
+- -- 18
+* -- 317
+:= -- 1430
+add.period$ -- 46
+call.type$ -- 23
+change.case$ -- 37
+chr.to.int$ -- 48
+cite$ -- 26
+duplicate$ -- 782
+empty$ -- 929
+format.name$ -- 20
+if$ -- 2044
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 155
-newline$ -- 89
-num.names$ -- 9
-pop$ -- 463
+int.to.str$ -- 23
+missing$ -- 167
+newline$ -- 92
+num.names$ -- 10
+pop$ -- 495
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 631
+skip$ -- 708
 stack$ -- 0
-substring$ -- 108
-swap$ -- 380
-text.length$ -- 2
+substring$ -- 165
+swap$ -- 435
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 22
+type$ -- 23
 warning$ -- 3
-while$ -- 13
-width$ -- 24
-write$ -- 183
+while$ -- 18
+width$ -- 25
+write$ -- 192
 (There was 1 error message)

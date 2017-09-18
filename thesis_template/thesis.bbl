@@ -99,6 +99,11 @@ P.~Emmerich, S.~Gallenm{\"u}ller, D.~Raumer, F.~Wohlfart, and G.~Carle,
   of the 2015 ACM Conference on Internet Measurement Conference}.\hskip 1em
   plus 0.5em minus 0.4em\relax ACM, 2015, pp. 275--287.
 
+\bibitem{jamshed2017mos}
+M.~A. Jamshed, Y.~Moon, D.~Kim, D.~Han, and K.~Park, ``mos: A reusable
+  networking stack for flow monitoring middleboxes.'' in \emph{NSDI}, 2017, pp.
+  113--129.
+
 \bibitem{pothuraju2016measuring}
 R.~Pothuraju, ``Measuring and modeling of open vswitch performance:
   Implementation in kvm environment,'' 2016, visited: 9.09.2017 15:30.

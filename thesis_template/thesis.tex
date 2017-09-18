@@ -263,12 +263,29 @@ One disadvantage of MoonGen is that it currently only supports UDP packets for l
 
 \subsubsection{Closer Look: Hardware timestamping }
 
-The type of hardware timestamping in MoonGen is very unique. It utilities the 
+The type of hardware timestamping in MoonGen is very unique. It utilities the IEEE 1588 Precision Time Protocol (PTP), which is used for clock synchronization across networks. It is supported by a large variety of NICs. PTP is either used as a protocol on layer 3 or on top of UDP on layer 4. This hardware timestamping works at the moment Intel 82580 GbE, the 82599 and X540 10 GbE chips. These NICs support the timestamping with PTP Ethernet and UDP. Moongen configures them to only recognize PTP packets with a specific first byte in their header. The second byte represents the PTP version number. The other PTP fields are not used and can contain any value. This allows MoonGen to measure the latency of any packet. All timestamps fro recieved and transmitted packets get saved in a special register directliy on the NIC. This register has to be read out before the next packet can be timestamped. Some NICs also support the prepending of timestamps of new packets to the buffer. With these timestamping mechanisms MoonGen can reach a precision of 64 nanoseconds on a 10GbE link \cite{emmerich2015moongen}.
 
 
 \subsection{mOS}
+This section will explain why mOS was chosen initially as a middlebox candidate and why it wasn't usable for this paper. $\newline \newline$
 
-\subsubsection{General Information}
+\subsubsection{Approach of mOS}
+Middlebox OS is a reusable networking stack, which enables stateful flow processing. mOS provides an API for developers to programm middlebox applications on top of mOS. This enables the developers to concentrate on the important logic of the middlebox and the top level rather than the finicky low-level packet processing. This means the applications would be more consistent and easier modifiable. Also it prevents the introduction of new errors when the programmer has to implement the complex flow mechanisms from scratch. Most importantly, mOS promised a consistent and high performance even though it essentially provides a software middlebox. The developers of mOS promised an "effizient event system that scales to monitoring millions of concurrent flow events" \cite{jamshed2017mos}[Abstract]. $\newline$
+The API of mOS includes programming presets that introduce the programmer to flow-events. Flow-events are operations the middlebox can fulfill which are definable by the user. This makes mOS very easy to deploy and to adjust to your networking situation. 
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.85\columnwidth]{figures/mOSFlow}} \quad
+\caption[ mOS/Apllication Interaction]{ mOS/Application Interaction \cite{jamshed2017mos}  }
+\label{fig:OpenVSwitch}
+\end{figure}
+
+$\newline$
+mOS enables easier development by providing a monitoring socket for developers. This enables the developer to see exactly what happens with a single TCP flow running through the middlebox. Additionally, mOS includes scalable monitoring. Scalable monitoring helps to reduce the overhead that gets induced when tracking so many different flows. This reduces the memory usage of mOS for example for dynamic event registration and deregistration. Also developers can enable and disable event generation for flows and reduce recourse usage this way. By deacticating the tracking of unnessesary properties if the flows mOS reduces the overall system load. This leads to higher performance and reduces waste of CPU cycles \cite{jamshed2017mos}. $\newline$
+
+
+
+\subsubsection{Setup in the testbed}
 
 \subsubsection{Problems}
 
