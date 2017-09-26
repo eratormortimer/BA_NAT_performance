@@ -319,7 +319,7 @@ $\newline$
 $\newline$
 
 In inline-mode mOS runs on a separate host that connects two data networks as can be seen in \ref{fig:mOSInline}. For this test setup the two data networks are actually two interfaces of the load server. Here in \ref{fig:mOSInline} the chosen mOS application is Middlebox Stats (midstat). It is an basic monitoring application. Because of the position of the application all the traffic between the data networks goes through it, thus enabling the application to monitor, drop or manipulate the traffic in both directions. 
-
+With this mode we basically simulate that one interface of our load server is an internal network and the other one is an big outside network like the internet. The mOS NAT application in between would replace the IP address of packets coming from the internal network with the public IP it got assigned.
 
 \subsubsection{Problems}
 
