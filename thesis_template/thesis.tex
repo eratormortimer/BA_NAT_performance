@@ -296,7 +296,7 @@ mOS relies on kernel-level NIC drivers to forward the packets into the symmetric
 \label{fig:mOSStack}
 \end{figure}
 
-Figure \ref{fig:mOSStack} displays the function of the NIC-drivers. mOS reads multiple packets at once from the incoming packet stream. 
+Figure \ref{fig:mOSStack} displays the function of the NIC-drivers. mOS reads multiple packets at once from the incoming packet stream. Packets are processed by the run-to-completion model. This model allows all threads in an application to use a single stack, which of course has as a consequence that threads cannot block or wait on events. But threads can be initialized by events \cite{belay2014ix}. The use of this model is ideal for applications with huge importance on events and real-time applications. The threads are very keen handling processes with an high frequency of interrupts. 
 
 $\newline$
 We initially chose mOS as our middlebox test candidate because it promised great performance with high flexibility. Since it is based on mTCP it can work with the complete TCP stack and we planned to make further tests with the TCP stack. In its repository mOS also includes sample applications. These seemed very useful, as a NAT application and a stateless firewall application were given. With the simple expression language mOS uses for the applications they seemed easily modifiable. Also the testing of the sample applications could get us some insight in how the middlebox applications performed in our testbed with our load generator in general. mOS can run on commodity hardware. The hardware in our testbed is not exactly the same as the developers used in their paper but it is similar enough. 
@@ -305,7 +305,20 @@ We initially chose mOS as our middlebox test candidate because it promised great
 
 \subsubsection{Setup in the testbed}
 
-To set up the base mOS on one of the servers in the testbed I followed the documentation of the mOS developers. This involved installing several packages of the Debian repositories as well as installing DPDK with all its dependencies. We decided to use mOS compiled with the DPDK library and not with the PCAP library. We made this decision based on the data from the mOS developers, which promised a better performance with the DPDK libraries \cite{mOSStack}.
+To set up the base mOS on one of the servers in the testbed I followed the documentation of the mOS developers. This involved installing several packages of the Debian repositories as well as installing DPDK with all its dependencies. We decided to use mOS compiled with the DPDK library and not with the PCAP library. We made this decision based on the data from the mOS developers, which promised a better performance with the DPDK libraries \cite{mOSStack}. Afterwards I compiled mOS with DPDK. This involved setting up hugepages. 1024 2 MB pages were used. Afterwards the Ethernet devices connected to the load server were loaded and bound to the IGB\_UIO module. This module is a wrapper module. It sits on top of the UIO module of the linux kernel and allows for the DPDK drivers in the user space to access the registers on the NICs \cite{mOSDoc}. 
+$\newline$
+Because of the structure of our testbed mOS was used in inline mode. 
+
+$\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.65\columnwidth]{figures/midstat_inline}} \quad
+\caption[ mOS inline model]{ mOS inline model \cite{mOSDoc}  }
+\label{fig:mOSInline}
+\end{figure}
+$\newline$
+
+In inline-mode mOS runs on a separate host that connects two data networks as can be seen in \ref{fig:mOSInline}. For this test setup the two data networks are actually two interfaces of the load server. Here in \ref{fig:mOSInline} the chosen mOS application is Middlebox Stats (midstat). It is an basic monitoring application. Because of the position of the application all the traffic between the data networks goes through it, thus enabling the application to monitor, drop or manipulate the traffic in both directions. 
 
 
 \subsubsection{Problems}

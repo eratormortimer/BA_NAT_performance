@@ -110,6 +110,17 @@ M.~A. Jamshed, Y.~Moon, D.~Kim, D.~Han, and K.~Park, ``mos: A reusable
   \url{https://dpdksummit.com/Archive/pdf/2016Userspace/Day01-Session08-KyoungSooPark-Userspace2016.pdf},
   visited: 30.09.2017 14:30.
 
+\bibitem{belay2014ix}
+A.~Belay, G.~Prekas, A.~Klimovic, S.~Grossman, C.~Kozyrakis, and E.~Bugnion,
+  ``Ix: A protected dataplane operating system for high throughput and low
+  latency,'' in \emph{Proceedings of the 11th USENIX Symposium on Operating
+  System Design and Implementation (OSDI)}, no. EPFL-CONF-201671.\hskip 1em
+  plus 0.5em minus 0.4em\relax USENIX, 2014.
+
+\bibitem{mOSDoc}
+``mos documentation,'' \url{http://mos.kaist.edu/guide/index.html}, visited:
+  30.09.2017 14:30.
+
 \bibitem{OpenVSwitchWhy}
 ``Why open vswitch,''
   \url{http://docs.openvswitch.org/en/latest/intro/why-ovs/}, visited:

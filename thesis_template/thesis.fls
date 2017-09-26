@@ -528,6 +528,9 @@ INPUT ./figures/mOSThread.png
 INPUT figures/mOSDPDKSummit.pdf
 INPUT ./figures/mOSDPDKSummit.pdf
 INPUT ./figures/mOSDPDKSummit.pdf
+INPUT figures/midstat_inline.png
+INPUT ./figures/midstat_inline.png
+INPUT ./figures/midstat_inline.png
 INPUT figures/OpenVSwitch.png
 INPUT ./figures/OpenVSwitch.png
 INPUT ./figures/OpenVSwitch.png
