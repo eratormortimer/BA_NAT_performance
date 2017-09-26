@@ -83,15 +83,15 @@ M.~Rouse, ``Definition: Stress testing,''
 O.~Schmidt, ``A programming language for protocol-independent packet
   processing: Analyzing and evaluating p4,'' 2017.
 
-\bibitem{Blackbox}
-``Standard for software component testing,,''
-  \url{http://www.testingstandards.co.uk/Component%20Testing.pdf}, visited:
-  29.08.2017 14:30.
+\bibitem{khan2010different}
+M.~E. Khan, ``Different forms of software testing techniques for finding
+  errors,'' \emph{International journal of computer science issues}, vol.~7,
+  no.~3, pp. 11--16, 2010.
 
-\bibitem{BlackboxDis}
-``Black box testing, its advantages and disadvantages,''
-  \url{https://www.codeproject.com/Articles/5579/Black-Box-Testing-Its-Advantages-and-Disadvantages},
-  visited: 29.08.2017 13:30.
+\bibitem{BlackboxWiki}
+``Black box testing fundamentals,''
+  \url{http://softwaretestingfundamentals.com/black-box-testing/}, visited:
+  25.09.2017 14:30.
 
 \bibitem{emmerich2015moongen}
 P.~Emmerich, S.~Gallenm{\"u}ller, D.~Raumer, F.~Wohlfart, and G.~Carle,
@@ -103,6 +103,17 @@ P.~Emmerich, S.~Gallenm{\"u}ller, D.~Raumer, F.~Wohlfart, and G.~Carle,
 M.~A. Jamshed, Y.~Moon, D.~Kim, D.~Han, and K.~Park, ``mos: A reusable
   networking stack for flow monitoring middleboxes.'' in \emph{NSDI}, 2017, pp.
   113--129.
+
+\bibitem{mOSStack}
+``mos networking stack: a specialized network programming library for stateful
+  middleboxes,''
+  \url{https://dpdksummit.com/Archive/pdf/2016Userspace/Day01-Session08-KyoungSooPark-Userspace2016.pdf},
+  visited: 30.09.2017 14:30.
+
+\bibitem{OpenVSwitchWhy}
+``Why open vswitch,''
+  \url{http://docs.openvswitch.org/en/latest/intro/why-ovs/}, visited:
+  29.08.2017 14:30.
 
 \bibitem{pothuraju2016measuring}
 R.~Pothuraju, ``Measuring and modeling of open vswitch performance:

@@ -98,7 +98,7 @@ NAT has two main disadvantages: Opening TCP connections from the Internet to an 
 The other disadvantage is that NAT breaks the end- to end transparency of the IP layer and the application layer. This problem occurs when the IP address is used in the application layer, as the NAT only replaces the IP in the IP header. This can be avoided with an Application Level Gateway installed at the NAT. However it is not feasible to install an an ALG for every application that relies on the IP in layer 7 \cite{bonaventure2011computer}[Page 169]. $\newline$
 IPv6 would make NAT middleboxes obsolete, although some people argue NAT still has some use cases when only IPv6 is used. This is discussed in RFC 5902 \cite{RFC5902}. With IPv6 enough addresses are available to give each device a unique global IP. 
 
-\section{NAT model}
+\section{NAT model} \label{NATmodel}
 
 This section is about the NAT model we will use in this thesis and why it is important for the performance tests we did. This model is based on the basic concept of how a NAT middlebox works. Roughly speaking we will split up NAT in different components. This way we can get an better understanding of which part of the NAT is actually responsible for how much of the time we need to forward a packet. $\newline$ 
 In the model the NAT middlebox performs 3 tasks excluding the sheer forwarding of the packet: 
@@ -160,8 +160,8 @@ In this chapter we talk about the research methodology and how to build it \cite
 
 \section{General Idea}
 
-To test a software middlebox we defined a specific test setup which will help us derive the best results. The exact setup will be described in the following section. $\newline$
-The short abstract of it is: We will conduct blackbox tests of a middlebox software we installed on the DUT, the device under test. This DUT is connected to our testserver. This testserver runs a load generator to stress test our middlebox software. $\newline$
+To test a software middlebox we defined a specific test setup which will help us derive the most precise results. This means we will be able to determine in which areas the middlebox software is performant and which properties of our traffic are most influential on this performance. The exact setup will be described in the following section. $\newline$
+The short abstract of it is: We will conduct black box tests of a middlebox software we installed on the DUT, the device under test. This DUT is connected to our testserver. This testserver runs a load generator to stress test our middlebox software. $\newline$
 
 \begin{figure}[H]
 \centering
@@ -171,49 +171,43 @@ The short abstract of it is: We will conduct blackbox tests of a middlebox softw
 \end{figure}
 $\newline$
 
-\subsection{Blackbox testing}
+\subsection{Black box testing}
 
-Blackbox testing is a method to test software in which the internal setup of the DUT is not known to the tester. This testing method is named blackbox testing as the interior of the DUT is not visible to the tester as the interior of a blackbox is not visible \cite{Blackbox}. This testing method is mostly used to find: 
-\begin{itemize}
+Black box testing is an important part of testing software. It it's core it is used to analyze software without knowledge or reference to the internal working of the software. This enables us to test the functionality of the software with basically no consideration of the internal processes of the software \cite{khan2010different}. 
 
-\item Performance errors
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.65\columnwidth]{figures/black_box_testing}} \quad
+\caption[Working process of Black box testing ]{Working process of Black box testing \cite{BlackboxWiki}}
+\label{fig:BlackBox}
+\end{figure}
 
-\item Initialization and termination errors 
-
-\item Database errors (External and internal)
-
-\item Interface errors
-
-\end{itemize} 
-\cite{Blackbox}
 $\newline$
-This method has mostly advantages for the tester:
+This method has following advantages for the tester:
 \begin{itemize}
 
-\item The tester not need to know how the software that they test is implemented. This means the tester must not be a software developer. 
+\item The tester does not need to know how the software that they test is implemented. This means the tester does not have to be a software developer. 
 
-\item The tester can be someone independent from the developer, removing possible bias from the tests and how the are conducted
+\item The tester can be someone independent from the developer, removing possible bias from the tests and how the are conducted. This means there exists no "bond" between the tester and the code. 
 
-\item The tests are automatically from the viewpoint of a user
+\item The perception for the tester is very simple
 
 \end{itemize} 
 
-Some disadvantages of blackbox testing include: 
+Some disadvantages of blackbox testing for our case include: 
 \begin{itemize}
 
-\item Only a limited amount of inputs can be tested, a full test of the software is not possible. This means that many possible cases for the software will not be tested. 
+\item Not all the possible inputs can be tested. This means for the middlebox for example, we can't test every single possible combination of flow length, packet size and transmit rate.
 
-\item Test cases are difficult to design without the exact specifications of the software. 
-
-\item Possibility to have redundant tests that the developer already performed. 
+\item When tests throw errors it is harder to understand and determine why this certain test failed, as we can't just look inside the running DUT.\cite{khan2010different}
 
 \end{itemize}
-\cite{BlackboxDis}
+
 
 
 \subsection{Software}
 
-For the tests we need different software. For one we need the middlebox software. We want to test the different 'states' of NAT, so our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
+For the tests we need software to implement and run the DUT and software to generate and record traffic. For one we need the middlebox software. As explaned in \ref{NATmodel} we want to implement and understand NAT in different states. This means our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Technically the load generator only needs to generate more load than the DUT can handle. As we do not know how much middlebox software on our server can handle we try to shoot for the maximum load possible. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
 
 %%Potential: Testframework
 
@@ -249,7 +243,7 @@ As operating system Debian 8.9 "Jessie" was used, as it was newest Debian system
 MoonGen is a traffic generator that can saturate 10 Gbit Ethernet easily while using a very special approach for measuring the latency of the packets. MoonGen was selected out of a few possible candidates mainly because of its flexibility. Most packet generators are either very complicated or have no good performance. The tested alternatives to MoonGen were either very complicated to set up and run, or had a bad performance \cite{emmerich2015moongen}. MoonGen has 4 major advantages over the rest for my use case: $\newline$
 \begin{itemize}
 
-\item MoonGen is completely implemented in software and can run on a lot of commodity CPUs. This is achieved through its implementation on top of DPDK, the packet processing framework. The only requirenment for our hardware is that DPDK supports it and that it offers support for the time stamping and rate control. 
+\item MoonGen is completely implemented in software and can run on a lot of commodity CPUs. This is achieved through its implementation on top of DPDK, the packet processing framework. The only requirement for our hardware is that DPDK supports it and that it offers support for the time stamping and rate control. 
 
 \item Is very flexible, as the packet generator logic is written in Lua scripts. These scripts are very user friendly and can be completely modified. In this specific case LUA-JIT was used as its performance is suited for high speed packet processing. 
 
@@ -276,7 +270,7 @@ The API of mOS includes programming presets that introduce the programmer to flo
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.85\columnwidth]{figures/mOSFlow}} \quad
-\caption[ mOS/Apllication Interaction]{ mOS/Application Interaction \cite{jamshed2017mos}  }
+\caption[ mOS/Application Interaction]{ mOS/Application Interaction \cite{jamshed2017mos}  }
 \label{fig:mOSFlow}
 \end{figure}
 
@@ -290,8 +284,19 @@ mOS enables easier development by providing a monitoring socket for developers. 
 \label{fig:mOSThread}
 \end{figure}
 $\newline$
-To increase performance mOS uses a shared-nothing parallel-processing threading model. This model works especially great on modern multi-core CPUs, 
+To increase performance, mOS uses a shared-nothing parallel-processing threading model. This model works especially great on modern multi-core CPUs. As you can see in \ref{fig:mOSThread}, mOS initializes n threads each bound to a CPU core. Each of these threads handles flows using symmetric receive-side scaling (S-RSS). All packets that are associated to the same connection are mapped by S-RSS to the same RX queue in the NIC. This enables the forwarding of packets with line rate, as all the packet classification is done in hardware by the NIC itself which is very performant. This also enables the shared-nothing parallel-processing threading model, as every connection is handled by one thread. This enables mOS to avoid inter-clock locks and cache interferences \cite{jamshed2017mos}.   
+$\newline$
 
+mOS relies on kernel-level NIC drivers to forward the packets into the symmetric RSS. DPDK or PCAP are supported as default I/O module. $\newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[page=11,width=.65\columnwidth]{figures/mOSDPDKSummit}} \quad
+\caption[ mOS shared-Nothing Parallel Architecture]{mOS shared-Nothing Parallel Architecture \cite{mOSStack}  }
+\label{fig:mOSStack}
+\end{figure}
+
+Figure \ref{fig:mOSStack} displays the function of the NIC-drivers. mOS reads multiple packets at once from the incoming packet stream. 
 
 $\newline$
 We initially chose mOS as our middlebox test candidate because it promised great performance with high flexibility. Since it is based on mTCP it can work with the complete TCP stack and we planned to make further tests with the TCP stack. In its repository mOS also includes sample applications. These seemed very useful, as a NAT application and a stateless firewall application were given. With the simple expression language mOS uses for the applications they seemed easily modifiable. Also the testing of the sample applications could get us some insight in how the middlebox applications performed in our testbed with our load generator in general. mOS can run on commodity hardware. The hardware in our testbed is not exactly the same as the developers used in their paper but it is similar enough. 
@@ -300,12 +305,15 @@ We initially chose mOS as our middlebox test candidate because it promised great
 
 \subsubsection{Setup in the testbed}
 
+To set up the base mOS on one of the servers in the testbed I followed the documentation of the mOS developers. This involved installing several packages of the Debian repositories as well as installing DPDK with all its dependencies. We decided to use mOS compiled with the DPDK library and not with the PCAP library. We made this decision based on the data from the mOS developers, which promised a better performance with the DPDK libraries \cite{mOSStack}.
+
+
 \subsubsection{Problems}
 
 \subsection{Open VSwitch}
 
-Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a very useful virtual switch. It is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
-
+Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a virtual switch. Hypervisors need to bridge traffic between VMs and the outside network interface. When the hypervisor is Linux-based this usually means using the standard Linux bridge, which is the L2-switch that is build into Linux. This switch is mostly fast and reliable, but has problems concerning multi-server virtualization. Here Open VSWitch provides to be more useful and performant than the Linux bridge. \cite{OpenVSwitchWhy} $\newline$ Open VSwitch is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
+$\newline$
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.85\columnwidth]{figures/OpenVSwitch}} \quad
@@ -313,7 +321,7 @@ Open VSwitch is the middlebox software we settled on using. In it's core, OVS is
 \label{fig:OpenVSwitch}
 \end{figure}
 
-OpenVSwitch enables logical abstraction between different virtual machines and handles the offloading to the actual switching hardware. To control this OVS lies on top of the virtualization layer of the hypervisor and provides interfaces to the virtual machines. $\newline$
+Open VSwitch enables logical abstraction between different virtual machines and handles the offloading to the actual switching hardware. To control this OVS lies on top of the virtualization layer of the hypervisor and provides interfaces to the virtual machines. $\newline$
 The virtual machines contain virtual interfaces. These enable communication between the VMs running on the same hypervisor or connected in the same virtual network and forward the traffic to the actual network interface of the machine. Here OVS acts as a bridge between the VMs and the physical interfaces. In short it interconnects the virtual interfaces with the physical interfaces \cite{pothuraju2016measuring}. 
 
 \subsubsection{Advantages of Open VSwitch}
@@ -325,15 +333,15 @@ Open VSwitch is used as an alternative to the basic Linux bridge for modern hype
 
 \item Very easy configuration and automation of network systems. Slow and fast network states can be migrated between instances. 
 
-\item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes. 
+\item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes. \cite{pothuraju2016measuring}
 
 \end{itemize}
-\cite{pothuraju2016measuring}
+
 
 \subsubsection{OVS with DPDK support}
 
-Open VSwitch forwards packets over the kernel data path, which means it uses the standard Linux kernel. This method divides the packet processing in a slow path and a fast path. The fast path matches incoming packets on a flowtable to determine the forwarding rule for the specific packet. The first packet from a new flow does not match anything in the flow table and is send via the slow path in the user space deamon. After the user space has processed the packet, the user space daemon gets the information for the flow table from him and includes them in the current flow table. All subsequent packets of the flow can be handled via the fast path again. $\newline$
-By using this approach native OVS is a lot faster than normal user space packet forwarding. Still, the context switching required for new flows limits the realistically achievable throughput. This means native OVS is not feasible for use cases were a high thoruhgput is mandatory \cite{OpenVSwitchDPDK}.  $\newline$
+Open VSwitch forwards packets over the kernel data path, which means it uses the standard Linux kernel. This method divides the packet processing in a slow path and a fast path. The fast path matches incoming packets on a flowtable to determine the forwarding rule for the specific packet. The first packet from a new flow does not match anything in the flow table and is sent via the slow path in the user space daemon. After the user space has processed the packet, the user space daemon gets the information for the flow table from him and includes them in the current flow table. All subsequent packets of the flow can be handled via the fast path again. $\newline$
+By using this approach native OVS is a lot faster than normal user space packet forwarding. Still, the context switching required for new flows limits the realistically achievable throughput. This means native OVS is not feasible for use cases were a high throuhgput is mandatory \cite{OpenVSwitchDPDK}.  $\newline$
 With the use of DPDK in OVS, the slow path can make use of the Poll Mode Drivers. These enable the fast forwarding of packets from the user space to the interfaces, without the need for extra interrupt handling of the kernel. This means we essentially bypassing the whole kernel network stack. By incorporating DPDK with the Poll Mode Driver in Open VSwitch the slow path essentially becomes the fast path, as in both cases the path of the packet is the same. $\newline$
 \begin{figure}[H]
 \centering
@@ -356,7 +364,7 @@ With OVS 2.5 a connection tracking module was introduced. It supports the statef
 \end{figure}
 
 As you can see in \ref{fig:OpenVSwitchconntrack} the new conntrack module allows us to create and update CT entry's without the need to go through the user space. This greatly improves the performance of the action. With the new module come different extensions for OpenFlow, which allow us to send a new connection to conntrack to start tracking it. The extension match on fields in the first packet. $\newline \newline$
-This stateful matching enables a lot of other applications for OVS, for example also stateful NAT. As of now, OVS supports DNAT and SNAT. At the moment this uses the NAT features of netfilter, which is the packet filtering framework in linux. With netfilter the OVS NAT supports port range and address range mappings with different mapping modes. 
+This stateful matching enables a lot of other applications for OVS, for example also stateful NAT. As of now, OVS supports DNAT and SNAT. At the moment this uses the NAT features of netfilter, which is the packet filtering framework in Linux. With netfilter the OVS NAT supports port range and address range mappings with different mapping modes. 
 This means the stateful NAT in OVS has all the features we expect from a middlebox NAT. 
 \begin{figure}[H]
 \centering
