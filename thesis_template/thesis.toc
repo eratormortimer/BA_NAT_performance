@@ -24,8 +24,8 @@
 \contentsline {subsubsection}{\numberline {3.2.3.1}Approach of mOS}{13}{subsubsection.3.2.3.1}
 \contentsline {subsubsection}{\numberline {3.2.3.2}Setup in the testbed}{16}{subsubsection.3.2.3.2}
 \contentsline {subsubsection}{\numberline {3.2.3.3}Problems}{17}{subsubsection.3.2.3.3}
-\contentsline {subsection}{\numberline {3.2.4}Open VSwitch}{17}{subsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.4.1}Advantages of Open VSwitch}{18}{subsubsection.3.2.4.1}
+\contentsline {subsection}{\numberline {3.2.4}Open VSwitch}{18}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}Advantages of Open VSwitch}{19}{subsubsection.3.2.4.1}
 \contentsline {subsubsection}{\numberline {3.2.4.2}OVS with DPDK support}{19}{subsubsection.3.2.4.2}
 \contentsline {subsubsection}{\numberline {3.2.4.3}Connection tracking in OVS}{20}{subsubsection.3.2.4.3}
 \contentsline {chapter}{\numberline {4}Evaluation and Analysis of results}{23}{chapter.4}

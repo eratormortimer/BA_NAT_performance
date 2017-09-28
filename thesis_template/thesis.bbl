@@ -121,6 +121,11 @@ A.~Belay, G.~Prekas, A.~Klimovic, S.~Grossman, C.~Kozyrakis, and E.~Bugnion,
 ``mos documentation,'' \url{http://mos.kaist.edu/guide/index.html}, visited:
   30.09.2017 14:30.
 
+\bibitem{mOSGit}
+``mos github issue,''
+  \url{https://github.com/ndsl-kaist/mOS-networking-stack/issues/9}, visited:
+  30.09.2017 16:30.
+
 \bibitem{OpenVSwitchWhy}
 ``Why open vswitch,''
   \url{http://docs.openvswitch.org/en/latest/intro/why-ovs/}, visited:

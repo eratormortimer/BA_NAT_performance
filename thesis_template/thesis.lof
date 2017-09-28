@@ -14,8 +14,8 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces mOS shared-Nothing Parallel Architecture}}{15}{figure.3.5}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces mOS inline model}}{17}{figure.3.6}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Distributed OpenVSwitch }}{18}{figure.3.7}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces OpenVSwitch with and without DPDK}}{19}{figure.3.8}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces OpenVSwitch with the conntrack module}}{20}{figure.3.9}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Stateful NAT flow in Open VSwitch}}{21}{figure.3.10}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces OpenVSwitch with and without DPDK}}{20}{figure.3.8}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces OpenVSwitch with the conntrack module}}{21}{figure.3.9}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Stateful NAT flow in Open VSwitch}}{22}{figure.3.10}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
