@@ -2,10 +2,18 @@
 \usepackage[utf8]{inputenc}
 \usepackage[section]{placeins}
 \usepackage{float}
+\usepackage{xcolor}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\usepackage{minted}
 % Include common packages
 \input{pream/Packages}
 
-% Maybe we want to inlcude some additional packages
+
 
 
 % hyphenation
@@ -328,7 +336,10 @@ After making sure that the IP addresses of the two interfaces on the DUT were un
 Sadly as stated before in our brief introduction mOS had multiple problems during the setup and when the applications were running. We tried to fix the problems as best as we could, even with help from the developers. We contacted them on github and tried to determine possible error sources but in the end we couldn't solve them and had to drop mOS \cite{mOSGit}.
 $\newline$
 The first issue already occurred when starting the example applications. When starting the NAT or the midstat application over the command line interface one can give a parameter for the amount of cores the application can use. The simple\_firewall just uses all available cores per default. Our DUT has a CPU with 4 physical cores and 8 threads. But when using all 8 virtual cores the Linux machine ran Out of Memory (OOM), which resulted in killing the application. This had as result that we could only use the applications with 6 virtual cores, which we had to hard-code into the simple\_firewall application. We tried to allocate even less cores to maybe reduce possible errors, but encountered problems. With 3 or less cores the applications would start normal and their monitoring seemed to work fine. But they would not process or even simply forward any incoming packets. So we settled with 6 cores for the applications. $\newline \newline $
-The second and much bigger issue we sadly only discovered after already setting up and testing for quite some time. When measuring the latency using MoonGen the results looked really promising. With 4 flows and minimum packet size, by using the full line rate, we achieved a respectable throughput. The middlebox couldn't however handle a higher flow number. The amount of flows depended on the amount of virtual cores we assigned to the mOS application. With 6 cores the most amount of flows the mOS application managed was 23. This was consistent with every application we tested, the midstat application, the NAT application and the simple\_firewall. 
+The second and much bigger issue we sadly only discovered after already setting up and testing for quite some time. When measuring the latency using MoonGen the results looked really promising. With 4 flows and minimum packet size, by using the full line rate, we achieved a respectable throughput. The middlebox couldn't however handle a higher flow number. The amount of flows depended on the amount of virtual cores we assigned to the mOS application. With 6 cores the most amount of flows the mOS application managed was 23. This was consistent with every application we tested, the midstat application, the NAT application and the simple\_firewall. With more than 23 flows, the system would "soft crash", as it would still run on the system and the monitoring would still update itself. But the system no longer forwarded any more packets, even after switching again to a lower amount of flows.  
+This number of flows also depended on the packet size and the transmit rate we configured in MoonGen. A bigger packet size and/or a lower transmit rate make a higher number of flows possible. But even with packet sizes as big as 1500 bytes the amount of possible flows would not go over 1000. 1500 byte is the Maximum Transmission Unit (MTU) for Ethernet. This implied huge limitations for the software as a whole. A software middlebox, even in a private household, has to handle more than 23 flows. With the amount of Internet of Things devices a modern household has, this number can be easily exceeded. Since every device has a private IP address all these Ip addresses need to be translated by the NAT most households with included in a router. A middlebox for an ISP or a bigger company would need to be able to handle multiple thousand if not ten thousand flows at once. $\newline$ 
+This also had implications for the tests we could conduct with mOS. This meant we would have to basically remove one variable from our tests. And one that was particular interesting, as the amount of different flows arriving in a short time span is the big difference between middleboxes in private households and middleboxes used by ISPs. $\newline \newline$
+All in all this meant mOS was no option as a software middlebox for this paper. Even though mOS was an interesting system with a new approach to the software middlebox, the limitations with the flow amount were severe and the tests of this paper wouldn't have made sense with mOS. 
 
 \subsection{Open VSwitch}
 
@@ -396,8 +407,67 @@ This means the stateful NAT in OVS has all the features we expect from a middleb
 As you can see in \ref{fig:OpenVSwitchNATflow}, the conntrack and the NAT module in Open VSwitch use netfilter to create and update the rules. Created routes get stored in the OVS flow table. 
 
 \chapter{Evaluation and Analysis of results}
+This chapter will go over the results we got in the conducted tests. As previously mentioned, these tests were carried out with MoonGen and Open VSwitch. We wanted to test the NAT functionality of OVS and the firewall functionality. Because the OVS NAT has no DPDK support until now we decided to test the firewall without DPDK as well, to make the results more comparable. This means the speeds measured here will not be very impressive and certainly not fast enough to make OVS a candidate for a software middlebox in a bigger context. But since the DPDK support is already on its way and, as of now, partly implemented, this could change soon. We will therefor concentrate on the distinctions when we change the amount of flows, the transmit rate and the packet size. We will explain the different results we get with an model to describe how the OVS NAT and the OVS Firewall process packets. $\newline$
+We build the firewall and the NAT on Open VSwitch in a basic configuration. 
+\begin{verbatim}
+#!/bin/bash
+mkdir -p /usr/local/etc/openvswitch                                             
+export PATH=$PATH:/usr/local/share/openvswitch/scripts                          
+export DB_SOCK=/usr/local/var/run/openvswitch/db.sock                           
+#Initialize database                                                            
+ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema 
+ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach --log-file
+ovs-vsctl --no-wait init                                                        
+ovs-vswitchd --pidfile --detach                                                 
+ovs-vsctl add-br br0                                                            
+ovs-vsctl add-port br0 eth2 
+ovs-vsctl add-port br0 eth3      
+\end{verbatim}
+$\newline$
+In this basic configuration we initialize with an empty database and start the ovsdb-server with this empty database. We add a bridge br0 with the config tool for ovs-vswitchd. Ovs-vswitchd is the daemon that controls all the Open VSwitch switches on our machine. We add the two interfaces we want to manage with OVS to the bridge. These are the interfaces connected to our load server. 
 
 \section{Firewall tests}
+We use the firewall with effectively no rule set. This means we use the most basic firewall. This is necessary to determine how fast the firewall in the best case can be. Additional rules will reduce the processed packets/s because OVS needs to check additional rules, which means OVS needs to access the memory as can be seen in \ref{fig:OpenVSwitchconntrack}. This makes a firewall with more rules slower. This script sets up the firewall rules we used: 
+\begin{verbatim}
+#!/bin/bash                                                                     
+ovs-ofctl add-flow br0 "table=0,priority=1,action=drop"                         
+ovs-ofctl add-flow br0 "table=0,priority=10,arp,action=normal"                  
+ovs-ofctl add-flow br0 "table=0,priority=100,ip,ct_state=-trk,action=ct(table=1)"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+new,action=ct(commit),2"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+est,action=2"        
+ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+new,action=drop"     
+ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+est,action=1"      
+\end{verbatim}
+
+\begin{minted}{bash}
+#!/bin/bash                                                                     
+ovs-ofctl add-flow br0 "table=0,priority=1,action=drop"                         
+ovs-ofctl add-flow br0 "table=0,priority=10,arp,action=normal"                  
+ovs-ofctl add-flow br0 "table=0,priority=100,ip,ct_state=-trk,action=ct(table=1)"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+new,action=ct(commit),2"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+est,action=2"        
+ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+new,action=drop"     
+ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+est,action=1"      
+\end{minted}
+$\newline$
+This is ultimately a white-listing stateful firewall without any rules. We drop everything by default. We let everything through that is an ARP packet. If we get an IP packet that is not tracked we commit it to the table 1 to track it. This is necessary because OVS can't check the specific properties of a packet before we committed it to a table. Afterwards we can check on flags in the IP header. $\newline$
+If we get a new packet from eth1, which we simulate as the interface connected to the internal network the firewall protects, we track the connection and forward the packet to eth2. Eth2 would be an external network, like the internet. When an packet for an already tracked connection arrives on ether interface it gets forwarded to the other interface.  
+
+$\newline$
+We started testing the firewall with the MoonGen. We fixed two of the 3 variables we had for the test, the packet size and the amount of flows. We first began with packets of 1500 byte each, as this is the Maximum Transmit Unit for Ethernet. MoonGen in its standard configuration does not support Jumbo Frames and we didn't want to enable them. We started out with an moderate amount of flows of 1000. This is not a small amount but still of course not as many as a software middlebox would need to be able to handle if stationed in an ISP. But it is a good starting point, as it is more than a home middlebox would probably be able to handle. $\newline$
+With the third variable we determined how many packets  Open VSwitch was able to handle before packet loss would occur. For the first test we checked out what OVS would do with different transmit rates from 100 Mbit/s to 10000 MBit/s in 200 Mbit/s steps. This helped us to define an interesting range of transmit rates where we could test with smaller steps. For this specific test with maximum packet size and 1000 flows it was the range from 9300 MBit/s and 10000 MBit/s. This we expected, as with the maximum packets size less packets per second get send out. This in turn means less work for the software middlebox.
+
+$\newline \newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf}} \quad
+\caption[ OpenVSwitch Firewall test with maximum packet size and 1000 flows]{OpenVSwitch Firewall test with maximum packet size and 1000 flows }
+\label{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000}
+\end{figure}
+
+Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} shows our conducted test. On the x-axis we have the transmit rates from 9300 Mbit/s to 10000 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. 
+When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come pack withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 
 
 \section{NAT tests}
 
