@@ -409,36 +409,27 @@ As you can see in \ref{fig:OpenVSwitchNATflow}, the conntrack and the NAT module
 \chapter{Evaluation and Analysis of results}
 This chapter will go over the results we got in the conducted tests. As previously mentioned, these tests were carried out with MoonGen and Open VSwitch. We wanted to test the NAT functionality of OVS and the firewall functionality. Because the OVS NAT has no DPDK support until now we decided to test the firewall without DPDK as well, to make the results more comparable. This means the speeds measured here will not be very impressive and certainly not fast enough to make OVS a candidate for a software middlebox in a bigger context. But since the DPDK support is already on its way and, as of now, partly implemented, this could change soon. We will therefor concentrate on the distinctions when we change the amount of flows, the transmit rate and the packet size. We will explain the different results we get with an model to describe how the OVS NAT and the OVS Firewall process packets. $\newline$
 We build the firewall and the NAT on Open VSwitch in a basic configuration. 
-\begin{verbatim}
+\begin{minted}{bash}
 #!/bin/bash
 mkdir -p /usr/local/etc/openvswitch                                             
-export PATH=$PATH:/usr/local/share/openvswitch/scripts                          
+export PATH=\$PATH:/usr/local/share/openvswitch/scripts                          
 export DB_SOCK=/usr/local/var/run/openvswitch/db.sock                           
 #Initialize database                                                            
 ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema 
-ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach --log-file
+ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock 
+--remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach --log-file
 ovs-vsctl --no-wait init                                                        
 ovs-vswitchd --pidfile --detach                                                 
 ovs-vsctl add-br br0                                                            
 ovs-vsctl add-port br0 eth2 
 ovs-vsctl add-port br0 eth3      
-\end{verbatim}
+\end{minted}
 $\newline$
 In this basic configuration we initialize with an empty database and start the ovsdb-server with this empty database. We add a bridge br0 with the config tool for ovs-vswitchd. Ovs-vswitchd is the daemon that controls all the Open VSwitch switches on our machine. We add the two interfaces we want to manage with OVS to the bridge. These are the interfaces connected to our load server. 
 
 \section{Firewall tests}
 We use the firewall with effectively no rule set. This means we use the most basic firewall. This is necessary to determine how fast the firewall in the best case can be. Additional rules will reduce the processed packets/s because OVS needs to check additional rules, which means OVS needs to access the memory as can be seen in \ref{fig:OpenVSwitchconntrack}. This makes a firewall with more rules slower. This script sets up the firewall rules we used: 
-\begin{verbatim}
-#!/bin/bash                                                                     
-ovs-ofctl add-flow br0 "table=0,priority=1,action=drop"                         
-ovs-ofctl add-flow br0 "table=0,priority=10,arp,action=normal"                  
-ovs-ofctl add-flow br0 "table=0,priority=100,ip,ct_state=-trk,action=ct(table=1)"
-ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+new,action=ct(commit),2"
-ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+est,action=2"        
-ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+new,action=drop"     
-ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+est,action=1"      
-\end{verbatim}
-
+$\newline$
 \begin{minted}{bash}
 #!/bin/bash                                                                     
 ovs-ofctl add-flow br0 "table=0,priority=1,action=drop"                         
@@ -451,7 +442,7 @@ ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+est,action=1"
 \end{minted}
 $\newline$
 This is ultimately a white-listing stateful firewall without any rules. We drop everything by default. We let everything through that is an ARP packet. If we get an IP packet that is not tracked we commit it to the table 1 to track it. This is necessary because OVS can't check the specific properties of a packet before we committed it to a table. Afterwards we can check on flags in the IP header. $\newline$
-If we get a new packet from eth1, which we simulate as the interface connected to the internal network the firewall protects, we track the connection and forward the packet to eth2. Eth2 would be an external network, like the internet. When an packet for an already tracked connection arrives on ether interface it gets forwarded to the other interface.  
+If we get a new packet from eth1, which we simulate as the interface connected to the internal network the firewall protects, we track the connection and forward the packet to eth2. Eth2 would be an external network, like the internet. When an packet for an already tracked connection arrives on either interface it gets forwarded to the other interface.  
 
 $\newline$
 We started testing the firewall with the MoonGen. We fixed two of the 3 variables we had for the test, the packet size and the amount of flows. We first began with packets of 1500 byte each, as this is the Maximum Transmit Unit for Ethernet. MoonGen in its standard configuration does not support Jumbo Frames and we didn't want to enable them. We started out with an moderate amount of flows of 1000. This is not a small amount but still of course not as many as a software middlebox would need to be able to handle if stationed in an ISP. But it is a good starting point, as it is more than a home middlebox would probably be able to handle. $\newline$
@@ -467,7 +458,8 @@ $\newline \newline$
 \end{figure}
 
 Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} shows our conducted test. On the x-axis we have the transmit rates from 9300 Mbit/s to 10000 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. 
-When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come pack withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 
+When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come pack withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 25 percent need more than 4 seconds, which in turn means we have packet loss. $\newline$
+
 
 \section{NAT tests}
 

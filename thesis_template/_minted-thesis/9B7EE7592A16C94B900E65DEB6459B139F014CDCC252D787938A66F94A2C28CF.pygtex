@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+mkdir \PYGZhy{}p /usr/local/etc/openvswitch
+\PYG{n+nb}{export} \PYG{n+nv}{PATH}\PYG{o}{=}\PYG{l+s+se}{\PYGZbs{}\PYGZdl{}}PATH:/usr/local/share/openvswitch/scripts
+\PYG{n+nb}{export} \PYG{n+nv}{DB\PYGZus{}SOCK}\PYG{o}{=}/usr/local/var/run/openvswitch/db.sock
+\PYG{c+c1}{\PYGZsh{}Initialize database}
+ovsdb\PYGZhy{}tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
+ovsdb\PYGZhy{}server \PYGZhy{}\PYGZhy{}remote\PYG{o}{=}punix:/usr/local/var/run/openvswitch/db.sock
+\PYGZhy{}\PYGZhy{}remote\PYG{o}{=}db:Open\PYGZus{}vSwitch,Open\PYGZus{}vSwitch,manager\PYGZus{}options \PYGZhy{}\PYGZhy{}pidfile \PYGZhy{}\PYGZhy{}detach \PYGZhy{}\PYGZhy{}log\PYGZhy{}file
+ovs\PYGZhy{}vsctl \PYGZhy{}\PYGZhy{}no\PYGZhy{}wait init
+ovs\PYGZhy{}vswitchd \PYGZhy{}\PYGZhy{}pidfile \PYGZhy{}\PYGZhy{}detach
+ovs\PYGZhy{}vsctl add\PYGZhy{}br br0
+ovs\PYGZhy{}vsctl add\PYGZhy{}port br0 eth2
+ovs\PYGZhy{}vsctl add\PYGZhy{}port br0 eth3
+\end{Verbatim}

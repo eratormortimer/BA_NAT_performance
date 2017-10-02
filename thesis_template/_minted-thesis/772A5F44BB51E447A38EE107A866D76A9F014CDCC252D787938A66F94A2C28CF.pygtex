@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=0,priority=1,action=drop\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=0,priority=10,arp,action=normal\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=0,priority=100,ip,ct\PYGZus{}state=\PYGZhy{}trk,action=ct(table=1)\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=1,in\PYGZus{}port=1,ip,ct\PYGZus{}state=+trk+new,action=ct(commit),2\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=1,in\PYGZus{}port=1,ip,ct\PYGZus{}state=+trk+est,action=2\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=1,in\PYGZus{}port=2,ip,ct\PYGZus{}state=+trk+new,action=drop\PYGZdq{}}
+ovs\PYGZhy{}ofctl add\PYGZhy{}flow br0 \PYG{l+s+s2}{\PYGZdq{}table=1,in\PYGZus{}port=2,ip,ct\PYGZus{}state=+trk+est,action=1\PYGZdq{}}
+\end{Verbatim}

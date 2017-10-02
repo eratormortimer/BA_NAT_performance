@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  1 OCT 2017 14:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  1 OCT 2017 15:04
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  %&-line parsing enabled.
 **thesis.tex
 (./thesis.tex
@@ -933,15 +933,16 @@ Package pdftexcmds Info: \pdfdraftmode found.
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
+runsystem(uname -s > "thesis.w18")...executed.
 
-Package ifplatform Warning: 
-    shell escape is disabled, so I can only detect \ifwindows.
+
+(./thesis.w18)
+runsystem(rm -- "thesis.w18")...executed.
 
 ) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count139
-)
-(/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
+) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
 \@xs@message=\write5
 \integerpart=\count140
@@ -977,7 +978,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2016/04/29 v0.01c unified shell escape interface for LaTeX
-Package shellesc Info: Restricted shell escape ensabled on input line 67.
+Package shellesc Info: Unrestricted shell escape ensabled on input line 65.
 )
 \minted@appexistsfile=\read3
 \FV@BreakIndent=\dimen184
@@ -1001,20 +1002,8 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 \@float@every@listing=\toks45
 \c@listing=\count152
 )
-runsystem(mkdir -p _minted-thesis)...disabled (restricted).
+runsystem(mkdir -p _minted-thesis)...executed.
 
-
-
-! Package minted Error: You must invoke LaTeX with the -shell-escape flag.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.14 \input
-           {pream/Packages}
-Pass the -shell-escape flag to LaTeX. Refer to the minted.sty documentation for
- more information.
 
 (./pream/Packages.tex
 (/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
@@ -1834,21 +1823,10 @@ File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
 de.tex
 File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
 ))))
-runsystem(which pygmentize && touch thesis.aex)...disabled (restricted).
+runsystem(which pygmentize && touch thesis.aex)...executed.
 
+runsystem(rm thesis.aex)...executed.
 
-
-! Package minted Error: You must have `pygmentize' installed to use this packag
-e.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     %
-Refer to the installation instructions in the minted documentation for more inf
-ormation.
 
 
 LaTeX Warning: Unused global option(s):
@@ -1976,47 +1954,9 @@ e
 ))
 ABD: EveryShipout initializing macros
 \c@lstlisting=\count281
-runsystem(pygmentize -S default -f latex -P commandprefix=PYG > _minted-thesis/
-default-pyg-prefix.pygstyle)...disabled (restricted).
 
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using frozencache with a missing file.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     %^^M
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, 
-or using frozencache with a missing file.
-
-runsystem(pygmentize -S default -f latex -P commandprefix=PYGdefault > _minted-
-thesis/default.pygstyle)...disabled (restricted).
-
-
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using frozencache with a missing file.
-
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.37 \begin{document}
-                     %^^M
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, 
-or using frozencache with a missing file.
-
+(./_minted-thesis/default-pyg-prefix.pygstyle)
+(./_minted-thesis/default.pygstyle)
 \c@mv@tabular=\count282
 \c@mv@boldtabular=\count283
 LaTeX Info: Redefining \microtypecontext on input line 37.
@@ -2035,6 +1975,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 \AtBeginShipoutBox=\box74
 Package hyperref Info: Link coloring OFF on input line 37.
+
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -2437,84 +2378,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 4.
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 412.
-(/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
+\openout4 = `thesis.pyg'.
+
+
+(./_minted-thesis/9B7EE7592A16C94B900E65DEB6459B139F014CDCC252D787938A66F94A2C2
+8CF.pygtex
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 1.
+ (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 8.76003pt on input line 412.
+(Font)              scaled to size 8.76003pt on input line 1.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `fvm' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Overfull \hbox (32.6088pt too wide) in paragraph at lines 418--418
-[]\T1/fvm/m/n/10.95 ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitc
-hd/vswitch.ovsschema[] 
- []
-
-
-Overfull \hbox (407.02936pt too wide) in paragraph at lines 419--419
-[]\T1/fvm/m/n/10.95 ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/
-db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detac
-h --log-file[] 
- []
-
-[25]
-Overfull \hbox (43.15585pt too wide) in paragraph at lines 435--435
-[]\T1/fvm/m/n/10.95 ovs-ofctl add-flow br0 "table=0,priority=100,ip,ct_state=-t
-rk,action=ct(table=1)"[] 
- []
-
-
-Overfull \hbox (53.70291pt too wide) in paragraph at lines 436--436
-[]\T1/fvm/m/n/10.95 ovs-ofctl add-flow br0 "table=1,in_port=1,ip,ct_state=+trk+
-new,action=ct(commit),2"[] 
- []
-
-
-Overfull \hbox (11.51468pt too wide) in paragraph at lines 438--438
-[]\T1/fvm/m/n/10.95 ovs-ofctl add-flow br0 "table=1,in_port=2,ip,ct_state=+trk+
-new,action=drop"[] 
- []
-
+LaTeX Font Info:    Font shape `T1/fvm/m/it' in size <10.95> not available
+(Font)              Font shape `T1/fvm/m/sl' tried instead on input line 2.
+LaTeX Font Info:    Font shape `T1/fvm/m/sl' will be
+(Font)              scaled to size 8.76003pt on input line 2.
+LaTeX Font Info:    Font shape `T1/fvm/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/fvm/b/n' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
+(Font)              scaled to size 8.76003pt on input line 4.
+) [25]
 \openout4 = `thesis.pyg'.
 
-runsystem(pygmentize -l bash -f latex -P commandprefix=PYG -F tokenmerge -o _mi
-nted-thesis/772A5F44BB51E447A38EE107A866D76A9F014CDCC252D787938A66F94A2C28CF.py
-gtex thesis.pyg)...disabled (restricted).
 
+(./_minted-thesis/772A5F44BB51E447A38EE107A866D76A9F014CDCC252D787938A66F94A2C2
+8CF.pygtex
+Underfull \hbox (badness 10000) in paragraph at lines 431--1
 
-! Package minted Error: Missing Pygments output; \inputminted was
-probably given a file that does not exist--otherwise, you may need 
-the outputdir package option, or may be using an incompatible build tool,
-or may be using frozencache with a missing file.
+ []
 
-See the minted package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.451 \end{minted}
-                  
-This could be caused by using -output-directory or -aux-directory 
-without setting minted's outputdir, or by using a build tool that 
-changes paths in ways minted cannot detect, 
-or using frozencache with a missing file.
-
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 460--461
+) [26]
+Underfull \hbox (badness 10000) in paragraph at lines 451--452
 
  []
 
 
-<figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf, id=615, 350.63397
+<figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf, id=617, 350.63397
 pt x 210.2525pt>
 File: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf Graphic file 
 (type pdf)
 
 <use figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf>
 Package pdftex.def Info: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow100
-0.pdf used on input line 464.
+0.pdf used on input line 455.
 (pdftex.def)             Requested size: 345.59766pt x 207.23628pt.
  [27 <./figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf>] [28
 
@@ -2571,22 +2481,22 @@ Underfull \hbox (badness 3492) in paragraph at lines 147--150
  []
 
 ) [32]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 490.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 490.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 481.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 481.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 490.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 490.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 481.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 481.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: 798A9463FA7322F6B6445A0473CF1FC7;1424.
-runsystem(rm thesis.pyg)...disabled (restricted).
+runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 38540 strings out of 494946
- 863777 string characters out of 6180981
- 1170583 words of memory out of 5000000
- 40743 multiletter control sequences out of 15000+600000
- 84330 words of font info for 161 fonts, out of 8000000 for 9000
+ 38737 strings out of 494946
+ 866864 string characters out of 6180981
+ 1170606 words of memory out of 5000000
+ 40924 multiletter control sequences out of 15000+600000
+ 85605 words of font info for 165 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
  76i,7n,84p,1487b,637s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_c7kyj5.enc}{/us
@@ -2599,15 +2509,16 @@ ibertine/lbtn_ncsllp.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/libe
 rtine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/liber
 tine/LinLibertineTB.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/liber
 tine/LinLibertineTI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/
-fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/tx
-fonts/txsy.pfb>
-Output written on thesis.pdf (48 pages, 2388758 bytes).
+fvmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmro8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb>
+Output written on thesis.pdf (48 pages, 2393742 bytes).
 PDF statistics:
- 761 PDF objects out of 1000 (max. 8388607)
- 608 compressed objects within 7 object streams
+ 769 PDF objects out of 1000 (max. 8388607)
+ 614 compressed objects within 7 object streams
  119 named destinations out of 1000 (max. 500000)
- 26422 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 27446 words of extra memory for PDF output out of 29859 (max. 10000000)
 
