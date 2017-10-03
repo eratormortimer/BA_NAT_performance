@@ -19,4 +19,5 @@
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Stateful NAT flow in Open VSwitch}}{23}{figure.3.10}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces OpenVSwitch Firewall test with maximum packet size and 1000 flows}}{27}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces OpenVSwitch Firewall test with minimum packet size and 10000 flows}}{28}{figure.4.2}
 \addvspace {10\p@ }

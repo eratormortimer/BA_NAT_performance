@@ -458,8 +458,19 @@ $\newline \newline$
 \end{figure}
 
 Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} shows our conducted test. On the x-axis we have the transmit rates from 9300 Mbit/s to 10000 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. 
-When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come pack withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 25 percent need more than 4 seconds, which in turn means we have packet loss. $\newline$
-
+When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come pack withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 25 percent need more than 4 seconds, which in turn means we have packet loss. $\newline \newline$
+In the next test the smallest possible packet size was used, which is 64 bytes. we also raised the flow number to ten thousand. The firewall rules remained the same. We first ruffly determined the transmit rate where the firewall began to have packets with high latencies. Afterwards we measured more precisely around the exact area where the firewall began to fail.  $\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf}} \quad
+\caption[ OpenVSwitch Firewall test with minimum packet size and 10000 flows]{OpenVSwitch Firewall test with minimum packet size and 10000 flows }
+\label{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}
+\end{figure}
+$\newline$
+This test is shown in \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}. On the x-axis we have the transmit rates from 200 Mbit/s to 800 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. The first spikes in the average traffic occur around 640 Mbit/s. But here the 75th percentile is still lower that the average traffic. This means we have very few packets with high latencies. But with 720 Mbit/s and more the average traffic and also the 75th percentile go up to $4 * 10^6 $ ns latency and over. Here once again packet loss occurs. $\newline$
+We see from these two examples that the transmit rates Open VSwitches firewall function can handle differ a lot. Here the most influential factor on when packet loss occurs is the packet size. When we look at how many packets the firewall is able to handle per second we get 2 results. When looking at maximum sized packets with the transmit rate were the firewall just got problems processing, we get: $$ 9880  \text{ Mbit/s } \, / \, 1500 \text{ Bytes/packet }  \approx 863328 \text{ packets/s. } $$
+In contrast the amount of packets per second in the test with minimal packet size was: $$ 720  \text{ Mbit/s } \, / \, 64 \text{ Bytes/packet }  \approx 1474560 \text{ packets/s. }$$
+This means more packets per second went through the Open VSwitch firewall without packet loss with the minimal packet size. Even though we also had more different flows in that test. This could have to do with the cache 
 
 \section{NAT tests}
 
