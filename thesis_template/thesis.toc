@@ -31,6 +31,6 @@
 \contentsline {chapter}{\numberline {4}Evaluation and Analysis of results}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Firewall tests}{26}{section.4.1}
 \contentsline {section}{\numberline {4.2}NAT tests}{29}{section.4.2}
-\contentsline {chapter}{\numberline {5}Conclusion}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Future Works}{31}{section.5.1}
-\contentsline {chapter}{Bibliography}{33}{appendix*.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Works}{33}{section.5.1}
+\contentsline {chapter}{Bibliography}{35}{appendix*.4}

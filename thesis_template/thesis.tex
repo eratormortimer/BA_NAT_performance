@@ -164,7 +164,7 @@ As a short conclusion in DPDK, we can see that DPDK could be vital to accelerate
 
 Before we can start testing the performance of a software middlebox of our choice, we have to decide on test parameters. This involves how we should conduct the measurements, what we want to measure, how the measurements should look like etc. For example we have to decide on a load generator, what kind of test environment, how we want to collect and visualize the data that we derive, and most importantly the middlebox software we want to survey. 
 $\newline$
-In this chapter we talk about the research methodology and how to build it \cite{schmidt2017}[Page 23].
+In this chapter we talk about the research methodology and how to build it.
 
 \section{General Idea}
 
@@ -227,9 +227,9 @@ This section introduces the specific software we chose for the testsetup. We wil
 
 \subsection{Experimental Setup}
 
-For the conducted experiments I used mostly the 2 same servers. When unavailable I used different servers in the testbed, but the servers have mostly the same hardware. 
+I conducted the experiments on 2 servers in our testbed. 
 $\newline$ 
-The Hardware of one server was: 
+The Hardware of the system was: 
 \begin{itemize}
 
 \item CPU: Intel(R) Xeon(R) CPU E31230 @ 3.20GHz
@@ -248,14 +248,14 @@ As operating system Debian 8.9 "Jessie" was used, as it was newest Debian system
 
 \subsubsection{Advantages and disadvantages}
 
-MoonGen is a traffic generator that can saturate 10 Gbit Ethernet easily while using a very special approach for measuring the latency of the packets. MoonGen was selected out of a few possible candidates mainly because of its flexibility. Most packet generators are either very complicated or have no good performance. The tested alternatives to MoonGen were either very complicated to set up and run, or had a bad performance \cite{emmerich2015moongen}. MoonGen has 4 major advantages over the rest for my use case: $\newline$
+MoonGen is a software-based traffic generator that can saturate 10 Gbit Ethernet easily while using a very special approach for measuring the latency of the packets. MoonGen was selected out of a few possible candidates mainly because of its flexibility. Most packet generators are either very complicated or have no good performance. The tested alternatives to MoonGen were either very complicated to set up and run, or had a bad performance \cite{emmerich2015moongen}. MoonGen has 4 major advantages over the rest for my use case: $\newline$
 \begin{itemize}
 
 \item MoonGen is completely implemented in software and can run on a lot of commodity CPUs. This is achieved through its implementation on top of DPDK, the packet processing framework. The only requirement for our hardware is that DPDK supports it and that it offers support for the time stamping and rate control. 
 
 \item Is very flexible, as the packet generator logic is written in Lua scripts. These scripts are very user friendly and can be completely modified. In this specific case LUA-JIT was used as its performance is suited for high speed packet processing. 
 
-\item Is able to saturate multiple 10 Gbit Ethernet interfaces with minimum size packets. This advantage was not really necessary for this specific test setup as we only needed to saturate on interface. But the good performance was still noticeable. 
+\item Is able to saturate multiple 10 Gbit Ethernet interfaces with minimum size packets. This advantage was not really necessary for this specific test setup as we only needed to saturate one interface. But the good performance was still noticeable. 
 
 \item MoonGen allows to time stamp very accurately and building on that very good rate control. This point will be further explained below. 
 
@@ -265,14 +265,15 @@ One disadvantage of MoonGen is that it currently only supports UDP packets for l
 
 \subsubsection{Closer Look: Hardware timestamping }
 
-The type of hardware timestamping in MoonGen is very unique. It utilities the IEEE 1588 Precision Time Protocol (PTP), which is used for clock synchronization across networks. It is supported by a large variety of NICs. PTP is either used as a protocol on layer 3 or on top of UDP on layer 4. This hardware timestamping works at the moment Intel 82580 GbE, the 82599 and X540 10 GbE chips. These NICs support the timestamping with PTP Ethernet and UDP. Moongen configures them to only recognize PTP packets with a specific first byte in their header. The second byte represents the PTP version number. The other PTP fields are not used and can contain any value. This allows MoonGen to measure the latency of any packet. All timestamps fro recieved and transmitted packets get saved in a special register directliy on the NIC. This register has to be read out before the next packet can be timestamped. Some NICs also support the prepending of timestamps of new packets to the buffer. With these timestamping mechanisms MoonGen can reach a precision of 64 nanoseconds on a 10GbE link \cite{emmerich2015moongen}.
+The type of hardware timestamping in MoonGen is very unique. It utilities the IEEE 1588 Precision Time Protocol (PTP), which is used for clock synchronization across networks. It is supported by a large variety of NICs. PTP is either used as a protocol on layer 3 or on top of UDP on layer 4. This hardware timestamping works at the moment with the Intel 82580 GbE, the 82599 and X540 10 GbE chips. These NICs support the timestamping with PTP Ethernet and UDP. Moongen configures them to only recognize PTP packets with a specific first byte in their header. The second byte represents the PTP version number. The other PTP fields are not used and can contain any value. This allows MoonGen to measure the latency of any packet. $\newline$ 
+All timestamps fro recieved and transmitted packets get saved in a special register directliy on the NIC. This register has to be read out before the next packet can be timestamped. Some NICs also support the prepending of timestamps of new packets to the buffer. With these timestamping mechanisms MoonGen can reach a precision of 64 nanoseconds on a 10GbE link \cite{emmerich2015moongen}.
 
 
 \subsection{mOS}
 This section will explain why mOS was chosen initially as a middlebox candidate and why it wasn't usable for this paper. $\newline \newline$
 
 \subsubsection{Approach of mOS}
-Middlebox OS is a reusable networking stack, which enables stateful flow processing. mOS provides an API for developers to programm middlebox applications on top of mOS. This enables the developers to concentrate on the important logic of the middlebox and the top level rather than the finicky low-level packet processing. This means the applications would be more consistent and easier modifiable. Also it prevents the introduction of new errors when the programmer has to implement the complex flow mechanisms from scratch. Most importantly, mOS promised a consistent and high performance even though it essentially provides a software middlebox. The developers of mOS promised an "effizient event system that scales to monitoring millions of concurrent flow events" \cite{jamshed2017mos}[Abstract]. $\newline$
+Middlebox OS is a reusable networking stack, which enables stateful flow processing. mOS provides an API for developers to programm middlebox applications on top of mOS. This enables the developers to concentrate on the important logic of the middlebox and the top level rather than the finicky low-level packet processing. This means the applications would be more consistent and easier modifiable. Also it prevents the introduction of new errors when the programmer has to implement the complex flow mechanisms from scratch. Most importantly, mOS promised a consistent and high performance even though it essentially provides a software middlebox. The developers of mOS promised an "efficient event system that scales to monitoring millions of concurrent flow events" \cite{jamshed2017mos}[Abstract]. $\newline$
 The API of mOS includes programming presets that introduce the programmer to flow-events. Flow-events are operations the middlebox can fulfill which are definable by the user. This makes mOS very easy to deploy and to adjust to your networking situation. 
 
 \begin{figure}[H]
@@ -283,7 +284,7 @@ The API of mOS includes programming presets that introduce the programmer to flo
 \end{figure}
 
 $\newline$
-mOS enables easier development by providing a monitoring socket for developers. This enables the developer to see exactly what happens with a single TCP flow running through the middlebox. Additionally, mOS includes scalable monitoring. Scalable monitoring helps to reduce the overhead that gets induced when tracking so many different flows. This reduces the memory usage of mOS for example for dynamic event registration and deregistration. Also developers can enable and disable event generation for flows and reduce recourse usage this way. By deacticating the tracking of unnessesary properties if the flows mOS reduces the overall system load. This leads to higher performance and reduces waste of CPU cycles \cite{jamshed2017mos}. $\newline$
+mOS enables easier development by providing a monitoring socket for developers as can be seen in Figure \ref{fig:mOSFlow}.  This enables the developer to see exactly what happens with a single TCP flow running through the middlebox. Additionally, mOS includes scalable monitoring. Scalable monitoring helps to reduce the overhead that gets induced when tracking so many different flows. This reduces the memory usage of mOS for example for dynamic event registration and deregistration. $\newline$ Also developers can enable and disable event generation for flows and reduce recourse usage this way. By deactivating the tracking of unnessesary properties if the flows mOS reduces the overall system load. This leads to higher performance and reduces waste of CPU cycles \cite{jamshed2017mos}. $\newline$
 
 \begin{figure}[H]
 \centering
@@ -292,7 +293,7 @@ mOS enables easier development by providing a monitoring socket for developers. 
 \label{fig:mOSThread}
 \end{figure}
 $\newline$
-To increase performance, mOS uses a shared-nothing parallel-processing threading model. This model works especially great on modern multi-core CPUs. As you can see in \ref{fig:mOSThread}, mOS initializes n threads each bound to a CPU core. Each of these threads handles flows using symmetric receive-side scaling (S-RSS). All packets that are associated to the same connection are mapped by S-RSS to the same RX queue in the NIC. This enables the forwarding of packets with line rate, as all the packet classification is done in hardware by the NIC itself which is very performant. This also enables the shared-nothing parallel-processing threading model, as every connection is handled by one thread. This enables mOS to avoid inter-clock locks and cache interferences \cite{jamshed2017mos}.   
+To increase performance, mOS uses a shared-nothing parallel-processing threading model. This model works especially great on modern multi-core CPUs. As you can see in Figure \ref{fig:mOSThread}, mOS initializes n threads each bound to a CPU core. Each of these threads handles flows using symmetric receive-side scaling (S-RSS). All packets that are associated to the same connection are mapped by S-RSS to the same RX queue in the NIC. This enables the forwarding of packets with line rate, as all the packet classification is done in hardware by the NIC itself which is very performant. This also enables the shared-nothing parallel-processing threading model, as every connection is handled by one thread. This enables mOS to avoid inter-clock locks and cache interferences \cite{jamshed2017mos}.   
 $\newline$
 
 mOS relies on kernel-level NIC drivers to forward the packets into the symmetric RSS. DPDK or PCAP are supported as default I/O module. $\newline$
@@ -307,7 +308,7 @@ mOS relies on kernel-level NIC drivers to forward the packets into the symmetric
 Figure \ref{fig:mOSStack} displays the function of the NIC-drivers. mOS reads multiple packets at once from the incoming packet stream. Packets are processed by the run-to-completion model. This model allows all threads in an application to use a single stack, which of course has as a consequence that threads cannot block or wait on events. But threads can be initialized by events \cite{belay2014ix}. The use of this model is ideal for applications with huge importance on events and real-time applications. The threads are very keen handling processes with an high frequency of interrupts. 
 
 $\newline$
-We initially chose mOS as our middlebox test candidate because it promised great performance with high flexibility. Since it is based on mTCP it can work with the complete TCP stack and we planned to make further tests with the TCP stack. In its repository mOS also includes sample applications. These seemed very useful, as a NAT application and a stateless firewall application were given. With the simple expression language mOS uses for the applications they seemed easily modifiable. Also the testing of the sample applications could get us some insight in how the middlebox applications performed in our testbed with our load generator in general. mOS can run on commodity hardware. The hardware in our testbed is not exactly the same as the developers used in their paper but it is similar enough. 
+We initially chose mOS as our middlebox test candidate because it promised great performance with high flexibility. Since it is based on mTCP it can work with the complete TCP stack and we planned to make further tests with the TCP stack. In its repository mOS also includes sample applications. These seemed very useful, as a NAT application and a stateless firewall application were given. With the simple expression language mOS uses for the applications they seemed easily modifiable. Also the testing of the sample applications could get us some insight in how the middlebox applications performed in our testbed with our load generator in general. mOS can run on commodity hardware. The hardware in our testbed is not exactly the same as the developers used in their paper but our hardware fulfills the requirements given for mOS.  This made mOS a good candidate for our tests. 
 
 
 
@@ -326,7 +327,7 @@ $\newline$
 \end{figure}
 $\newline$
 
-In inline-mode mOS runs on a separate host that connects two data networks as can be seen in \ref{fig:mOSInline}. For this test setup the two data networks are actually two interfaces of the load server. Here in \ref{fig:mOSInline} the chosen mOS application is Middlebox Stats (midstat). It is an basic monitoring application. Because of the position of the application all the traffic between the data networks goes through it, thus enabling the application to monitor, drop or manipulate the traffic in both directions. 
+In inline-mode mOS runs on a separate host that connects two data networks as can be seen in Figure \ref{fig:mOSInline}. For this test setup the two data networks are actually two interfaces of the load server. Here in \ref{fig:mOSInline} the chosen mOS application is Middlebox Stats (midstat). It is a basic monitoring application. Because of the position of the application all the traffic between the data networks goes through it, thus enabling the application to monitor, drop or manipulate the traffic in both directions. 
 With this mode we basically simulate that one interface of our load server is an internal network and the other one is an big outside network like the internet. The mOS NAT application in between would replace the IP address of packets coming from the internal network with the public IP it got assigned \cite{mOSDoc}.
 $\newline$
 After making sure that the IP addresses of the two interfaces on the DUT were unassigned and adjusting the mOS configuration file for the application we wanted to run the setup was finished. We started by using the sample applications that are included with mOS, mostly the NAT application and the simple\_firewall. Although these applications do not depict the whole range of possibilities of mOS, they provided the ground basics we wanted to measure. 
@@ -343,7 +344,7 @@ All in all this meant mOS was no option as a software middlebox for this paper. 
 
 \subsection{Open VSwitch}
 
-Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a virtual switch. Hypervisors need to bridge traffic between VMs and the outside network interface. When the hypervisor is Linux-based this usually means using the standard Linux bridge, which is the L2-switch that is build into Linux. This switch is mostly fast and reliable, but has problems concerning multi-server virtualization. Here Open VSWitch provides to be more useful and performant than the Linux bridge. \cite{OpenVSwitchWhy} $\newline$ Open VSwitch is licensed under the Apache open source license. Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
+Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a virtual switch. Hypervisors need to bridge traffic between VMs and the outside network interface. When the hypervisor is Linux-based this usually means using the standard Linux bridge, which is the L2-switch that is built into Linux. This switch is mostly reliable, but has problems concerning multi-server virtualization and speed. Here Open VSWitch provides to be more useful and performant than the Linux bridge \cite{OpenVSwitchWhy} . $\newline$ Open VSwitch is licensed under the Apache open source license \cite{OVSLicense} . Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
 $\newline$
 \begin{figure}[H]
 \centering
@@ -364,7 +365,7 @@ Open VSwitch is used as an alternative to the basic Linux bridge for modern hype
 
 \item Very easy configuration and automation of network systems. Slow and fast network states can be migrated between instances. 
 
-\item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes. \cite{pothuraju2016measuring}
+\item OVS can manipulate packets to enable a better administration of different flows. This means especially changing tags in packets or reordering them. This can speed up the network processes \cite{pothuraju2016measuring} .
 
 \end{itemize}
 
@@ -394,7 +395,7 @@ With OVS 2.5 a connection tracking module was introduced. It supports the statef
 \label{fig:OpenVSwitchconntrack}
 \end{figure}
 
-As you can see in \ref{fig:OpenVSwitchconntrack} the new conntrack module allows us to create and update CT entry's without the need to go through the user space. This greatly improves the performance of the action. With the new module come different extensions for OpenFlow, which allow us to send a new connection to conntrack to start tracking it. The extension match on fields in the first packet. $\newline \newline$
+As you can see in Figure \ref{fig:OpenVSwitchconntrack} the new conntrack module allows us to create and update CT entries without the need to go through the user space. This greatly improves the performance of the action. With the new module come different extensions for OpenFlow, which allow us to send a new connection to conntrack to start tracking it. The extension match on fields in the first packet. $\newline \newline$
 This stateful matching enables a lot of other applications for OVS, for example also stateful NAT. As of now, OVS supports DNAT and SNAT. At the moment this uses the NAT features of netfilter, which is the packet filtering framework in Linux. With netfilter the OVS NAT supports port range and address range mappings with different mapping modes. 
 This means the stateful NAT in OVS has all the features we expect from a middlebox NAT. 
 \begin{figure}[H]
@@ -422,7 +423,8 @@ ovs-vsctl --no-wait init
 ovs-vswitchd --pidfile --detach                                                 
 ovs-vsctl add-br br0                                                            
 ovs-vsctl add-port br0 eth2 
-ovs-vsctl add-port br0 eth3      
+ovs-vsctl add-port br0 eth3   
+\label{code:basicOVS}   
 \end{minted}
 $\newline$
 In this basic configuration we initialize with an empty database and start the ovsdb-server with this empty database. We add a bridge br0 with the config tool for ovs-vswitchd. Ovs-vswitchd is the daemon that controls all the Open VSwitch switches on our machine. We add the two interfaces we want to manage with OVS to the bridge. These are the interfaces connected to our load server. 
@@ -468,11 +470,58 @@ In the next test the smallest possible packet size was used, which is 64 bytes. 
 \end{figure}
 $\newline$
 This test is shown in \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}. On the x-axis we have the transmit rates from 200 Mbit/s to 800 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. The first spikes in the average traffic occur around 640 Mbit/s. But here the 75th percentile is still lower that the average traffic. This means we have very few packets with high latencies. But with 720 Mbit/s and more the average traffic and also the 75th percentile go up to $4 * 10^6 $ ns latency and over. Here once again packet loss occurs. $\newline$
-We see from these two examples that the transmit rates Open VSwitches firewall function can handle differ a lot. Here the most influential factor on when packet loss occurs is the packet size. When we look at how many packets the firewall is able to handle per second we get 2 results. When looking at maximum sized packets with the transmit rate were the firewall just got problems processing, we get: $$ 9880  \text{ Mbit/s } \, / \, 1500 \text{ Bytes/packet }  \approx 863328 \text{ packets/s. } $$
+We see from these two examples that the transmit rates Open VSwitches firewall function can handle differ a lot. Here the most influential factor on when packet loss occurs is the packet size. When we look at how many packets the firewall is able to handle per second we get 2 results. For this calculation we will ignore the Inter Frame Gap, as it is the same in both cases. When looking at maximum sized packets with the transmit rate were the firewall just got problems processing, we get: $$ 9880  \text{ Mbit/s } \, / \, 1518 \text{ Bytes/packet }  \approx 853090 \text{ packets/s. } $$
 In contrast the amount of packets per second in the test with minimal packet size was: $$ 720  \text{ Mbit/s } \, / \, 64 \text{ Bytes/packet }  \approx 1474560 \text{ packets/s. }$$
-This means more packets per second went through the Open VSwitch firewall without packet loss with the minimal packet size. Even though we also had more different flows in that test. This could have to do with the cache 
+This means more packets per second went through the Open VSwitch firewall without packet loss with the minimal packet size. Even though we also had more different flows in that test. 
 
 \section{NAT tests}
+
+The NAT module in OVS was only introduced in Open VSwitch 2.4 and the implementation in the conntack module and thus the usage of it with ofs-ofctl is not super intuitive. The NAT implementation used in the following tests is very basic. It once again has the whitelisting approach. This is the script used to set up the NAT, once again building on the basic OVS setup. 
+$\newline$
+\begin{minted}{bash}
+#!/bin/bash                                                                     
+ovs-ofctl add-flow br0 "table=0,priority=1,action=drop"                         
+ovs-ofctl add-flow br0 "table=0,priority=10,arp,action=normal"                  
+ovs-ofctl add-flow br0 "table=0,priority=100,ip,ct_state=-trk,action=ct(table=1)"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ip,action=ct(commit,zone=1,
+nat(src=200.200.200.200)),2"
+ovs-ofctl add-flow br0 "table=1,in_port=2,ct_state=+trk+new,action=drop"        
+ovs-ofctl add-flow br0 "table=1,in_port=2,ct_state=+trk+est,ip,action=ct(nat),1"
+ovs-ofctl add-flow br0 "table=1,in_port=1,ct_state=+trk+est,ip,action=ct(nat),2"
+\end{minted}
+$\newline$
+To simplify the process the firewall does not touch ARP packages. All IP packages that are not tracked get committed to table 1. We once again simulate that port 1 is connected to our internal network. Nobody from the outside network should be able to initialize a connection to an internal IP. This is a given for a network behind a NAT middlebox, as the NAT can not know who the internal receiver is for a new incoming connection from the outside. A new connection from the internal port 1 gets NAT'd and send to port 2. Here OVS is configured as an SNAT, replacing the source IP in the packet with an possible public IP address. For already established connections we can just order OVS to NAT the packets accordingly to the first packet. This works accordingly for incoming packets from the external network on port 2. $\newline$
+In the first tests of the NAT we fixed the packet size to the MTU of 1500 byte and tested with different flow amounts. To narrow down the interesting transmit rate area we started with an broad test and determined the interesting transmit rate range. 
+$\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf}} \quad
+\caption[ OpenVSwitch NAT test with maximum packet size and 10000 flows]{OpenVSwitch NAT test with maximum packet size and 10000 flows }
+\label{fig:TrafficOVSNATtestMaxPacketsizeFlow10000}
+\end{figure}
+
+As you can see here the result is very similar to the result we have seen in the OVS firewall test with maximum packet size. With transmit rates of 9880 Mbit/s and more the 75th percentile of the latency goes up to 4 seconds. Even though the NAT presumably has to do more work when processing the packets, the attainable transmit rate without packet loss is about the same. 
+$\newline$
+To show how the number flows influences this result, we have done the same test with only 100 flows. This should in theory make the processing of the packets more efficient. 
+$\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf}} \quad
+\caption[ OpenVSwitch NAT test with maximum packet size and 100 flows]{OpenVSwitch NAT test with maximum packet size and 100 flows }
+\label{fig:TrafficOVSNATtestMaxPacketsizeFlow100}
+\end{figure}
+$\newline$
+When we compare the graphs of the two tests we see a lot of similarities. We see that we get high latency values with transmit rated of 9880 Mbit/s or more. We expected this value to be higher on the second graph, as the middlebox has to handle less flows and should be able to handle more packets. But this is not the case or the effect is so little that we can not see it in the graphs. The average value for the latency after 9880 Mbit/s is even higher when we have less flows. From this we can conclude that the amount of flows has very little impact on the performance of the software middlebox. The bottleneck in our system that causes the high latency values still has the same problems with less flows. $\newline$
+Additional tests with the minimum packet size will show how the NAT compares to the firewall with minimal packet size.
+$\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf}} \quad
+\caption[ OpenVSwitch NAT test with minimal packet size and 100 flows]{OpenVSwitch NAT test with minimal packet size and 100 flows }
+\label{fig:TrafficOVSNATtestMaxPacketsizeFlow100}
+\end{figure}
+$\newline$
+
 
 \chapter{Conclusion}
 

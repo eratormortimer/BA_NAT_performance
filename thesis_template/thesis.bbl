@@ -79,10 +79,6 @@ M.~Rouse, ``Definition: Stress testing,''
   \url{https://embedded.communities.intel.com/community/en/software/blog/2013/05/16/roving-reporter-dpdk-goes-open-source},
   visited: 26.08.2017 13:30.
 
-\bibitem{schmidt2017}
-O.~Schmidt, ``A programming language for protocol-independent packet
-  processing: Analyzing and evaluating p4,'' 2017.
-
 \bibitem{khan2010different}
 M.~E. Khan, ``Different forms of software testing techniques for finding
   errors,'' \emph{International journal of computer science issues}, vol.~7,
@@ -130,6 +126,11 @@ A.~Belay, G.~Prekas, A.~Klimovic, S.~Grossman, C.~Kozyrakis, and E.~Bugnion,
 ``Why open vswitch,''
   \url{http://docs.openvswitch.org/en/latest/intro/why-ovs/}, visited:
   29.08.2017 14:30.
+
+\bibitem{OVSLicense}
+``Open vswitch license,''
+  \url{https://www.apache.org/licenses/LICENSE-2.0.html}, visited: 1.10.2017
+  16:30.
 
 \bibitem{pothuraju2016measuring}
 R.~Pothuraju, ``Measuring and modeling of open vswitch performance:
