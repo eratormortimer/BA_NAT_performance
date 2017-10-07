@@ -154,4 +154,9 @@ R.~G., ``Open vswitch* with dpdk overview,''
   \url{http://openvswitch.org/support/ovscon2014/17/1030-conntrack_nat.pdf},
   visited: 9.09.2017 15:30.
 
+\bibitem{sinha2007internet}
+R.~Sinha, C.~Papadopoulos, and J.~Heidemann, ``Internet packet size
+  distributions: Some observations,'' \emph{USC/Information Sciences Institute,
+  Tech. Rep. ISI-TR-2007-643}, 2007.
+
 \end{thebibliography}

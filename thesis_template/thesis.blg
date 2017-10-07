@@ -21,45 +21,45 @@ Warning--empty journal in Click
 Warning--missing publisher in tanenbaum1996computer
 
 Done.
-You've used 28 entries,
+You've used 29 entries,
             4087 wiz_defined-function locations,
-            996 strings with 12253 characters,
-and the built_in function-call counts, 11283 in all, are:
-= -- 840
-> -- 138
+            1001 strings with 12448 characters,
+and the built_in function-call counts, 11709 in all, are:
+= -- 872
+> -- 151
 < -- 29
-+ -- 81
-- -- 24
-* -- 411
-:= -- 1787
-add.period$ -- 57
-call.type$ -- 28
-change.case$ -- 46
++ -- 87
+- -- 27
+* -- 430
+:= -- 1862
+add.period$ -- 59
+call.type$ -- 29
+change.case$ -- 47
 chr.to.int$ -- 66
-cite$ -- 30
-duplicate$ -- 983
-empty$ -- 1160
-format.name$ -- 27
-if$ -- 2596
+cite$ -- 31
+duplicate$ -- 1021
+empty$ -- 1199
+format.name$ -- 31
+if$ -- 2691
 int.to.chr$ -- 0
-int.to.str$ -- 28
-missing$ -- 211
-newline$ -- 107
-num.names$ -- 11
-pop$ -- 613
+int.to.str$ -- 29
+missing$ -- 218
+newline$ -- 110
+num.names$ -- 12
+pop$ -- 633
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 894
+skip$ -- 926
 stack$ -- 0
-substring$ -- 220
-swap$ -- 565
+substring$ -- 221
+swap$ -- 586
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 28
+type$ -- 29
 warning$ -- 2
-while$ -- 23
-width$ -- 30
-write$ -- 233
+while$ -- 24
+width$ -- 31
+write$ -- 241
 (There was 1 error message)

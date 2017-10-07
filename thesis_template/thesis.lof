@@ -18,9 +18,11 @@
 \contentsline {figure}{\numberline {3.9}{\ignorespaces OpenVSwitch with the conntrack module}}{22}{figure.3.9}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Stateful NAT flow in Open VSwitch}}{23}{figure.3.10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces OpenVSwitch Firewall test with maximum packet size and 1000 flows}}{27}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces OpenVSwitch Firewall test with minimum packet size and 10000 flows}}{28}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 10000 flows}}{30}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 100 flows}}{30}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 100 flows}}{31}{figure.4.5}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Five-minute USC Internet2 trace. (Scrambled Internet Trace Measurement dataset) }}{26}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces OpenVSwitch Firewall test with maximum packet size and 1000 flows}}{29}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces OpenVSwitch Firewall test with minimum packet size and 10000 flows}}{30}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 10000 flows}}{32}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 100 flows}}{33}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 100 flows}}{34}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 10000 flows}}{35}{figure.4.7}
 \addvspace {10\p@ }

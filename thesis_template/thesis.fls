@@ -527,9 +527,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
 INPUT thesis.toc
 INPUT thesis.toc
-OUTPUT thesis.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
+OUTPUT thesis.toc
 INPUT thesis.lof
 INPUT thesis.lof
 INPUT /usr/share/texlive/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-TLF.fd
@@ -583,6 +583,9 @@ INPUT ./figures/OVSconntrack.pdf
 INPUT figures/OVSconntrack.pdf
 INPUT ./figures/OVSconntrack.pdf
 INPUT ./figures/OVSconntrack.pdf
+INPUT figures/Sinha07a.pdf
+INPUT ./figures/Sinha07a.pdf
+INPUT ./figures/Sinha07a.pdf
 OUTPUT thesis.pyg
 INPUT ./thesis.pyg
 INPUT _minted-thesis/4ACE5B2105DD548872BCA879D277B2F39F014CDCC252D787938A66F94A2C28CF.pygtex
@@ -620,6 +623,12 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ot1--base.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+OUTPUT thesis.pyg
+INPUT ./thesis.pyg
+INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
+INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
+INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
+INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/nxlmi1.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/rfxlri-alt.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/LibertineTheta-Regular.tfm
@@ -631,12 +640,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/rntxmi.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/txfonts/txmi.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxmi.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/rtxptmri.tfm
-OUTPUT thesis.pyg
-INPUT ./thesis.pyg
-INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
-INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
-INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
-INPUT _minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C28CF.pygtex
 INPUT figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf
 INPUT ./figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf
 INPUT ./figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf
@@ -646,6 +649,9 @@ INPUT ./figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf
 INPUT figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf
 INPUT ./figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf
 INPUT ./figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf
+INPUT figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf
+INPUT ./figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf
+INPUT ./figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf
 INPUT thesis.bbl
 INPUT thesis.bbl
 INPUT thesis.aux
@@ -662,6 +668,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmb8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmro8a.pfb
