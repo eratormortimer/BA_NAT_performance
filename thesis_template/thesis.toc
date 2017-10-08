@@ -29,19 +29,23 @@
 \contentsline {subsubsection}{\numberline {3.2.4.2}OVS with DPDK support}{20}{subsubsection.3.2.4.2}
 \contentsline {subsubsection}{\numberline {3.2.4.3}Connection tracking in OVS}{21}{subsubsection.3.2.4.3}
 \contentsline {chapter}{\numberline {4}Evaluation and Analysis of results}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Firewall tests}{27}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Firewall tests with the maximum packet size}{28}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.1}Important parameters}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Firewall tests}{27}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Firewall tests with the maximum packet size}{28}{subsection.4.2.1}
 \contentsline {paragraph}{Firewall test 1000 Flows 1500 byte packets\hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{28}{section*.4}
-\contentsline {subsection}{\numberline {4.1.2}Firewall tests with a the minimal packets size}{29}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2.2}Firewall tests with a the minimal packets size}{29}{subsection.4.2.2}
 \contentsline {paragraph}{Firewall test 1000 Flows 64 byte packets \hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{29}{section*.5}
-\contentsline {section}{\numberline {4.2}NAT tests}{31}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Nat tests with a the maximum packets size}{31}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3}NAT tests}{31}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Nat tests with a the maximum packets size}{31}{subsection.4.3.1}
 \contentsline {paragraph}{NAT test 10000 Flows 1500 byte packets\hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{31}{section*.6}
 \contentsline {paragraph}{NAT test 100 Flows 1500 byte packets\hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{32}{section*.7}
-\contentsline {subsection}{\numberline {4.2.2}Nat tests with a the minimal packets size}{33}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3.2}Nat tests with a the minimal packets size}{33}{subsection.4.3.2}
 \contentsline {paragraph}{NAT test 100 Flows 64 byte packets\hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{33}{section*.8}
 \contentsline {paragraph}{NAT test 10000 Flows 64 byte packets\hskip .25\fontdimen 2\font \rule [.56\fontdimen 5\font ]{1\fontdimen 6\font }{.1\fontdimen 5\font }\hskip .25\fontdimen 2\font }{34}{section*.9}
-\contentsline {section}{\numberline {4.3}Evaluation}{35}{section.4.3}
+\contentsline {section}{\numberline {4.4}Evaluation}{35}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Influence of packet size}{35}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Comparison NAT and Firewall}{36}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Influence of flow amount}{36}{subsection.4.4.3}
 \contentsline {chapter}{\numberline {5}Conclusion}{37}{chapter.5}
 \contentsline {section}{\numberline {5.1}Future Works}{37}{section.5.1}
 \contentsline {chapter}{Bibliography}{39}{appendix*.10}
