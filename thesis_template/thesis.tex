@@ -584,13 +584,35 @@ We will try to explain our test results based on the model we established in \re
 Another conjecture was that the NAT is in its core a stateful firewall which has to to extra work when rewriting IP addresses in the IP header. When we look at Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} we see no difference in the maximum attainable transmit rate before packet loss occurs. This seems to deny our model. If we look further however and compare Figure \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} we see a significant difference in the maximal achievable transmit rate before packet loss occurs.
 This would be explained by our model. $\newline$
 Combined with the results we got for the packet size this could be an indicator that when processing and forwarding maximum sized packets Open VSwitch has other limiting factors. $\newline$ This could be the cache for example. When processing so many maximum sized packages the cache were the packets are temporarily stored before being processed and forwarded could be too small. This would mean we never actually use the fully CPU capacity when we use maximum sized packages. Instead the high latency and packet loss occurs because the big packet size is a problem when the packets are cached. $\newline \newline$
-TODO: make test with maximum packet size and confirm cpu load
+We tried to confirm that in the test with the maximum sized packets the full CPU capacity was never used. For this we measured the averaged CPU load over the 8 cores on our DUT. This was done via tracking the load average in /proc/loadavg. We tracked the load average for our NAT and Firewall with maximum sized packages and minimum sized packages respectively. $\newline$
+\begin{table}[H]
+\centering
+\caption{CPU load average on DUT}
+$\newline \newline$
+\label{tab:CPULoad}
+\begin{tabular}{lll}
+                 &            Max packet size          &     Min packet size            \\ \cline{2-3} 
+ \multicolumn{1}{l|}{NAT} & \multicolumn{1}{l|}{$ \approx 10\% $} &  \multicolumn{1}{l|}{$ \approx 100\% $}  \\ \cline{2-3} 
+ \multicolumn{1}{l|}{Firewall}  & \multicolumn{1}{l|}{$ \approx 10\% $}  & \multicolumn{1}{l|}{$ \approx 100\% $}  \\ \cline{2-3} 
+\end{tabular}
+\end{table}
+$\newline$
+As you can see the CPU load average pretty much confirms our theory. OVS does not use the full CPU when processing maximum size packages, so the problems with dropping packages have another origin.
+
+
 $\newline$
 \subsection{Influence of flow amount}
-When we compare our NAT results with different flow amounts we see 2 different results. When comparing Figures \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see no direct influence on the reachable transmit rate without packet loss. But as we already established: the reason for the packet loss with maximum packet size seems to be actually a cache problem rather than that the CPU is operating at full capacity. So the better comparison to see the influence of the amount of flows on the achievable transmit rate is Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. $\newline$ Although the measurement for 10000 flows is maybe not as clean as the measurement for 100 flows we see a difference. For 10000 flows the achievable transmit rate is significantly lower. This could have many different reasons. $\newline$
+When we compare our NAT results with different flow amounts we see 2 different results. When comparing Figures \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see no direct influence on the reachable transmit rate without packet loss. But as we already established: the reason for the packet loss with maximum packet size seems to be actually a cache problem rather than that the CPU. So the better comparison to see the influence of the amount of flows on the achievable transmit rate is Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. $\newline$ Although the measurement for 10000 flows is maybe not as clean as the measurement for 100 flows we see a difference. For 10000 flows the achievable transmit rate is significantly lower. This could have many different reasons. $\newline$
 
 
 \chapter{Conclusion}
+The goal of this thesis was to evaluate if software middleboxes are competitive with hardware implemented middleboxes. Also we wanted to test software middlebox implementations. We developed a NAT model and wanted to confirm our thoughts on it. This chapter summarizes our results. 
+\section{Performance of software middleboxes}
+
+
+
+\section{NAT model}
+
 
 \section{Future Works}
 
