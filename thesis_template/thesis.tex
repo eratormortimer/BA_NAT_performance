@@ -227,7 +227,7 @@ This section introduces the specific software we chose for the testsetup. We wil
 
 \subsection{Experimental Setup}
 
-To assure that the results were reliable and reproducible, we conducted the tests on one system, here the system tallinn. This means we used the same two servers for our experiments. When the system was unavailable, an appropriate alternative system was used. The systems in our testbed are mostly interchangeable. 
+To assure that the results were reliable and reproducible, we conducted the tests on one system, here the system tallinn. This means we used the same two servers for our experiments.  
 $\newline$ 
 The Hardware of the system was: 
 \begin{itemize}
@@ -439,7 +439,11 @@ For the packet size we will concentrate on the two most common packet sizes in t
 \end{figure}
 
 The distribution of these two packet sizes is shown in Figure \ref{fig:PacketSizeDist}. Note here that 40 byte packages are really 64 byte packages, as 40 is just the IP header and the TCP header. We see the minimum packet size packages make up over 50 percent of the packages in this representative capture. Over 40 percent of the packages are maximum size packages \cite{sinha2007internet}. $\newline$
-
+\section{Packet loss}
+In the following sections we will talk about the latency of packets that went through our middlebox and also about when packet loss occurs in our system. In the graphs we use the packet loss is not directly visible. Instead we see an immense increase in the average latency of the packets we send through. To confirm that at these points also packet loss occurs we looked into the MoonGen output we captured. It shows how many packets we transmit by the TX NIC and how many packets we receive by the RX NIC. $\newline$
+Using this output we confirmed that when we see very high latency values in our diagrams also packet loss occurs.
+$\newline$
+\section{Basic configuration}
 We will explain the different results we get with an model to describe how the OVS NAT and the OVS Firewall process packets. $\newline$
 We build the firewall and the NAT on Open VSwitch in a basic configuration. 
 \begin{minted}{bash}
@@ -484,7 +488,17 @@ $\newline$
 
 We started testing the firewall with MoonGen. From the 3 parameters we can change, the flow amount, the packet size and the transmit rate, we fixed the packet size and the amount of flows. We fixed those parameters because of the reasons listed in \ref{parameters}. We first began with packets of 1500 byte each, as this is the Maximum Transmit Unit for Ethernet. MoonGen in its standard configuration does not support Jumbo Frames and we didn't want to enable them. We started out with an moderate amount of flows of 1000. This is not a small amount but still of course not as many as a software middlebox would need to be able to handle if stationed in an ISP. But it is a good starting point, as it is more than a home middlebox would probably be able to handle. $\newline$
 
-With the third variable we determined how many packets  Open VSwitch was able to handle before packet loss would occur. For the first test we checked out what OVS would do with different transmit rates from 100 Mbit/s to 10000 MBit/s in 200 Mbit/s steps. This helped us to define an interesting range of transmit rates where we could test with smaller steps. Interesting in our case means the transmit rate range where OVS has the transition from a low normal latency to a very high latency with packet loss. For this specific test with maximum packet size and 1000 flows it was the range from 9300 MBit/s and 10000 MBit/s. This we expected, as with the maximum packets size less packets per second get send out. This in turn means less work for the software middlebox.
+With the third variable we determined how many packets  Open VSwitch was able to handle before packet loss would occur. For the first test we checked out what OVS would do with different transmit rates from 100 Mbit/s to 10000 MBit/s in 200 Mbit/s steps. This helped us to define an interesting range of transmit rates where we could test with smaller steps. Interesting in our case means the transmit rate range where OVS has the transition from a low normal latency to a very high latency with packet loss. For this specific test with maximum packet size and 1000 flows it was the range from 9300 MBit/s and 10000 MBit/s. This we expected, as with the maximum packets size less packets per second get send out. This in turn means less work for the software middlebox. 
+
+$\newline \newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500.pdf}} \quad
+\caption[ Firewall latency with 9500 MBit/s ]{Firewall latency with 9500 MBit/s }
+\label{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500}
+\end{figure}
+
+Here we have the latency of the packets we measured. We chose a transmit rate of 9500 MBit/s. On the x-axis we have the latency of the packets, on the y-axis whe have the amount of packets we had for each latency. This is a good transmit rate to compare the OVS Firewall with the OVS NAT, as we have no packet loss at that transmit rate. As we can see in Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500} the packet latency is distributed in an Gaussian bell curve around $0.6*10^5$ ns. We have a few outlier but nothing over $2*10^5 $ ns or $0.2$ ms. 
 
 $\newline \newline$
 
@@ -496,10 +510,23 @@ $\newline \newline$
 \end{figure}
 
 Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} shows our conducted test. On the x-axis we have the transmit rates from 9300 Mbit/s to 10000 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. 
-When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 seconds. This means 75 percent of the packets come back withing 4 seconds or less, but also some packets need 4 seconds to pass through the middlebox firewall. 25 percent need more than 4 seconds, which in turn means we have packet loss. $\newline \newline$
+When the test reaches transmit rates over 9870 MBit/s the 75th percentile goes as high as $4*10^6 $ ns or 4 milliseconds. This means 75 percent of the packets come back withing 4 milliseconds or less, but also some packets need 4 milliseconds to pass through the middlebox firewall. 25 percent need more than 4 milliseconds. Here we have packet loss. $\newline \newline$
 \subsection{Firewall tests with a the minimal packets size}
 \paragraph{Firewall test 1000 Flows 64 byte packets }
-In the next test the smallest possible packet size was used, which is 64 bytes. we also raised the flow number to ten thousand. The firewall rules remained the same. We first roughly determined the transmit rate where the firewall began to have packets with high latencies. Afterwards we measured more precisely to figure out hte maximum load the firewall was able to process without packet loss.  $\newline$
+In the next test the smallest possible packet size was used, which is 64 bytes. we also raised the flow number to ten thousand. The firewall rules remained the same. We first roughly determined the transmit rate where the firewall began to have packets with high latencies. Afterwards we measured more precisely to figure out the maximum load the firewall was able to process without packet loss.  $\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow10000TR400.pdf}} \quad
+\caption[Firewall latency with 400 MBit/s ]{Firewall latency with 400 MBit/s}
+\label{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000TR400}
+\end{figure}
+$\newline$
+Here in Figure \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000TR400} we see the latency results for our test. We took as 400 MBit/s as an point of interest, as it is well before we have packet loss. So we can see the normal work latency of the OVS firewall. $\newline$
+We have the same axis labels as before. We see that a lot more packets got sent as we did each test for a preconfigured amount of time and the packets are smaller. So we get more packets per second. Here we don't exactly see an approximate Gaussian bell curve, as the curve has a slower decent after the peak. But the peak is at a lower latency as in Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500}. 
+
+
+
+$\newline \newline$
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.90\columnwidth]{figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf}} \quad
@@ -507,7 +534,7 @@ In the next test the smallest possible packet size was used, which is 64 bytes. 
 \label{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}
 \end{figure}
 $\newline$
-This test is shown in Figure  \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}. On the x-axis we have the transmit rates from 200 Mbit/s to 800 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. The first spikes in the average traffic occur around 640 Mbit/s. But here the 75th percentile is still lower that the average traffic. This means we have very few packets with high latencies. But with 720 Mbit/s and more the average traffic and also the 75th percentile go up to 4 seconds latency and over. Here once again packet loss occurs. $\newline$
+In Figure \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000} we see the results for more transmit rates. On the x-axis we have the transmit rates from 200 Mbit/s to 800 Mbit/s in 20 Mbit/s steps. On the y-axis we annotated the latency of the packets in ns. The first spikes in the average traffic occur around 640 Mbit/s. But here the 75th percentile is still lower that the average traffic. This means we have very few packets with high latencies. But with 720 Mbit/s and more the average traffic and also the 75th percentile go up to 4 milliseconds latency and over. Here once again packet loss occurs. $\newline$
 We see from these two examples that the transmit rates Open VSwitches firewall function can handle differ a lot. Here the most influential factor on when packet loss occurs is the packet size. When we look at how many packets the firewall is able to handle per second we get 2 results. For this calculation we will ignore the Inter Frame Gap, as it is the same in both cases. When looking at maximum sized packets with the transmit rate were the firewall just got problems processing, we get: $$ 9880  \text{ Mbit/s } \, / \, 1526 \text{ Bytes/packet }  \approx 848618 \text{ packets/s. } $$
 In contrast the amount of packets per second in the test with minimal packet size was: $$ 720  \text{ Mbit/s } \, / \, 64 \text{ Bytes/packet }  \approx 1474560 \text{ packets/s. }$$
 This means more packets per second went through the Open VSwitch firewall without packet loss with the minimal packet size. Even though we also had more different flows in that test. 
@@ -529,10 +556,27 @@ ovs-ofctl add-flow br0 "table=1,in_port=1,ct_state=+trk+est,ip,action=ct(nat),2"
 \end{minted}
 $\newline$
 To simplify the process the NAT does not touch ARP packets. All IP packets that are not tracked get committed to table 1. We once again simulate that port 1 is connected to our internal network. Nobody from the outside network should be able to initialize a connection to an internal IP. This is a given for a network behind a NAT middlebox, as the NAT can not know who the internal receiver is for a new incoming connection from the outside. A new connection from the internal port 1 gets NAT'd and send to port 2. Here OVS is configured as an SNAT, replacing the source IP in the packet with an possible public IP address. For already established connections we can just order OVS to NAT the packets accordingly to the first packet. This works accordingly for incoming packets from the external network on port 2. $\newline$
-\subsection{Nat tests with a the maximum packets size}
+\subsection{Influence of the packet size on the NAT}
 \paragraph{NAT test 10000 Flows 1500 byte packets}
-In the first tests of the NAT we fixed the packet size to the MTU of 1500 byte and tested with different flow amounts. To narrow down the interesting transmit rate area we started with an broad test and determined the interesting transmit rate range. 
+We first wanted to compare the NAT with different packet sizes. We fixed the amount of flows on 10000 and first tested with the maximum packet size of 1500 byte. 
 $\newline$
+
+We first tested the latency for the fixed transmit rate of 9500 MBit/s. 
+$\newline$
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.pdf}} \quad
+\caption[NAT latency with 9500 MBit/s ]{NAT latency with 9500 MBit/s}
+\label{fig:TrafficOVSNATtestMaxPacketsizeFlow10000TR9500}
+\end{figure}
+
+
+When we compare Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000TR9500} to Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500} we see differences. We have an Gaussian bell curve in both cases, but in this test the peak is at about $1.2 * 10^5$ ns. This could be an indicator that our model is correct and the NAT has to do more work to forward the packets, which takes more time.
+
+
+$\newline \newline$
+We also looked at the latencies for more transmit rates.
+\\
 \begin{figure}[H]
 \centering
 {\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf}} \quad
@@ -540,10 +584,51 @@ $\newline$
 \label{fig:TrafficOVSNATtestMaxPacketsizeFlow10000}
 \end{figure}
 
-As you can see here the result is very similar to the result we have seen in the OVS firewall test with maximum packet size. With transmit rates of 9880 Mbit/s and more the 75th percentile of the latency goes up to 4 seconds. Even though the NAT presumably has to do more work when processing the packets, the attainable transmit rate without packet loss is about the same. 
+As you can see here the result is very similar to the result we have seen in the OVS firewall test with maximum packet size. With transmit rates of 9880 Mbit/s and more the 75th percentile of the latency goes up to 4 milliseconds. Even though the NAT presumably has to do more work when processing the packets, the attainable transmit rate without packet loss is about the same. 
 $\newline$
+\paragraph{NAT test 10000 Flows 64 byte packets}$\newline$
+We the compare our result before with the test with the minimum packet size to see the influence the packet size makes.  $\newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR400.pdf}} \quad
+\caption[NAT latency with 400 MBit/s ]{NAT latency with 400 MBit/s}
+\label{fig:TrafficOVSNATtestMinimalPacketsizeFlow10000TR400}
+\end{figure}
+$\newline$
+In Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow10000TR400} we see the latency of packets at a transmit rate of 400 MBit/s. When we compare it with \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000TR400} we see that the peak is approximately at the same latency. But the average latency of this test is a lot higher, as we have packets with latency of $3*10^5$ ns and more. If we compare the graph with the graph in Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000TR9500} we see that the latency is lower when sending minimum sized packets. 
+$\newline$
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf}} \quad
+\caption[ OpenVSwitch NAT test with minimal packet size and 10000 flows]{OpenVSwitch NAT test with minimal packet size and 10000 flows }
+\label{fig:TrafficOVSNATtestMinPacketsizeFlow10000}
+\end{figure}
+$\newline$
+We of course directly see that in Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} the maximum transmit rate we can achieve without packet loss is a lot higher than in Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. This was expected as less packets mean smaller workload on our system. 
+
+
+
+
+
+
+
+
+\subsection{Influence of the amount of flows on the NAT}
+To show how the number flows influences this result, we have done the same tests with only 100 flows. This should in theory make the processing of the packets more efficient. 
 \paragraph{NAT test 100 Flows 1500 byte packets}$\newline$
-To show how the number flows influences this result, we have done the same test with only 100 flows. This should in theory make the processing of the packets more efficient. 
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pdf}} \quad
+\caption[NAT latency with 9500 MBit/s ]{NAT latency with 9500 MBit/s}
+\label{fig:TrafficOVSNATtestMaxPacketsizeFlow100TR9500}
+\end{figure}
+
+As Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100TR9500} shows us the amount of flows make an noticeable difference when looking at the latency at a single transmit rate. The peak here is at a lower latency as in Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000TR9500}. 
+
+
 $\newline$
 \begin{figure}[H]
 \centering
@@ -552,11 +637,21 @@ $\newline$
 \label{fig:TrafficOVSNATtestMaxPacketsizeFlow100}
 \end{figure}
 $\newline$
-When we compare the graphs of the two tests in Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see a lot of similarities. We see that we get high latency values with transmit rated of 9880 Mbit/s or more. We expected this value to be higher on the second graph, as the middlebox has to handle less flows and should be able to handle more packets. But this is not the case or the effect is so little that we can not see it in the graphs. The average value for the latency after 9880 Mbit/s is even higher when we have less flows. From this we can conclude that the amount of flows has very little impact on the performance of the software middlebox. The bottleneck in our system that causes the high latency values still has the same problems with less flows. $\newline$
+When we compare the graphs of the two tests in Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see a lot of similarities. We see that we get high latency values with transmit rated of 9880 Mbit/s or more. We expected this value to be higher on the second graph, as the middlebox has to handle less flows and should be able to handle more packets. But this is not the case or the effect is so little that we can not see it in the graphs. But we see an effect when looking at Figure \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100TR9500}. From this we can conclude that the amount of flows has a small impact on the performance of the software middlebox. But the bottleneck in our system that causes the high latency values and packet loss at transmit rates over 9880 MBit/s still has the same problems with less flows. $\newline$
 
-\subsection{Nat tests with a the minimal packets size}
+$\newline \newline$
 \paragraph{NAT test 100 Flows 64 byte packets}$\newline$
-Additional tests with the minimum packet size will show how the NAT compares to the firewall with minimal packet size.
+
+
+
+\begin{figure}[H]
+\centering
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400.pdf}} \quad
+\caption[NAT latency with 400 MBit/s ]{NAT latency with 400 MBit/s}
+\label{fig:TrafficOVSNATtestMinimalPacketsizeFlow100TR400}
+\end{figure}
+Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow100TR400} has a similar peak to Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow10000TR400}. But in the test with 10000 flows the average latency is higher as we a small amount of packets with high latency values. 
+
 $\newline$
 \begin{figure}[H]
 \centering
@@ -566,16 +661,21 @@ $\newline$
 \end{figure}
 
 Interestingly we see a big difference here to the results we have seen in Figure \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000}. We see the first spike in latency occuring around 540 Mbit/s, where as we had 640 Mbit/s transmit rate for the first latency surge in the firewall. We expected this in our model, as the NAT has to presumably do more work to forward the packets. $\newline$
-\paragraph{NAT test 10000 Flows 64 byte packets}$\newline$
-To directly compare it, we also have done the test with 10000 flows. If it is constant with what we experienced before, we expect the amount of flows to not make a difference again. $\newline$
+
+As we can see in direct comparison of Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} the big increase of latency happens around the same transmit rate. But this time the increase in flows did make difference. Although we have irregularities in the test with 10000 flows, the big increase where the latency goes above 5 milliseconds and stays there happens around 500 Mbit/s, which is earlier than in the example with 100 flows. This is however a very small difference. Also we see irregularities in Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} before, spikes where the latency goes above 4 milliseconds for example at 320 Mbit/s. This could be a cue that the result was slightly distorted. 
+
+\subsection{Flow limit}
+As a final test we wanted to know if the NAT has a limit for how many flows can be handled. We tested this using the minimum transmit rate only as there the effect was more noticeable. For 60000 Flows the latencies at transmit rate 400 MBit/s looked like this: 
+$\newline$
 \begin{figure}[H]
 \centering
-{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf}} \quad
-\caption[ OpenVSwitch NAT test with minimal packet size and 10000 flows]{OpenVSwitch NAT test with minimal packet size and 10000 flows }
-\label{fig:TrafficOVSNATtestMinPacketsizeFlow10000}
+{\includegraphics[width=.90\columnwidth]{figures/TrafficOVSNATStresstestMinPacketsizeFlow60000TR400.pdf}} \quad
+\caption[NAT stress test with 60000 flows ]{NAT stress test with 60000 flows}
+\label{fig:TrafficOVSNATStresstestMinPacketsizeFlow60000TR400}
 \end{figure}
-$\newline$
-As we can see in direct comparison of Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} the big increase of latency happens around the same transmit rate. Bit this time the increase in flows did make difference. Although we have irregularities in the test with 10000 flows, the big increase where the latency goes above 5 seconds and stays there happens around 500 Mbit/s, which is earlier than in the example with 100 flows. This is however a very small difference. Also we see irregularities in Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} before, spikes where the latency goes above 4 seconds for example at 320 Mbit/s. This could be a cue that the result was slightly distorted. 
+$\newline$ 
+This result looks similar to our other tests with minimum packet size. With 70000 flows and more the NAT was no longer able to handle the packet forwarding and just stopped doing it, not even for low transmit rates.  
+
 
 \section{Evaluation}
 \subsection{Influence of packet size}
@@ -603,7 +703,8 @@ As you can see the CPU load average pretty much confirms our theory. OVS does no
 $\newline$
 \subsection{Influence of flow amount}
 When we compare our NAT results with different flow amounts we see 2 different results. When comparing Figures \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see no direct influence on the reachable transmit rate without packet loss. But as we already established: the reason for the packet loss with maximum packet size seems to be actually a cache problem rather than that the CPU. So the better comparison to see the influence of the amount of flows on the achievable transmit rate is Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. $\newline$ Although the measurement for 10000 flows is maybe not as clean as the measurement for 100 flows we see a difference. For 10000 flows the achievable transmit rate is significantly lower. This could have many different reasons. $\newline$
-
+We see a small influence when we look at our results for the single transmit rate, where the amount of flows shifts the average latency of the packets.$\newline$
+And as we have seen with the stress tests there is an upper limit for the amount of flows the NAT is able to handle.$\newline$
 
 \chapter{Conclusion}
 The goal of this thesis was to evaluate if software middleboxes are competitive with hardware implemented middleboxes. Also we wanted to test software middlebox implementations. We developed a NAT model and wanted to confirm our thoughts on it. This chapter summarizes our results. 
@@ -615,6 +716,8 @@ The goal of this thesis was to evaluate if software middleboxes are competitive 
 
 
 \section{Future Works}
+
+
 
 
 %\subfile{include/outline.tex}

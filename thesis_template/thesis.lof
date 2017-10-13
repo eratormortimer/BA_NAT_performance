@@ -19,10 +19,17 @@
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Stateful NAT flow in Open VSwitch}}{23}{figure.3.10}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Five-minute USC Internet2 trace. (Scrambled Internet Trace Measurement dataset) }}{26}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces OpenVSwitch Firewall test with maximum packet size and 1000 flows}}{29}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces OpenVSwitch Firewall test with minimum packet size and 10000 flows}}{30}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 10000 flows}}{32}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 100 flows}}{33}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 100 flows}}{34}{figure.4.6}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 10000 flows}}{35}{figure.4.7}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Firewall latency with 9500 MBit/s }}{29}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces OpenVSwitch Firewall test with maximum packet size and 1000 flows}}{30}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Firewall latency with 400 MBit/s }}{31}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces OpenVSwitch Firewall test with minimum packet size and 10000 flows}}{32}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces NAT latency with 9500 MBit/s }}{34}{figure.4.6}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 10000 flows}}{34}{figure.4.7}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces NAT latency with 400 MBit/s }}{35}{figure.4.8}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 10000 flows}}{36}{figure.4.9}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces NAT latency with 9500 MBit/s }}{37}{figure.4.10}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces OpenVSwitch NAT test with maximum packet size and 100 flows}}{37}{figure.4.11}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces NAT latency with 400 MBit/s }}{38}{figure.4.12}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces OpenVSwitch NAT test with minimal packet size and 100 flows}}{39}{figure.4.13}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces NAT stress test with 60000 flows }}{40}{figure.4.14}
 \addvspace {10\p@ }

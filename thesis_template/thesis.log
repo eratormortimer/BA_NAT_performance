@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  8 OCT 2017 22:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.3.30)  13 OCT 2017 03:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2179,7 +2179,7 @@ Chapter 1.
 
 ] [2]
 Chapter 2.
-<figures/NATPrivate.png, id=318, 498.86375pt x 168.63pt>
+<figures/NATPrivate.png, id=347, 498.86375pt x 168.63pt>
 File: figures/NATPrivate.png Graphic file (type png)
 
 <use figures/NATPrivate.png>
@@ -2209,7 +2209,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--138
 
  []
 
-<figures/IntelDPDK.png, id=355, 420.6114pt x 356.0502pt>
+<figures/IntelDPDK.png, id=384, 420.6114pt x 356.0502pt>
 File: figures/IntelDPDK.png Graphic file (type png)
 
 <use figures/IntelDPDK.png>
@@ -2228,7 +2228,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 171--173
 
  []
 
-<figures/Testsetup.pdf, id=378, 584.1825pt x 309.155pt>
+<figures/Testsetup.pdf, id=407, 584.1825pt x 309.155pt>
 File: figures/Testsetup.pdf Graphic file (type pdf)
 
 <use figures/Testsetup.pdf>
@@ -2246,7 +2246,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 182.
-<figures/black_box_testing.png, id=385, 301.125pt x 149.55875pt>
+<figures/black_box_testing.png, id=414, 301.125pt x 149.55875pt>
 File: figures/black_box_testing.png Graphic file (type png)
 
 <use figures/black_box_testing.png>
@@ -2262,7 +2262,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 273--274
 
  []
 
-[13] <figures/mOSFlow.png, id=418, 800.23969pt x 275.52937pt>
+[13] <figures/mOSFlow.png, id=447, 800.23969pt x 275.52937pt>
 File: figures/mOSFlow.png Graphic file (type png)
 
 <use figures/mOSFlow.png>
@@ -2273,7 +2273,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 286--288
 
  []
 
-<figures/mOSThread.png, id=422, 823.57687pt x 325.96782pt>
+<figures/mOSThread.png, id=451, 823.57687pt x 325.96782pt>
 File: figures/mOSThread.png Graphic file (type png)
 
 <use figures/mOSThread.png>
@@ -2292,7 +2292,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 299--300
 
  []
 
-<figures/mOSDPDKSummit.pdf, id=431, page=11, 722.7pt x 542.025pt>
+<figures/mOSDPDKSummit.pdf, id=460, page=11, 722.7pt x 542.025pt>
 File: figures/mOSDPDKSummit.pdf Graphic file (type pdf)
 
 <use figures/mOSDPDKSummit.pdf, page 11>
@@ -2300,7 +2300,7 @@ Package pdftex.def Info: figures/mOSDPDKSummit.pdf, page11 used on input line 3
 03.
 (pdftex.def)             Requested size: 249.59766pt x 187.19731pt.
  [15 <./figures/mOSThread.png (PNG copy)> <./figures/mOSDPDKSummit.pdf>]
-<figures/midstat_inline.png, id=463, 260.09673pt x 153.95015pt>
+<figures/midstat_inline.png, id=492, 260.09673pt x 153.95015pt>
 File: figures/midstat_inline.png Graphic file (type png)
 
 <use figures/midstat_inline.png>
@@ -2323,7 +2323,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 328--329
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18]
-<figures/OpenVSwitch.png, id=490, 776.9025pt x 353.32pt>
+<figures/OpenVSwitch.png, id=519, 776.9025pt x 353.32pt>
 File: figures/OpenVSwitch.png Graphic file (type png)
 
 <use figures/OpenVSwitch.png>
@@ -2337,7 +2337,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 347--354
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
- [19 <./figures/OpenVSwitch.png>] <figures/OVSDPDK.png, id=504, 752.8125pt x 62
+ [19 <./figures/OpenVSwitch.png>] <figures/OVSDPDK.png, id=533, 752.8125pt x 62
 3.32875pt>
 File: figures/OVSDPDK.png Graphic file (type png)
 
@@ -2353,7 +2353,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 375--383
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [20]
-<figures/OVSconntrack.pdf, id=516, page=6, 794.97pt x 614.295pt>
+<figures/OVSconntrack.pdf, id=545, page=6, 794.97pt x 614.295pt>
 File: figures/OVSconntrack.pdf Graphic file (type pdf)
 
 <use figures/OVSconntrack.pdf, page 6>
@@ -2364,7 +2364,7 @@ Package pdftex.def Info: figures/OVSconntrack.pdf, page6 used on input line 393
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [21 <./figures/OVSDPDK.png>]
-<figures/OVSconntrack.pdf, id=528, page=13, 794.97pt x 614.295pt>
+<figures/OVSconntrack.pdf, id=557, page=13, 794.97pt x 614.295pt>
 File: figures/OVSconntrack.pdf Graphic file (type pdf)
 
 <use figures/OVSconntrack.pdf, page 13>
@@ -2383,7 +2383,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
-[25] <figures/Sinha07a.pdf, id=681, page=3, 614.295pt x 794.97pt>
+[25] <figures/Sinha07a.pdf, id=710, page=3, 614.295pt x 794.97pt>
 File: figures/Sinha07a.pdf Graphic file (type pdf)
 
 <use figures/Sinha07a.pdf, page 3>
@@ -2394,6 +2394,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 441--442
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 443--446
+
+ []
+
+[26 <./figures/Sinha07a.pdf>]
 \openout4 = `thesis.pyg'.
 
 
@@ -2417,22 +2423,20 @@ LaTeX Font Info:    Font shape `T1/fvm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/fvm/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
 (Font)              scaled to size 8.76003pt on input line 4.
- [26 <./figures/Sinha07a.pdf>])
+)
 \openout4 = `thesis.pyg'.
 
 
 (./_minted-thesis/772A5F44BB51E447A38EE107A866D76A9F014CDCC252D787938A66F94A2C2
 8CF.pygtex
-Underfull \hbox (badness 10000) in paragraph at lines 465--1
-
- []
-
-) [27]
-Underfull \hbox (badness 10000) in paragraph at lines 481--482
+Underfull \hbox (badness 10000) in paragraph at lines 469--1
 
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27])
 Underfull \hbox (badness 10000) in paragraph at lines 485--486
 
  []
@@ -2442,172 +2446,300 @@ Underfull \hbox (badness 10000) in paragraph at lines 489--490
 
  []
 
+[28]
+<figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500.pdf, id=749, 341
+.45367pt x 181.54927pt>
+File: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500.pdf Graphic
+ file (type pdf)
 
-<figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf, id=715, 350.63397
+<use figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500.pdf>
+Package pdftex.def Info: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow100
+0TR9500.pdf used on input line 496.
+(pdftex.def)             Requested size: 345.59766pt x 183.75943pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 493--499
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 503--504
+
+ []
+
+[29 <./figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000TR9500.pdf>]
+<figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf, id=783, 350.63397
 pt x 210.2525pt>
 File: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf Graphic file 
 (type pdf)
 
 <use figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf>
 Package pdftex.def Info: figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow100
-0.pdf used on input line 493.
+0.pdf used on input line 507.
 (pdftex.def)             Requested size: 345.59766pt x 207.23628pt.
 
-Underfull \vbox (badness 2368) has occurred while \output is active []
-
- [28]
-Underfull \hbox (badness 10000) in paragraph at lines 498--500
+Underfull \hbox (badness 10000) in paragraph at lines 512--514
 
  []
 
 
-<figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf, id=722, 350.
+<figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow10000TR400.pdf, id=785, 349
+.23174pt x 181.55026pt>
+File: figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow10000TR400.pdf Graphic
+ file (type pdf)
+
+<use figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow10000TR400.pdf>
+Package pdftex.def Info: figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow100
+00TR400.pdf used on input line 519.
+(pdftex.def)             Requested size: 345.59766pt x 179.66605pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 516--522
+
+ []
+
+
+Underfull \vbox (badness 1466) has occurred while \output is active []
+
+ [30 <./figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf>]
+<figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf, id=809, 350.
 63596pt x 210.24849pt>
 File: figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf Graphic 
 file (type pdf)
 
 <use figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf>
 Package pdftex.def Info: figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlo
-w10000.pdf used on input line 505.
+w10000.pdf used on input line 532.
 (pdftex.def)             Requested size: 345.59766pt x 207.23232pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 502--508
+Underfull \hbox (badness 10000) in paragraph at lines 529--535
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29 <./figures/TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000.pdf>]
+ [31 <./figures/TrafficOVSFirewallMinPacketsizeLowRulesFlow10000TR400.pdf>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 511.
+(Font)              scaled to size 8.0pt on input line 538.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.1pt on input line 511.
+(Font)              scaled to size 6.1pt on input line 538.
 \openout4 = `thesis.pyg'.
 
 
 (./_minted-thesis/9C36A77C1B0936606684BCCF360233069F014CDCC252D787938A66F94A2C2
 8CF.pygtex
-Underfull \hbox (badness 10000) in paragraph at lines 517--1
+Underfull \hbox (badness 10000) in paragraph at lines 544--1
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30 <./figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf>])
-Underfull \hbox (badness 10000) in paragraph at lines 530--532
+ [32 <./figures/TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000.pdf>])
+Underfull \hbox (badness 10000) in paragraph at lines 557--559
 
  []
 
 
-<figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf, id=774, 350.63397pt x 210
+Underfull \hbox (badness 10000) in paragraph at lines 561--563
+
+ []
+
+
+<figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.pdf, id=848, 341.45367pt
+ x 181.55328pt>
+File: figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.pdf Graphic file (t
+ype pdf)
+
+<use figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.
+pdf used on input line 568.
+(pdftex.def)             Requested size: 345.59766pt x 183.7635pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 564--571
+
+ []
+
+[33]
+<figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf, id=857, 350.63397pt x 210
 .25351pt>
 File: figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf Graphic file (type pd
 f)
  <use figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf>
 Package pdftex.def Info: figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf us
-ed on input line 538.
+ed on input line 582.
 (pdftex.def)             Requested size: 345.59766pt x 207.23726pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 534--541
+Underfull \hbox (badness 10000) in paragraph at lines 577--585
 
  []
 
 
-Underfull \vbox (badness 2591) has occurred while \output is active []
-
- [31]
-Underfull \hbox (badness 10000) in paragraph at lines 543--545
+Underfull \hbox (badness 10000) in paragraph at lines 587--589
 
  []
 
 
-<figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf, id=780, 350.63397pt x 210.2
-4748pt>
-File: figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf Graphic file (type pdf)
+Underfull \vbox (badness 1024) has occurred while \output is active []
 
- <use figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf>
-Package pdftex.def Info: figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf used
- on input line 550.
-(pdftex.def)             Requested size: 345.59766pt x 207.23132pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 545--553
+ [34 <./figures/TrafficOVSNATtestMaxPacketsizeFlow10000TR9500.pdf> <./figures/T
+rafficOVSNATtestMaxPacketsizeFlow10000.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 589--591
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+<figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR400.pdf, id=895, 349.2317
+4pt x 181.55328pt>
+File: figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR400.pdf Graphic file
+ (type pdf)
 
- [32 <./figures/TrafficOVSNATtestMaxPacketsizeFlow10000.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 554--556
+<use figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR400.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR4
+00.pdf used on input line 594.
+(pdftex.def)             Requested size: 345.59766pt x 179.66904pt.
 
- []
-
-
-<figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf, id=804, 350.63596pt x 2
-10.23744pt>
-File: figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf Graphic file (type 
-pdf)
- <use figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf>
-Package pdftex.def Info: figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf 
-used on input line 563.
-(pdftex.def)             Requested size: 345.59766pt x 207.22142pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 558--566
+Underfull \hbox (badness 10000) in paragraph at lines 598--601
 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [33 <./figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 568--569
-
- []
-
-
-<figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf, id=828, 350.63596pt x
+<figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf, id=899, 350.63596pt x
  210.25049pt>
 File: figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf Graphic file (typ
 e pdf)
  <use figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf>
 Package pdftex.def Info: figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pd
-f used on input line 573.
+f used on input line 604.
 (pdftex.def)             Requested size: 345.59766pt x 207.23428pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 569--576
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow10000TR400.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 620--621
+
+ []
+
+
+<figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pdf, id=923, 341.45367pt x
+ 181.54927pt>
+File: figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pdf Graphic file (typ
+e pdf)
+ <use figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pd
+f used on input line 624.
+(pdftex.def)             Requested size: 345.59766pt x 183.75943pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf>]
+<figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf, id=944, 350.63397pt x 210.2
+4748pt>
+File: figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf Graphic file (type pdf)
+
+ <use figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMaxPacketsizeFlow100.pdf used
+ on input line 635.
+(pdftex.def)             Requested size: 345.59766pt x 207.23132pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--638
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 639--641
+
+ []
+
+[37 <./figures/TrafficOVSNATtestMaxPacketsizeFlow100TR9500.pdf> <./figures/Traf
+ficOVSNATtestMaxPacketsizeFlow100.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 642--643
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 643--644
+
+ []
+
+
+<figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400.pdf, id=985, 349.23174p
+t x 181.55429pt>
+File: figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400.pdf Graphic file (
+type pdf)
+
+<use figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400
+.pdf used on input line 649.
+(pdftex.def)             Requested size: 345.59766pt x 179.67003pt.
+
+<figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf, id=988, 350.63596pt x 2
+10.23744pt>
+File: figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf Graphic file (type 
+pdf)
+ <use figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf 
+used on input line 658.
+(pdftex.def)             Requested size: 345.59766pt x 207.22142pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 655--661
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 582--583
-
- []
-
-[35 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow10000.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 584--598
-
- []
-
-[36]
-Underfull \hbox (badness 10000) in paragraph at lines 603--604
+ [38 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow100TR400.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 663--664
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
+<figures/TrafficOVSNATStresstestMinPacketsizeFlow60000TR400.pdf, id=1014, 349.2
+3174pt x 181.55026pt>
+File: figures/TrafficOVSNATStresstestMinPacketsizeFlow60000TR400.pdf Graphic fi
+le (type pdf)
+
+<use figures/TrafficOVSNATStresstestMinPacketsizeFlow60000TR400.pdf>
+Package pdftex.def Info: figures/TrafficOVSNATStresstestMinPacketsizeFlow60000T
+R400.pdf used on input line 672.
+(pdftex.def)             Requested size: 345.59766pt x 179.66605pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 668--675
 
  []
 
-[37] [38
 
-]
+Underfull \vbox (badness 1742) has occurred while \output is active []
+
+ [39 <./figures/TrafficOVSNATtestMinimalPacketsizeFlow100.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 682--683
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--698
+
+ []
+
+[40 <./figures/TrafficOVSNATStresstestMinPacketsizeFlow60000TR400.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 703--704
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 705--708
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+[42]
 Chapter 5.
-(./thesis.bbl [39] [40
+(./thesis.bbl [43
+
+] [44
 
 ]
 Underfull \hbox (badness 1043) in paragraph at lines 25--28
@@ -2633,7 +2765,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 78--81
  en / software / blog / 2013 / 05 / 16 /
  []
 
-[41]
+[45]
 Underfull \hbox (badness 4699) in paragraph at lines 88--91
 []\T1/LinuxLibertineT-TLF/m/n/10.95 (+15) ``Black box test-ing fun-da-men-tals,
 '' []$http : / / softwaretestingfundamentals . com /
@@ -2657,23 +2789,23 @@ Underfull \hbox (badness 3492) in paragraph at lines 148--151
 []$https : / / mail . openvswitch . org / pipermail /
  []
 
-[42]) [43]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 629.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 629.
+[46]) [47]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 732.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 732.
  (./thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 629.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 629.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 732.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 732.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 10DB5EF52847F406E9B01EDDB0FF444C;2311.
+(rerunfilecheck)             Checksum: 87724734D238F0A7AEDFD7658064A7B7;2499.
 runsystem(rm thesis.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 38859 strings out of 494946
- 870229 string characters out of 6180981
- 1173606 words of memory out of 5000000
- 40976 multiletter control sequences out of 15000+600000
- 99948 words of font info for 187 fonts, out of 8000000 for 9000
+ 38922 strings out of 494946
+ 873093 string characters out of 6180981
+ 1173605 words of memory out of 5000000
+ 41014 multiletter control sequences out of 15000+600000
+ 100335 words of font info for 190 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
  76i,10n,84p,1487b,637s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_c7kyj5.enc}{/us
@@ -2695,10 +2827,10 @@ ist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/txfonts/txsy.pfb>
-Output written on thesis.pdf (59 pages, 2559136 bytes).
+Output written on thesis.pdf (63 pages, 2687091 bytes).
 PDF statistics:
- 1022 PDF objects out of 1200 (max. 8388607)
- 841 compressed objects within 9 object streams
- 155 named destinations out of 1000 (max. 500000)
- 28594 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 1207 PDF objects out of 1440 (max. 8388607)
+ 1013 compressed objects within 11 object streams
+ 169 named destinations out of 1000 (max. 500000)
+ 28653 words of extra memory for PDF output out of 29859 (max. 10000000)
 
