@@ -59,15 +59,15 @@
 \chapter{Introduction}
 
 \section{Motivation}
-Middleboxes are mediating devices used by both End-user Internet Service Providers and normal home users. The requirements ISPs have for Middleboxes are of course vastly different from the requirements of private users. Thus the implementations differs greatly as well. Middleboxes for home users do not have high performance requirements. They conduct mostly very simple tasks for a low amount of devices. This is changing of course, as more and more web-enabled devices are used in modern households. 
-Still the required performance is low in contrast to at an ISP for example. Especially carrier grade network address translation is used to provide ipv4 connectivity for mobile phones, since IPv4 addresses are getting rare \cite{A10}. The Middleboxes used are mostly implemented in hardware, which has assets and drawbacks. Those drawbacks are significant. 
-Middleboxes specifically produced for ISPs are expensiv both in acquisition and maintainance, also they usually have to be replaced to introduce new features \cite{WhiteP}. Also they are difficult to scale with higher or lower demand. All these problems are avoidable through network function virtualization. And the long-term plan is indeed to replace these hardware middleboxes with all-purpose hardware that is cheap and easily replaceable \cite{Click}. The networking functions would be implemented in software. 7 of the worlds largest telecoms network operators are in an standards group for virtualization of network functions. So the topic is already being discussed in ISPs \cite{NetDis} 
+Middleboxes are mediating devices used by both End-user Internet Service Providers (ISPs) and normal home users. The requirements ISPs have for middleboxes are of course vastly different from the requirements of private users. Thus the implementations differs greatly as well. Middleboxes for home users do not have high performance requirements. They conduct mostly very simple tasks for a low amount of devices. This is changing of course, as more and more web-enabled devices are used in modern households. 
+Still the required performance is low in contrast to at an ISP for example. Especially carrier grade network address translation is used to provide ipv4 connectivity for mobile phones, since IPv4 addresses are getting rare \cite{A10}. The middleboxes used are mostly implemented in hardware, which has assets and drawbacks. Those drawbacks are significant. 
+middleboxes specifically produced for ISPs are expensiv both in acquisition and maintainance, also they usually have to be replaced to introduce new features \cite{WhiteP}. Also they are difficult to scale with higher or lower demand. All these problems are avoidable through network function virtualization. And the long-term plan is indeed to replace these hardware middleboxes with all-purpose hardware that is cheap and easily replaceable \cite{Click}. The networking functions would be implemented in software. 7 of the worlds largest telecoms network operators are in an standards group for virtualization of network functions. So the topic is already being discussed in ISPs \cite{NetDis} 
 
 
 
 \section{Goal of the thesis}
-The goal of this thesis is to test different software Middlebox implementations. We will install different middlebox implementations in our testbed. Then we will test the packet processing capability, try to find bottlenecks for the performance when processing packets. We will evaluate our results. 
-Additionally we want to evaluate if software Middleboxes are competitive with hardware implemented Middleboxes and could replace them in the foreseeable future. 
+The goal of this thesis is to test different software middlebox implementations. We will install different middlebox implementations in our testbed. Then we will test the packet processing capability, try to find bottlenecks for the performance when processing packets. We will evaluate our results. 
+Additionally we want to evaluate if software middleboxes are competitive with hardware implemented middleboxes and could replace them in the foreseeable future. 
 
 \section{Outline}
 
@@ -164,7 +164,7 @@ As a short conclusion in DPDK, we can see that DPDK could be vital to accelerate
 
 Before we can start testing the performance of a software middlebox of our choice, we have to decide on test parameters. This involves how we should conduct the measurements, what we want to measure, how the measurements should look like etc. For example we have to decide on a load generator, what kind of test environment, how we want to collect and visualize the data that we derive, and most importantly the middlebox software we want to survey. 
 $\newline$
-In this chapter we talk about the research methodology and how to build it.
+In this chapter we discuss the research methodology and its design and implementation.
 
 \section{General Idea}
 
@@ -181,7 +181,7 @@ $\newline$
 
 \subsection{Black box testing}
 
-Black box testing is an important part of testing software. It it's core it is used to analyze software without knowledge or reference to the internal working of the software. This enables us to test the functionality of the software with basically no consideration of the internal processes of the software \cite{khan2010different}. 
+Black box testing is an important part of testing software. At its core it is used to analyze software without knowledge or reference to the internal working of the software. This enables us to test the functionality of the software with basically no consideration of the internal processes of the software \cite{khan2010different}. 
 
 \begin{figure}[H]
 \centering
@@ -215,7 +215,7 @@ Some disadvantages of blackbox testing for our case include:
 
 \subsection{Software}
 
-For the tests we need software to implement and run the DUT and software to generate and record traffic. For one we need the middlebox software. As explaned in \ref{NATmodel} we want to implement and understand NAT in different states. This means our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Technically the load generator only needs to generate more load than the DUT can handle. As we do not know how much middlebox software on our server can handle we try to shoot for the maximum load possible. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
+For the tests we need software to implement and run the DUT and software to generate and record traffic. For one we need the middlebox software. As explaned in \ref{NATmodel} we want to implement and understand NAT in different states. This means our software middlebox needs to be very flexible. As our main features we need a stateless firewall and the NAT functionality. The software needs to run on our hardware under Linux. Preferably the software should use DPDK or similar software to increase the performance of the packet forwarding. Otherwise if the software uses the Linux Kernel it should at least have the option to use DPDK in the future. To test the performance of the DUT we need a load generator. The load generator needs to generate enough load to saturate a 10 gigabit Ethernet connection, as our two servers are connected with 10 gigabit Ethernet. Technically the load generator only needs to generate more load than the DUT can handle. As we do not know how much middlebox software on our server can handle we are aiming for the maximum load possible. Also our load generator must be able to accurately measure the latency of our packets. Important for the tests are the different metrics we can define with the load generator. To fully test the middlebox we need to be able to change the metrics of our packet stream very freely. This includes the packet sizes, different ports, different IP addresses and different transmit rates.
 
 %%Potential: Testframework
 
@@ -261,11 +261,11 @@ MoonGen is a software-based traffic generator that can saturate 10 Gbit Ethernet
 
 \end{itemize}
 
-One disadvantage of MoonGen is that it currently only supports UDP packets for layer 3 latency measurements. MoonGen is not able to understand the TCP stack and therefor cannot establish a TCP connection. This was important when testing the middlebox software mOS, which will be talked about later. 
+One disadvantage of MoonGen is that it currently only supports UDP packets for layer 3 latency measurements. MoonGen is not able to understand the TCP stack and therefore cannot establish a TCP connection. This was important when testing the middlebox software mOS, which will be talked about later. 
 
 \subsubsection{Closer Look: Hardware timestamping }
 
-The type of hardware timestamping in MoonGen is very unique. It utilities the IEEE 1588 Precision Time Protocol (PTP), which is used for clock synchronization across networks. It is supported by a large variety of NICs. PTP is either used as a protocol on layer 3 or on top of UDP on layer 4. This hardware timestamping works at the moment with the Intel 82580 GbE, the 82599 and X540 10 GbE chips. These NICs support the timestamping with PTP Ethernet and UDP. Moongen configures them to only recognize PTP packets with a specific first byte in their header. The second byte represents the PTP version number. The other PTP fields are not used and can contain any value. This allows MoonGen to measure the latency of any packet. $\newline$ 
+The type of hardware timestamping in MoonGen is very unique. It utilizes the IEEE 1588 Precision Time Protocol (PTP), which is used for clock synchronization across networks. It is supported by a large variety of NICs. PTP is either used as a protocol on layer 3 or on top of UDP on layer 4. This hardware timestamping works at the moment with the Intel 82580 GbE, the 82599 and X540 10 GbE chips. These NICs support the timestamping with PTP Ethernet and UDP. Moongen configures them to only recognize PTP packets with a specific first byte in their header. The second byte represents the PTP version number. The other PTP fields are not used and can contain any value. This allows MoonGen to measure the latency of any packet. $\newline$ 
 All timestamps fro recieved and transmitted packets get saved in a special register directliy on the NIC. This register has to be read out before the next packet can be timestamped. Some NICs also support the prepending of timestamps of new packets to the buffer. With these timestamping mechanisms MoonGen can reach a precision of 64 nanoseconds on a 10GbE link \cite{emmerich2015moongen}.
 
 
@@ -314,7 +314,7 @@ We initially chose mOS as our middlebox test candidate because it promised great
 
 \subsubsection{Setup in the testbed}
 
-To set up the base mOS on one of the servers in the testbed I followed the documentation of the mOS developers. This involved installing several packages of the Debian repositories as well as installing DPDK with all its dependencies. We decided to use mOS compiled with the DPDK library and not with the PCAP library. We made this decision based on the data from the mOS developers, which promised a better performance with the DPDK libraries \cite{mOSStack}. Afterwards I compiled mOS with DPDK. This involved setting up hugepages. 1024 2 MB pages were used. Afterwards the Ethernet devices connected to the load server were loaded and bound to the IGB\_UIO module. This module is a wrapper module. It sits on top of the UIO module of the linux kernel and allows for the DPDK drivers in the user space to access the registers on the NICs \cite{mOSDoc}. 
+To set up the base mOS on one of the servers in the testbed I followed the documentation of the mOS developers. This involved installing several packages of the Debian repositories as well as installing DPDK with all its dependencies. We decided to use mOS compiled with the DPDK library and not with the PCAP library. We made this decision based on the data provided by the mOS developers, which promised a better performance with the DPDK libraries \cite{mOSStack}. Afterwards I compiled mOS with DPDK. This involved setting up hugepages. 1024 2 MB pages were used. Afterwards the Ethernet devices connected to the load server were loaded and bound to the IGB\_UIO module. This module is a wrapper module. It sits on top of the UIO module of the linux kernel and allows for the DPDK drivers in the user space to access the registers on the NICs \cite{mOSDoc}. 
 $\newline$
 Because of the structure of our testbed mOS was used in inline mode. 
 
@@ -334,17 +334,17 @@ After making sure that the IP addresses of the two interfaces on the DUT were un
 
 
 \subsubsection{Problems}
-Sadly as stated before in section \ref{mOSBegin}, mOS had 2 main problems during the setup and when the applications were running. We had some minor problems as well but were able to fix them. We put quite some effort into fixing these problems (including contacting the mOS developers), but we were unable to fix these problems with a reasonable amount of work as part of this thesis. This sadly meant we had to drop mOS \cite{mOSGit}.
+As stated before in section \ref{mOSBegin}, mOS had 2 main problems during the setup and when the applications were running. We had some minor problems as well but were able to fix them. We put quite some effort into fixing these problems (including contacting the mOS developers), but we were unable to fix these problems with a reasonable amount of work as part of this thesis. This sadly meant we had to drop mOS \cite{mOSGit}.
 $\newline$
-The first issue already occurred when starting the example applications. When starting the NAT or the midstat application over the command line interface one can give a parameter for the amount of cores the application can use. The simple\_firewall just uses all available cores per default. Our DUT has a CPU with 4 physical cores and 8 threads. But when using all 8 virtual cores the Linux machine ran Out of Memory (OOM), which resulted in killing the application. This had as result that we could only use the applications with 6 virtual cores, which we had to hard-code into the simple\_firewall application. We tried to allocate even less cores to maybe reduce possible errors, but encountered problems. With 3 or less cores the applications would start normal and their monitoring seemed to work fine. But they would not process or even simply forward any incoming packets. So we settled with 6 cores for the applications. $\newline \newline $
-The second and much bigger issue we sadly only discovered after already setting up and testing for quite some time. When measuring the latency using MoonGen the results looked really promising. With 4 flows and minimum packet size, by using the full line rate, we achieved a respectable throughput. The middlebox couldn't however handle a higher flow number. The amount of flows depended on the amount of virtual cores we assigned to the mOS application. With 6 cores the most amount of flows the mOS application managed was 23. This was consistent with every application we tested, the midstat application, the NAT application and the simple\_firewall. With more than 23 flows, the system would "soft crash", as it would still run on the system and the monitoring would still update itself. But the system no longer forwarded any more packets, even after switching again to a lower amount of flows.  
-This number of flows also depended on the packet size and the transmit rate we configured in MoonGen. A bigger packet size and/or a lower transmit rate make a higher number of flows possible. But even with packet sizes as big as 1500 bytes the amount of possible flows would not go over 1000. 1500 byte is the Maximum Transmission Unit (MTU) for Ethernet. This implied huge limitations for the software as a whole. A software middlebox, even in a private household, has to handle more than 23 flows. With the amount of Internet of Things devices a modern household has, this number can be easily exceeded. Since every device has a private IP address all these IP addresses need to be translated by the NAT most households with included in a router. A middlebox for an ISP or a bigger company would need to be able to handle multiple thousand if not ten thousand flows at once. $\newline$ 
+The first issue already occurred when starting the example applications. When starting the NAT or the midstat application via the command line interface  a parameter can be given for the amount of cores the application can use. The simple\_firewall just uses all available cores per default. Our DUT has a CPU with 4 physical cores and 8 threads. But when using all 8 virtual cores the Linux machine ran Out of Memory (OOM), which resulted in terminating the application. This had as result that we could only use the applications with 6 virtual cores, which we had to hard-code into the simple\_firewall application. We tried to allocate even less cores to maybe reduce possible errors, but encountered problems. With 3 or less cores the applications would start normal and their monitoring seemed to work fine. But they would not process or even simply forward any incoming packets. So we settled with 6 cores for the applications. $\newline \newline $
+The second and much bigger issue we only discovered after already setting up and testing for quite some time. When measuring the latency using MoonGen the results appeared really promising. With 4 flows and minimum packet size, by using the full line rate, we achieved a respectable throughput. The middlebox couldn't however handle a higher flow number. The amount of flows depended on the amount of virtual cores we assigned to the mOS application. With 6 cores the most amount of flows the mOS application managed was 23. This was consistent with every application we tested, the midstat application, the NAT application and the simple\_firewall. With more than 23 flows, the system would "soft crash", as it would still run on the system and the monitoring would still update itself. But the system no longer forwarded any more packets, even after switching again to a lower amount of flows.  
+This number of flows also depended on the packet size and the transmit rate we configured in MoonGen. A bigger packet size and/or a lower transmit rate make a higher number of flows possible. But even with packet sizes as big as 1500 bytes the amount of possible flows would not go over 1000. 1500 byte is the Maximum Transmission Unit (MTU) for Ethernet. This implied huge limitations for the software as a whole. A software middlebox, even in a private household, has to be able to handle more than 23 flows. With the amount of Internet of Things devices a modern household has, this number can be easily exceeded. Since every device has a private IP address all these IP addresses need to be translated by the NAT most households with included in a router. A middlebox for an ISP or a bigger company would need to be able to handle multiple thousand if not ten thousand flows at once. $\newline$ 
 This also had implications for the tests we could conduct with mOS. This meant we would have to remove one variable from our tests. And one that was particular interesting, as the amount of different flows arriving in a short time span is the big difference between middleboxes in private households and middleboxes used by ISPs. $\newline \newline$
-All in all this meant mOS would have severely limited our study as a software middlebox for this paper. Even though mOS was an interesting system with a new approach to the software middlebox, the limitations with the flow amount were severe and the tests of this paper wouldn't have made sense with mOS. 
+All in all this meant mOS would have severely limited our study as a software middlebox for this paper. Even though mOS was an interesting system with a new approach to the software middlebox, the limitations with the flow amount were severe and the tests of this paper would not have been possible in a meaningful way with mOs. 
 
 \subsection{Open VSwitch}
-
-Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a virtual switch. Hypervisors need to bridge traffic between VMs and the outside network interface. When the hypervisor is Linux-based this usually means using the standard Linux bridge, which is the L2-switch that is built into Linux. This switch is mostly reliable, but has problems concerning multi-server virtualization and speed. Here Open VSWitch provides to be more useful and performant than the Linux bridge \cite{OpenVSwitchWhy} . $\newline$ Open VSwitch is licensed under the Apache open source license \cite{OVSLicense} . Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
+After mOs had proven insufficient, we moved on to the next candidate middlebox software, Open VSwitch (OVS).
+Open VSwitch is the middlebox software we settled on using. In it's core, OVS is a virtual switch. Hypervisors need to bridge traffic between VMs and the outside network interface. When the hypervisor is Linux-based this usually means using the standard Linux bridge, which is the L2-switch that is built into Linux. This switch is mostly reliable, but has problems concerning multi-server virtualization and speed. Here Open VSWitch presents as a more useful and better performing solution than the Linux bridge \cite{OpenVSwitchWhy} . $\newline$ Open VSwitch is licensed under the Apache open source license \cite{OVSLicense} . Open VSwitch supports most of the standard management interfaces and protocols. It works in the most commonly used virtualization environments like Xen, KVM and Virtualbox as well in virtual management systems. It is mostly used to virtualize multiple servers at once \cite{pothuraju2016measuring}. 
 $\newline$
 \begin{figure}[H]
 \centering
@@ -358,7 +358,7 @@ The virtual machines contain virtual interfaces. These enable communication betw
 
 \subsubsection{Advantages of Open VSwitch}
 
-Open VSwitch is used as an alternative to the basic Linux bridge for modern hypervisors. OVS has some clear cut advantages over the classic Linux bridge mostly in terms of performance. 
+Open VSwitch is used as an alternative to the basic Linux bridge for modern hypervisors. OVS has some clearcut advantages over the classic Linux bridge mostly in terms of performance. 
 \begin{itemize}
 
 \item Fast self-regulation when the network environment changes, realized through sFlow and Netflow. 
@@ -382,10 +382,10 @@ With the use of DPDK in OVS, the slow path can make use of the Poll Mode Drivers
 \label{fig:OpenVSwitchDPDK}
 \end{figure}
 
-This can be see in \ref{fig:OpenVSwitchDPDK}. Sadly the NAT extension of OVS does not support DPDK just yet. The support is announced for version 2.7 which will probably be released in 2018 \cite{OVSNATDPDK} . %%Possible Extension from Intel Page
+This can be see in \ref{fig:OpenVSwitchDPDK}. The NAT extension of OVS does not support DPDK just yet. The support is announced for version 2.7 which will probably be released in 2018 \cite{OVSNATDPDK} . %%Possible Extension from Intel Page
 
 \subsubsection{Connection tracking in OVS}
-The connection tracking module in OVS is relatively new. Originally OVS only supported stateless matching.That made the implementation of firewalls quite difficult. For example does OVS support the match on TCP flags. This enables a fast stateless firewall by matching on TCP SYN and TYP ACK flags. But UDP traffic and traffic with ACK flag set gets through the firewall unhampered. Another way to set up a firewall in OVS is with a learn action which builds a new flow in the reverse direction. But this has to direct new flows once again through the user space which reduces the speed significantly \cite{OVSconntrack}. $\newline$
+The connection tracking module in OVS is relatively new. Originally OVS only supported stateless matching. That made the implementation of firewalls quite difficult. For example does OVS support the match on TCP flags. This enables a fast stateless firewall by matching on TCP SYN and TYP ACK flags. But UDP traffic and traffic with ACK flag set gets through the firewall unhampered. Another way to set up a firewall in OVS is with a learn action which builds a new flow in the reverse direction. But this has to direct new flows once again through the user space which reduces the speed significantly \cite{OVSconntrack}. $\newline$
 With OVS 2.5 a connection tracking module was introduced. It supports the stateful tracking of flows as well as application-level gateways for different protocols like ftp. 
 
 \begin{figure}[H]
@@ -408,7 +408,7 @@ This means the stateful NAT in OVS has all the features we expect from a middleb
 As you can see in \ref{fig:OpenVSwitchNATflow}, the conntrack and the NAT module in Open VSwitch use netfilter to create and update the rules. Created routes get stored in the OVS flow table. 
 
 \chapter{Evaluation and Analysis of results}
-This chapter will go over the results we got in the conducted tests. As previously mentioned, these tests were carried out with MoonGen and Open VSwitch. Our goal was to test the NAT functionality of OVS and the firewall functionality. Because the OVS NAT has no DPDK support until now we decided to test the firewall without DPDK as well, to make the results comparable. This means the speeds measured here will not be very impressive and certainly not fast enough to make OVS a candidate for a software middlebox in a bigger context. But since the DPDK support is already on its way and, as of now, partly implemented, this could change soon. $\newline$
+This chapter will present the results obtained in the conducted tests. As previously mentioned, these tests were carried out with MoonGen and Open VSwitch. Our goal was to test the NAT functionality of OVS and the firewall functionality. Because the OVS NAT has no DPDK support until now we decided to test the firewall without DPDK as well, to make the results comparable. This means the speeds measured here will not be very impressive and certainly not fast enough to make OVS a candidate for a software middlebox in a bigger context. But since the DPDK support is already on its way and, as of now, partly implemented, this could change soon. $\newline$
 \section{Important parameters} \label{parameters}
 To test the software we concentration on 3 parameters that we changed for our tests: 
 \begin{itemize}
@@ -650,7 +650,7 @@ $\newline \newline$
 \caption[NAT latency with 400 MBit/s ]{NAT latency with 400 MBit/s}
 \label{fig:TrafficOVSNATtestMinimalPacketsizeFlow100TR400}
 \end{figure}
-Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow100TR400} has a similar peak to Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow10000TR400}. But in the test with 10000 flows the average latency is higher as we a small amount of packets with high latency values. 
+Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow100TR400} has a similar peak to Figure \ref{fig:TrafficOVSNATtestMinimalPacketsizeFlow10000TR400}. But in the test with 10000 flows the average latency is higher as we have a small amount of packets with high latency values. 
 
 $\newline$
 \begin{figure}[H]
@@ -683,8 +683,8 @@ We will try to explain our test results based on the model we established in \re
 \subsection{Comparison NAT and Firewall}
 Another conjecture was that the NAT is in its core a stateful firewall which has to to extra work when rewriting IP addresses in the IP header. When we look at Figure \ref{fig:TrafficOVSFirewallMaxPacketsizeLowRulesFlow1000} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} we see no difference in the maximum attainable transmit rate before packet loss occurs. This seems to deny our model. If we look further however and compare Figure \ref{fig:TrafficOVSFirewalltestMinPacketsizeLowRulesFlow10000} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000} we see a significant difference in the maximal achievable transmit rate before packet loss occurs.
 This would be explained by our model. $\newline$
-Combined with the results we got for the packet size this could be an indicator that when processing and forwarding maximum sized packets Open VSwitch has other limiting factors. $\newline$ This could be the cache for example. When processing so many maximum sized packages the cache were the packets are temporarily stored before being processed and forwarded could be too small. This would mean we never actually use the fully CPU capacity when we use maximum sized packages. Instead the high latency and packet loss occurs because the big packet size is a problem when the packets are cached. $\newline \newline$
-We tried to confirm that in the test with the maximum sized packets the full CPU capacity was never used. For this we measured the averaged CPU load over the 8 cores on our DUT. This was done via tracking the load average in /proc/loadavg. We tracked the load average for our NAT and Firewall with maximum sized packages and minimum sized packages respectively. $\newline$
+Combined with the results we got for the packet size this could be an indicator that when processing and forwarding maximum sized packets Open VSwitch has other limiting factors. $\newline$ This could be the cache for example. When processing so many maximum sized packets the cache were the packets are temporarily stored before being processed and forwarded could be too small. This would mean we never actually use the full CPU capacity when we use maximum sized packets. Instead the high latency and packet loss occurs because the big packet size is a problem when the packets are cached. $\newline \newline$
+We tried to confirm that in the test with the maximum sized packets the full CPU capacity was never used. For this we measured the averaged CPU load over the 8 cores on our DUT. This was done via tracking the load average in /proc/loadavg. We tracked the load average for our NAT and Firewall with maximum sized packets and minimum sized packets respectively. $\newline$
 \begin{table}[H]
 \centering
 \caption{CPU load average on DUT}
@@ -697,26 +697,29 @@ $\newline \newline$
 \end{tabular}
 \end{table}
 $\newline$
-As you can see the CPU load average pretty much confirms our theory. OVS does not use the full CPU when processing maximum size packages, so the problems with dropping packages have another origin.
+As you can see the CPU load average pretty much confirms our theory. OVS does not use the full CPU when processing maximum size packets, so the problems with dropping packets have another origin.
 
 
 $\newline$
 \subsection{Influence of flow amount}
-When we compare our NAT results with different flow amounts we see 2 different results. When comparing Figures \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see no direct influence on the reachable transmit rate without packet loss. But as we already established: the reason for the packet loss with maximum packet size seems to be actually a cache problem rather than that the CPU. So the better comparison to see the influence of the amount of flows on the achievable transmit rate is Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. $\newline$ Although the measurement for 10000 flows is maybe not as clean as the measurement for 100 flows we see a difference. For 10000 flows the achievable transmit rate is significantly lower. This could have many different reasons. $\newline$
+When we compare our NAT results with different flow amounts we see 2 different results. When comparing Figures \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMaxPacketsizeFlow10000} we see no direct influence on the reachable transmit rate without packet loss. But as we already established: the reason for the packet loss with maximum packet size seems to be actually a cache problem rather than a CPU problem. So the better comparison to see the influence of the amount of flows on the achievable transmit rate is Figure \ref{fig:TrafficOVSNATtestMinPacketsizeFlow100} and \ref{fig:TrafficOVSNATtestMinPacketsizeFlow10000}. $\newline$ Although the measurement for 10000 flows is maybe not as clean as the measurement for 100 flows we see a difference. With not as clean I am referring to the small peaks we have in the graph before packet loss occurs. For 10000 flows the achievable transmit rate is significantly lower. This could have many different reasons. $\newline$
 We see a small influence when we look at our results for the single transmit rate, where the amount of flows shifts the average latency of the packets.$\newline$
 And as we have seen with the stress tests there is an upper limit for the amount of flows the NAT is able to handle.$\newline$
 
 \chapter{Conclusion}
 The goal of this thesis was to evaluate if software middleboxes are competitive with hardware implemented middleboxes. Also we wanted to test software middlebox implementations. We developed a NAT model and wanted to confirm our thoughts on it. This chapter summarizes our results. 
 \section{Performance of software middleboxes}
-
-
+We wanted to evaluate if software middleboxes are competitive with hardware implemented middleboxes and could replace them in the foreseeable future. 
+$\newline$
+Our tests with OVS showed that the achievable transmit rate with software middleboxes without DPDK support is still too low to be competitive with hardware implemented middleboxes. 
 
 \section{NAT model}
-
+We wanted to confirm our NAT model, which basically split up the NAT in middlebox in 3 tasks. First the parsing of the packet. Second holding a state. Lastly rewriting either the source or destination IP address, and rewriting the source or destination port respectively. $\newline$
+We tried testing this by testing a stateful firewall as well as a NAT implementation. We confirmed that under the same testing conditions with the same parameters the firewall was able to handle more load than the NAT. We predicted this in our model. 
 
 \section{Future Works}
-
+\subsection{OVS NAT with DPDK support}
+When OVS with DPDK fully supports the conntrack module with NAT functionality a logical step would be to repeat the tests done in this paper to see which results change and how the effect of the parameters tested here change.$\newline \newline$ Particular interesting would be the achievable transmit rate without packet loss with the minimum sized packets. Also interesting would be if our NAT model still holds when the firewall and the NAT module are supported by DPDK. 
 
 
 
