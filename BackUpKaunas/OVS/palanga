@@ -1,0 +1,18 @@
+#!/bin/bash
+cd /root/openvswitch-2.7.0
+./configure --enable-Werror --with-linux=/lib/modules/`uname -r`/build
+make
+make modules_install
+/sbin/modprobe openvswitch
+make install
+mkdir -p /usr/local/etc/openvswitch
+export PATH=$PATH:/usr/local/share/openvswitch/scripts
+export DB_SOCK=/usr/local/var/run/openvswitch/db.sock 
+#Initialize database 
+ovsdb-tool create /usr/local/etc/openvswitch/conf.db vswitchd/vswitch.ovsschema
+ovsdb-server --remote=punix:/usr/local/var/run/openvswitch/db.sock --remote=db:Open_vSwitch,Open_vSwitch,manager_options --pidfile --detach --log-file
+ovs-vsctl --no-wait init
+ovs-vswitchd --pidfile --detach
+ovs-vsctl add-br br0
+ovs-vsctl add-port br0 eth2 #adapt if necessary, only eth2 and eth3 with debian
+ovs-vsctl add-port br0 eth3

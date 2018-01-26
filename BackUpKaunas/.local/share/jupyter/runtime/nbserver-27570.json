@@ -1,0 +1,11 @@
+{
+  "base_url": "/user/sternsdo/",
+  "hostname": "127.0.0.1",
+  "notebook_dir": "/srv/testbed/av_framework/notebooks",
+  "password": false,
+  "pid": 27570,
+  "port": 41448,
+  "secure": false,
+  "token": "",
+  "url": "http://127.0.0.1:41448/user/sternsdo/"
+}

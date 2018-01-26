@@ -1,0 +1,71 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: sample-acmtog.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: sample-bibliography.bib
+Warning--no key, author in 2004:ITE:1009386.1010128
+Warning--no author, editor, organization, or key in 2004:ITE:1009386.1010128
+Warning--to sort, need author or key in 2004:ITE:1009386.1010128
+Warning--no key, author in 2004:ITE:1009386.1010128
+Warning--no key, author in 2004:ITE:1009386.1010128
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no key, author in 2004:ITE:1009386.1010128
+Warning--no author, editor, organization, or key in 2004:ITE:1009386.1010128
+Warning--empty author in 2004:ITE:1009386.1010128
+Warning--empty chapter and pages in Editor00
+Warning--page numbers missing in Editor00a
+Warning--numpages field, but no articleno or eid field, in Kirschmer:2010:AEI:1958016.1958018
+Warning--empty address in Knuth97
+Warning--articleno or eid field, but no numpages field, in Lee05
+Warning--page numbers missing in both pages and numpages fields in Lee05
+Warning--articleno or eid, but no pages or numpages field in Lee05
+Warning--unrecognized DOI value [99.9999/woot07-S422]
+Warning--articleno or eid field, but no numpages field, in rous08
+Warning--page numbers missing in both pages and numpages fields in rous08
+Warning--articleno or eid, but no pages or numpages field in rous08
+Warning--page numbers missing in both pages and numpages fields in SaeediJETC10
+Warning--unrecognized DOI value [99.9999/woot07-S422]
+You've used 40 entries,
+            5706 wiz_defined-function locations,
+            1815 strings with 24968 characters,
+and the built_in function-call counts, 39558 in all, are:
+= -- 5103
+> -- 1180
+< -- 5
++ -- 343
+- -- 624
+* -- 2776
+:= -- 4126
+add.period$ -- 220
+call.type$ -- 40
+change.case$ -- 239
+chr.to.int$ -- 38
+cite$ -- 63
+duplicate$ -- 3065
+empty$ -- 2290
+format.name$ -- 477
+if$ -- 9225
+int.to.chr$ -- 3
+int.to.str$ -- 0
+missing$ -- 92
+newline$ -- 403
+num.names$ -- 305
+pop$ -- 1251
+preamble$ -- 1
+purify$ -- 433
+quote$ -- 0
+skip$ -- 1116
+stack$ -- 0
+substring$ -- 3388
+swap$ -- 267
+text.length$ -- 428
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 930
+warning$ -- 21
+while$ -- 302
+width$ -- 0
+write$ -- 804
+(There were 21 warnings)

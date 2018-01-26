@@ -1,0 +1,17 @@
+Outline seminar:
+
+
+1. Introduction
+   -Prisma, app to make art filters on your photos, based on deepart, neural network 
+
+2. Outline
+3. Background
+   -neural networks, general, specially biological vision
+4. Image recognition, seperate image in content and style, examples, pictures. 
+4.1 general encoding of one image, filter, layers
+5. Video recognition, differences to just picture recognition
+5.1 Problems in video, solutions, maths
+5.2 example video, different encodings, short term flow cs long term flow
+6. Conclusion:
+   -Prisma team developing video algorithm, possibilitys in art 
+

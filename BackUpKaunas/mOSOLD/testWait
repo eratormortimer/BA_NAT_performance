@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#boot
+
+
+
+testbed-nodes list > /tmp/nodesList
+while ! grep 'riga.*booting' /tmp/nodesList
+Do
+sleep 1
+testbed-nodes list > /tmp/nodesList
+Done
